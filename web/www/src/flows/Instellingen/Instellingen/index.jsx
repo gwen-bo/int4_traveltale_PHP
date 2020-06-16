@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-// import {ROUTES} from "../../consts";
 import { useObserver } from "mobx-react-lite";
-import Navigatie from "../Navigatie";
+import Navigatie from "../../../components/Navigatie";
 import styles from "./Instellingen.module.css";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../consts";
 
 import Profiel from "../Profiel";
 import Weergave from "../Weergave";
 import Fitbit from "../Fitbit";
 
 
-import profiel from "../../assets/img/instellingen/profiel.svg" 
-import weergave from "../../assets/img/instellingen/weergave.svg" 
-import fitbit from "../../assets/img/instellingen/fitbit.svg" 
+import profiel from "../../../assets/img/instellingen/profiel.svg" 
+import weergave from "../../../assets/img/instellingen/weergave.svg" 
+import fitbit from "../../../assets/img/instellingen/fitbit.svg" 
 
-import profiel_active from "../../assets/img/instellingen/profiel_actief.svg" 
-import weergave_active from "../../assets/img/instellingen/weergave_actief.svg" 
-import fitbit_active from "../../assets/img/instellingen/fitbit_actief.svg" 
+import profiel_active from "../../../assets/img/instellingen/profiel_actief.svg" 
+import weergave_active from "../../../assets/img/instellingen/weergave_actief.svg" 
+import fitbit_active from "../../../assets/img/instellingen/fitbit_actief.svg" 
 
 
 const Instellingen = () => {
@@ -29,8 +26,6 @@ const Instellingen = () => {
     <article className={styles.instellingen_pos}>
       <div className={styles.instellingen_intro}>
         
-        {/* <p className={styles.intro_text}>Klik op  <span className={styles.bold}>‘Profiel’</span>  om je persoonlijke gegevens en voorkeuren aan te passen. </p>
-        <p className={styles.intro_text}>Klik op  <span className={styles.bold}>‘Weergave’ </span>  om de tekstgrootte en je begeleider aan te passen.</p> */}
       </div>
       <div className={styles.switchNav}>
         <div className={styles.switch}>

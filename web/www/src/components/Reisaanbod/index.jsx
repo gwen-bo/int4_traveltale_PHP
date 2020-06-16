@@ -13,7 +13,7 @@ import niveau3 from "../../assets/img/reisaanbod/niveau3.svg"
 import hangers from "../../assets/img/reisaanbod/nametag.svg"
 
 const Reisaanbod = () => {
-  const {bestemmingenStore} = useStores()
+  const {landenStore} = useStores()
 
 
 
@@ -30,7 +30,7 @@ const Reisaanbod = () => {
           <li className={styles.filter_button}>Tropische reizen</li>
         </ul>
         <div className={styles.bestemming_wrapper}>
-        {bestemmingenStore.bestemmingen.map(bestemming => (
+        {landenStore.landen.map(bestemming => (
           <Link to={`${ROUTES.aanbodDetail.to}${bestemming.id}`}  key={bestemming.id}>
             <div className={styles.bestemming}>
             <div className={styles.bestemming_info}>

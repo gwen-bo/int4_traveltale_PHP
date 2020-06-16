@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Terug.module.css";
 import { Link, NavLink } from "react-router-dom";
-import { ROUTES } from "../../consts";
+import { ROUTES } from "../../../consts";
 
 const Terug = ({path}) => {
 

@@ -25,7 +25,7 @@ const Bevestigen = () => {
     <img className={styles.animatie_circle} src={animatie} alt="animatie"></img>
 
         <div className={styles.button_wrapper}>
-            <a className={styles.button} href={'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foverzicht%2F&scope=activity%20profile&expires_in=604800'}>Klaar</a>
+            <a className={styles.button} href={'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%2Foverzicht%2F&scope=activity%20profile&expires_in=604800'}>Klaar</a>
         </div>
 
     </section>

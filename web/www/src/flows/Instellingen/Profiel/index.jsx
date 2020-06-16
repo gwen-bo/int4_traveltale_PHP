@@ -1,18 +1,13 @@
 import React from "react";
-// import {ROUTES} from "../../consts";
 import { useObserver } from "mobx-react-lite";
-import Navigatie from "../Navigatie";
 import styles from "./Profiel.module.css";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../consts";
-import { useStores } from "../../hooks";
+
+import { useStores } from "../../../hooks";
 
 
-import scooter from "../../assets/img/instellingen/scooter_bomma.svg"
-import skate from "../../assets/img/instellingen/skate_bomma.svg"
-import fly from "../../assets/img/instellingen/fly_bomma.svg"
-
-// import style from "./Instellingen.module.css";
+import scooter from "../../../assets/img/instellingen/scooter_bomma.svg"
+import skate from "../../../assets/img/instellingen/skate_bomma.svg"
+import fly from "../../../assets/img/instellingen/fly_bomma.svg"
 
 const Profiel = () => {
 

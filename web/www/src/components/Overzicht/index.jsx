@@ -24,8 +24,9 @@ const Overzicht = () => {
     // const USER_NOT_FOUND = "Het ziet er naar uit dat we je niet vinden. Nog eens inloggen?";
 
     useEffect(() => {
+      console.log("use effect wordt opgestart")
       if(authStore.accessToken === undefined){
-      // window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foverzicht%2F&scope=activity%20profile&expires_in=604800');
+      // window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%2Foverzicht%2F&scope=activity%20profile&expires_in=604800');
       console.log('access token ophalen')
       let url = window.location.hash; 
   

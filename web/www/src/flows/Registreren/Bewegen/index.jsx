@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams, useHistory } from "react-router";
+import React  from "react";
+import { useHistory } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import scooter from "../../../assets/img/scooter_bomma.svg"
@@ -11,7 +11,6 @@ import styles from "./Bewegen.module.css";
 import { Link } from "react-router-dom";
 
 const Bewegen = () => {
-  const {uiStore} = useStores();
   const {dataStore} = useStores();
   const history = useHistory();
 

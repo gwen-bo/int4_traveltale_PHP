@@ -1,15 +1,13 @@
 import React from "react";
 // import {ROUTES} from "../../consts";
 import { useObserver } from "mobx-react-lite";
-import Navigatie from "../Navigatie";
 import styles from "./Weergave.module.css";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../consts";
-import { useStores } from "../../hooks";
+
+import { useStores } from "../../../hooks";
 
 
-import oma from "../../assets/img/instellingen/oma.svg"
-import opa from "../../assets/img/instellingen/opa.svg"
+import oma from "../../../assets/img/instellingen/oma.svg"
+import opa from "../../../assets/img/instellingen/opa.svg"
 
 const Profiel = () => {
 
@@ -19,9 +17,6 @@ const Profiel = () => {
   return useObserver(() => (
    <>
    <div className={styles.pos}>
-      {/* <p className={styles.title}>Gebruikersnaam </p>
-      <p  className={styles.text}>Dit is de naam die gebruikt wordt om jou aan te spreken, hier in Travel Tale.<br></br>
-      Klik op de naam om die te wijzigen.</p> */}
    </div>
    <div className={styles.pos}>
       <p className={styles.title}>Jouw reisbegeleider </p>

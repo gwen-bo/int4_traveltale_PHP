@@ -3,7 +3,7 @@ import React from "react";
 import {useStores} from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import { ROUTES } from "../../consts";
-import Terug from "../Terug";
+import Terug from "../buttons/Terug";
 import Rugzak from "../buttons/Rugzak";
 import hangers from "../../assets/img/reisoverzicht/hangers.svg"
 import open from "../../assets/img/reisoverzicht/open.svg"

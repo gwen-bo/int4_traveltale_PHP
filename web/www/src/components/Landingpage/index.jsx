@@ -30,7 +30,3 @@ const Landingpage = () => {
 };
 
 export default Landingpage;
-
-
-{/* <a className={styles.button} href={'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin%2F&scope=activity%20profile&expires_in=604800'}>Dit is mijn eerste keer</a>
-<a className={styles.button} href={'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin%2F&scope=activity%20profile&expires_in=604800'}>Ik heb al een account</a> */}

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import { useStores } from "../../hooks";
 import Navigatie from "../Navigatie";
-import TerugOverzicht from "../TerugOverzicht";
+import TerugOverzicht from "../buttons/TerugOverzicht";
 
 import niveau1 from "../../assets/img/reisaanbod/niveau1.svg"
 import niveau2 from "../../assets/img/reisaanbod/niveau2.svg"

@@ -27,7 +27,7 @@ const Aanmelden = () => {
 
         <div className={styles.button_wrapper}>
             <button onClick={() => {history.goBack();}} className={styles.button_sec} to={ROUTES.home}>Terug</button>
-            <a className={styles.button} href={'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foverzicht%2F&scope=activity%20profile&expires_in=604800'}>Aanmelden</a>
+            <a className={styles.button} href={'https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%2Foverzicht%2F&scope=activity%20profile&expires_in=604800'}>Aanmelden</a>
 
         </div>
 

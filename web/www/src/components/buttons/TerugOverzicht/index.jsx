@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TerugOverzicht.module.css";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../consts";
+import { ROUTES } from "../../../consts";
 
 const TerugOverzicht = () => {
 

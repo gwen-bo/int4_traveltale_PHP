@@ -8,7 +8,7 @@ import LandDetail from "./components/LandDetail"
 import ActiviteitDetail from "./components/ActiviteitDetail"
 import ReisOverzicht from "./components/ReisOverzicht"
 import Login from "./components/Login"
-import Instellingen from "./components/Instellingen"
+import Instellingen from "./flows/Instellingen/Instellingen"
 import StadDetail from './components/StadDetail';
 import Aanmelden from './flows/Aanmelden/Aanmelden';
 import Registratie from './flows/Registreren/Registratie_start';

@@ -13,6 +13,11 @@ try {
 }
 
 date_default_timezone_set('UTC');
+require __DIR__ . '/dao/LandenDAO.php';
+require __DIR__ . '/dao/StedenDAO.php';
+require __DIR__ . '/dao/ActiviteitenDAO.php';
+require __DIR__ . '/dao/UserDAO.php';
+
 
 /**
  * Instantiate App
@@ -42,13 +47,178 @@ $app->addBodyParsingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 // Define app routes
-$app->get('/', function (Request $request, Response $response) {
-  ob_start();
-  phpinfo();
-  $content = ob_get_clean();
-  $response->getBody()->write($content);
-  return $response
-          ->withStatus(200);
+
+$app->group('/api', function (RouteCollectorProxy $routeGroup) {
+
+  // LANDEN OPHALEN
+  $routeGroup->group('/landen', function (RouteCollectorProxy $routeGroup) {
+    $routeGroup->get('', function (Request $request, Response $response) {
+      $landenDAO = new LandenDAO();
+      $data = $landenDAO->selectAll();
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(201);
+    });
+    
+    $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+      $landenDAO = new LandenDAO();
+      $data = $landenDAO->selectById($args['id']);
+      if (empty($data)) {
+        return $response
+              ->withStatus(404);
+      }
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+    $routeGroup->get('/{id}/steden', function (Request $request, Response $response, $args) {
+      $landenDAO = new LandenDAO();
+      $data = $landenDAO->selectStedenForLand($args['id']);
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+  });
+
+  // STEDEN OPHALEN
+  $routeGroup->group('/steden', function (RouteCollectorProxy $routeGroup) {
+     $routeGroup->get('', function (Request $request, Response $response) {
+      $stedenDAO = new StedenDAO();
+      $data = $stedenDAO->selectAll();
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+    $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+      $stedenDAO = new StedenDAO();
+      $data = $stedenDAO->selectById($args['id']);
+      if (empty($data)) {
+        return $response
+              ->withStatus(404);
+      }
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+    $routeGroup->get('/{id}/activiteiten', function (Request $request, Response $response, $args) {
+      $stedenDAO = new StedenDAO();
+      $data = $groupDAO->selectActiviteitenForSteden($args['id']);
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+  });
+
+  // ACTIVITEITEN OPHALEN
+  $routeGroup->group('/activiteiten', function (RouteCollectorProxy $routeGroup) {
+     $routeGroup->get('', function (Request $request, Response $response) {
+      $activiteitenDAO = new ActiviteitenDAO();
+      $data = $activiteitenDAO->selectAll();
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
+    $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+      $activiteitenDAO = new ActiviteitenDAO();
+      $data = $activiteitenDAO->selectById($args['id']);
+      if (empty($data)) {
+        return $response
+              ->withStatus(404);
+      }
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
+    $routeGroup->get('/{id}/intro', function (Request $request, Response $response, $args) {
+      $activiteitenDAO = new ActiviteitenDAO();
+      $data = $groupDAO->selectIntroActiviteit($args['id']);
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
+  });
+
+  // USER OPHALEN
+  $routeGroup->group('/users', function (RouteCollectorProxy $routeGroup) {
+   $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+     $userDAO = new UserDAO();
+     $data = $userDAO->selectById($args['id']);
+     if (empty($data)) {
+       return $response
+             ->withStatus(404);
+     }
+     $response->getBody()->write(json_encode($data));
+     return $response
+             ->withHeader('Content-Type', 'application/json')
+             ->withStatus(200);
+   });
+
+   $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    // $errors = $userDAO->getValidationErrorsLinkGroups($input);
+    // if (!empty($errors)) {
+    //   $response->getBody()->write(json_encode($errors));
+    //   return $response
+    //           ->withHeader('Content-Type', 'application/json')
+    //           ->withStatus(422);
+    // }
+    $data = $userDAO->update($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->post('', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+
+    $errors = $userDAO->getValidationErrors($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $result = $userDAO->insert($input);
+    $response->getBody()->write(json_encode($result));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->post('/{id}/{checked}', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+
+    $errors = $userDAO->getValidationErrors($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $result = $userDAO->insert($input);
+    $response->getBody()->write(json_encode($result));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+ });
 });
 
 // send all other routes to our react app

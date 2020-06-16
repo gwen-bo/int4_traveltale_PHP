@@ -7,7 +7,7 @@ import { ROUTES } from "../../consts";
 import { Link } from "react-router-dom";
 
 import kimono from "../../assets/img/rugzak/kimono.svg"
-import Terug from "../Terug";
+import Terug from "../buttons/Terug";
 
 
 

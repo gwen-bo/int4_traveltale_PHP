@@ -11,6 +11,7 @@ class AuthStore {
 
    setAccessToken(access_token){
        this.accessToken= access_token;
+       console.log(access_token);
        this.fetchUserData().then(data => this.rootStore.dataStore.updateProfileFromServer(data.user));
        this.fetchActivityData().then(data => this.rootStore.uiStore.addSteps(data.lifetime))
    }
