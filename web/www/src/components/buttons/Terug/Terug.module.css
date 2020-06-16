@@ -1,0 +1,42 @@
+.nav_tekst {
+    font-size: 1.8rem;
+    margin-top: .7rem;
+    width: 10rem;
+    text-align: center;
+}
+
+.nav_li {
+    width: 15rem;
+    display: flex; 
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+}
+
+.nav_button {
+    background-color: black;
+    border-radius: 40px;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.terug_button{
+    background-image: url("../../../assets/img/terug.svg");
+}
+
+.navigatie_wrapper{
+    width: 15vw;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    margin: 3rem;
+}

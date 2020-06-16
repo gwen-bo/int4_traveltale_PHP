@@ -1,0 +1,125 @@
+.reisaanbod{
+    height: 70vh;
+}
+
+.button{
+    background-color: black;
+    color: white;
+    font-size: 2.4rem;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    border: .3rem solid black;
+    padding: 0rem 5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.button_sec {
+    background-color: #FFF1E3;
+    color: black;
+    font-size: 2.4rem;
+    border: .3rem solid black;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: 1rem 7.5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 95vw;
+    margin: 0 auto; 
+}
+
+.filters {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    width: 95vw;
+    margin-bottom: 6rem;
+    margin-top: 2rem;
+}
+
+.filter_button {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3rem;
+    padding: 1rem 0rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 22rem;
+    text-align: center;
+}
+
+.bestemming_header {
+    display: flex;
+    flex-flow: column;
+}
+
+
+.bestemming{
+    width: 30rem;
+    height: 32rem;
+    background-color: #FFFFFF;
+}
+
+.bestemming_wrapper {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 2rem;
+    margin: auto;
+}
+
+.bestemming_img {
+    width: 30rem;
+    height: 32rem;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1; 
+}
+
+.bestemming_info {
+    width: 30rem;
+    height: 32rem;
+    z-index: 2; 
+    position: absolute;
+}
+
+.bestemming_niveau {
+    margin-bottom: 7rem;
+    position: absolute;
+    bottom: 0; 
+    width: 3rem;
+    margin-left: 1rem;
+}
+
+.bestemming_naam {
+    background: #FFBD3A;
+    box-shadow: 12px 8px 6px rgba(0, 0, 0, 0.1);    
+    width: 22rem;
+    height: 6rem;
+    margin: auto;
+    font-weight: 500;
+    font-size: 4.5rem;
+    text-align: center;
+    padding: .5rem;
+}
+
+.details{
+    margin-bottom: 1rem;
+    position: absolute;
+    bottom: 0;
+    margin-left: 6rem;
+}

@@ -1,0 +1,115 @@
+.nav_tekst {
+    font-size: 1.8rem;
+    margin-top: .7rem;
+}
+
+.back {
+    top: 0;
+    position: absolute;
+    left: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nav_button {
+    background-color: black;
+    border-radius: 40px;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    background-image: url("../../assets/img/terug.svg");
+    border: none;
+
+}
+
+.rugzak_pos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80vh;
+}
+
+.rugzak_pos_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75vw;
+    margin-top: 3rem;
+}
+
+.rugzak_intro {
+    width: 35vw;
+}
+
+.rugzak_title {
+    font-size: 5rem;
+    font-weight: 500;
+}
+
+.rugzak_text {
+    font-size: 2.4rem;
+}
+
+.rugzak_totaal {
+    font-size: 2.8rem;
+}
+
+.rugzak_totaal_stappen {
+    font-size: 5rem;
+    color: #FFBD3A;
+    font-weight: 500;
+}
+
+.rugzak_items_pos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.rugzak_items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.rugzak_plaats {
+    font-size: 2.4rem;
+    background-color: #539882;
+    color: #F1E6C9;
+    font-weight: 600;
+    padding: .5rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.rugzak_item_bol {
+    background-color: #539882;
+    width: 16.5rem;
+    height: 16.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10rem;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+}
+
+.rugzak_item_naam {
+    font-size: 2.4rem;
+}
+
+
+  

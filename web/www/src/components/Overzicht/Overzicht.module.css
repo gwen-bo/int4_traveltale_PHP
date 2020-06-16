@@ -1,0 +1,144 @@
+.overzicht {
+    margin-left: 12rem;
+    width: 55vw;
+    height: 70vh;
+    display: flex; 
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links_wrapper {
+    display: flex; 
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 60vh;
+}
+
+.button_wrapper{
+    display: flex;
+    flex-flow: row;
+    width: 65vw;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.button{
+    background-color: black;
+    color: white;
+    font-size: 2.4rem;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    border: .3rem solid black;
+    padding: 1rem 5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.button_sec {
+    background-color: #FFF1E3;
+    color: black;
+    font-size: 2.4rem;
+    border: .3rem solid black;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: 1rem 7.5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.button_uitleg {
+    background-color: #FFF1E3;
+    color: black;
+    font-size: 2.2rem;
+    border: .3rem solid black;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: .5rem 3.5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.section_header {
+    display: flex; 
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-weight: 500;
+    width: 50vw;
+}
+
+.uitleg {
+    font-size: 2.4rem;
+    max-width: 40rem;
+    margin-bottom: 2rem;
+}
+
+.uitleg_nadruk {
+    font-weight: 500;
+    font-size: 2.4rem;
+    max-width: 60rem;
+    margin-bottom: 6rem;
+}
+
+.animatie_circle {
+    margin: 0 auto;
+}
+
+.section {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    height: 70vh;
+    align-items: center;
+    margin-top: -4rem;
+}
+
+.kaart {
+    margin-top: 10rem;
+    margin-right: -5rem;
+}
+
+.info_icon {
+    background-color: #539882;
+    width: 9rem;
+    height: 9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.info_icon img {
+    filter: drop-shadow( 3px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.icons_wrapper {
+    display: flex;
+    flex-flow: row;
+    width: 35vw;
+    height: 15rem;
+    justify-content: space-between;
+}
+
+.info_wrapper{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.icon_tekst {
+    font-weight: 500;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+}
+
+.icon_img {
+    width: 6rem;
+}

@@ -1,0 +1,82 @@
+@import "./styles/reset.css";
+
+body {
+  margin: 0;
+  font-family: "Geomanist", BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.25;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face{
+  font-family: "Geomanist"; 
+  src: url("./assets/fonts/Geomanist-Light.woff2") format("woff2");
+  font-weight: 200; 
+  font-style: normal;
+}
+
+@font-face{
+  font-family: "Geomanist"; 
+  src: url("./assets/fonts/Geomanist-Regular.woff2") format("woff2");
+  font-weight: 400; 
+  font-style: normal;
+}
+
+@font-face{
+  font-family: "Geomanist"; 
+  src: url("./assets/fonts/Geomanist-Book.woff2") format("woff2");
+  font-weight: 600; 
+  font-style: normal;
+}
+
+@font-face{
+  font-family: "Geomanist"; 
+  src: url("./assets/fonts/Geomanist-Bold.woff2") format("woff2");
+  font-weight: 800; 
+  font-style: normal;
+}
+
+@font-face{
+  font-family: "Geomanist"; 
+  src: url("./assets/fonts/Geomanist-Bold.woff2") format("woff2");
+  font-weight: 900; 
+  font-style: normal;
+}
+
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+/* stylelint-disable */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+/* stylelint-enable */
+
+
+a {
+  text-decoration: none;
+}
+
+header {
+  margin-top: 2rem;
+}
+
+#root {
+  height: 100vh;
+  background-image: linear-gradient(#FFFFFF, #FFEFDF);
+
+}
+
+

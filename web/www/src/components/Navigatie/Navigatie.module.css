@@ -1,0 +1,99 @@
+.navigatie_wrapper{
+    height: auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    font-size: 2.4rem;
+    /* margin-bottom: 4rem; */
+    }
+    
+    .nav {
+    display: flex;
+    flex-flow: row;
+    width: 50vw;
+    justify-content: space-evenly;
+    height: fit-content;
+    margin-top: 1.5rem;
+    }
+
+    .nav_logo {
+        height: 17rem;
+    }
+    
+    .nav_li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    }
+
+    .active .nav_tekst {
+        font-weight: 500;
+    }
+
+    .nav_tekst {
+        font-size: 1.8rem;
+        margin-top: .9rem;
+    }
+    
+    
+    .nav_button {
+        background-color: black;
+        border-radius: 40px;
+        width: 6rem;
+        height: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mijn_reis {
+        background-image: url("../../assets/img/mijn_reis_icon.svg");
+    }
+    
+    .reisaanbod {
+        background-image: url("../../assets/img/reisaanbod_icon.svg");
+    }
+    
+    .instellingen {
+        background-image: url("../../assets/img/instellingen_icon.svg");
+    }
+    
+     .active .mijn_reis {
+        background-image: url("../../assets/img/mijn_reis_G_icon.svg");
+    } 
+    
+     .active .reisaanbod {
+        background-image: url("../../assets/img/reisaanbod_G_icon.svg");
+    }
+    
+    .active .instellingen {
+        background-image: url("../../assets/img/instellingen_G_icon.svg");
+    }  
+
+    
+    .link {
+            margin-left: 6rem;
+    }
+    
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .nav_icon {
+        width: 5rem; 
+        height: 5rem;
+        fill: white;
+        background-color: black;
+        padding: 1rem;
+    }
+    
+    .nav_icon path {
+        fill: white;
+    }

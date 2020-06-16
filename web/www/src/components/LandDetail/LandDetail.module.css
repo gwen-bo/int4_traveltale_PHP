@@ -1,0 +1,90 @@
+.detail {
+    margin: auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+    width: 80vw;
+}
+
+.detail_info {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 40vw;
+}
+
+.button{
+    background-color: black;
+    color: white;
+    font-size: 2.4rem;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    border: .3rem solid black;
+    padding: 1rem 5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.button_sec {
+    background-color: #FFF1E3;
+    color: black;
+    font-size: 2.4rem;
+    border: .3rem solid black;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: 1rem 7.5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.bestemming_niveau {
+    margin-right: 2rem;
+}
+
+.info_wrapper {
+    width: 45vw;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 500;
+    width: 44vw;
+}
+
+.uitleg {
+    max-width: 30vw;
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.intro {
+    max-width: 30vw;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.tags_wrapper {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 4rem;
+}
+
+.tag {
+    background: #539882;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 2rem;
+    font-size: 1.8rem;
+    padding: .5rem;
+    color: #F1E6C9;
+    font-weight: 500;
+}
+
+.img_div{
+    z-index: 1;
+    width: 45vw;
+}
+
+.img_div img {
+    width: 50vw;
+}

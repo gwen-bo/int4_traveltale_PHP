@@ -1,0 +1,81 @@
+.title {
+    font-size: 5rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.instellingen_pos {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro_text {
+    font-size: 2.4rem;
+}
+
+.instellingen_intro {
+    width: 80vw;
+}
+
+.switchNav {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2rem;
+}
+
+.button_nav {
+    background-color: white;
+    border: solid .3rem black;
+    border-radius: 10rem;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    width: 25rem ;
+    height: 6rem;
+    padding: 1rem 6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 4rem;
+}
+
+.button_text {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+}
+
+.inhoud {
+    width: 86rem;
+    height: 57rem;
+    padding: 3rem;
+    margin-left: 3rem;
+    border-left: solid .3rem black;
+}
+
+.button_active {
+    background-color: black;
+    color: white;
+    border: solid .3rem white;
+    border-radius: 10rem;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    width: 25rem ;
+    height: 6rem;
+    padding: 1rem 6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 4rem;
+}
