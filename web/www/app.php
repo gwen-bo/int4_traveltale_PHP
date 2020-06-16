@@ -200,23 +200,23 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
             ->withStatus(200);
   });
 
-  $routeGroup->post('/{id}/{checked}', function (Request $request, Response $response, $args) {
-    $userDAO = new UserDAO();
-    $input = $request->getParsedBody();
+  // $routeGroup->post('/{id}/{checked}', function (Request $request, Response $response, $args) {
+  //   $userDAO = new UserDAO();
+  //   $input = $request->getParsedBody();
 
-    $errors = $userDAO->getValidationErrors($input);
-    if (!empty($errors)) {
-      $response->getBody()->write(json_encode($errors));
-      return $response
-              ->withHeader('Content-Type', 'application/json')
-              ->withStatus(422);
-    }
-    $result = $userDAO->insert($input);
-    $response->getBody()->write(json_encode($result));
-    return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withStatus(200);
-  });
+  //   $errors = $userDAO->getValidationErrors($input);
+  //   if (!empty($errors)) {
+  //     $response->getBody()->write(json_encode($errors));
+  //     return $response
+  //             ->withHeader('Content-Type', 'application/json')
+  //             ->withStatus(422);
+  //   }
+  //   $result = $userDAO->insert($input);
+  //   $response->getBody()->write(json_encode($result));
+  //   return $response
+  //           ->withHeader('Content-Type', 'application/json')
+  //           ->withStatus(200);
+  // });
 
  });
 });
