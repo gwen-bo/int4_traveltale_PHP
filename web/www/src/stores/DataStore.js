@@ -7,7 +7,7 @@ class DataStore {
 
   constructor(rootStore) {
     this.rootStore = rootStore;
-    this.sizes = {font: ''};
+    this.sizes = {font: "small"};
     this.bewegen = {beweeg: ''};   
     this.profiles = []
   }

@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import React  from "react";
 import { useParams, useHistory } from "react-router";
 import { useStores } from "../../hooks";
-import Navigatie from "../Navigatie";
 import styles from "./Rugzak.module.css";
 import { ROUTES } from "../../consts";
-import { Link } from "react-router-dom";
 
 import kimono from "../../assets/img/rugzak/kimono.svg"
 import Terug from "../buttons/Terug";
 
-
-
-// import style from "./LandDetail.module.css";
-
 const Rugzak = () => {
   const { id } = useParams();
   console.log(id);
-  const history = useHistory();
 
   const {activiteitenStore, uiStore} = useStores();
   const activiteit = activiteitenStore.getActiviteitById(id)
   console.log(activiteit)
+
+  const fontsize = uiStore.currentUser.fontsize;
 
   return (
    <>
@@ -37,7 +32,8 @@ const Rugzak = () => {
         <div className={styles.rugzak_pos_header}>
           <div className={styles.rugzak_intro}>
             <p className={styles.rugzak_title}>Mijn rugzak</p>
-            <p className={styles.rugzak_text}>Hier vindt je een overzicht van alle souvenirs en het totaal aantal gezette stappen.</p>
+            <p className={`${styles.rugzak_text} ${
+              fontsize === "small" ? styles.small : fontsize === "medium" ? styles.medium : styles.large}`}>Hier vindt je een overzicht van alle souvenirs en het totaal aantal gezette stappen.</p>
           </div>
           <div className={styles.rugzak_stappen}>
             <p className={styles.rugzak_totaal}>Totaal aantal gezette stappen</p>

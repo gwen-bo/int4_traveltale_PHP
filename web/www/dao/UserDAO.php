@@ -10,16 +10,53 @@ class UserDAO extends DAO {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function selectAll() {
+    $sql = "SELECT * FROM `users`";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `users` (`id`, `naam`, `stappen pot`, `leeftijd`, `fontsize`, `reisbegeleider`) VALUES (:id, :name, :stappen, :leeftijd, :fontsize, :reisbegeleider)";
+      $sql = "INSERT INTO `users` (`id`, `firstName`, `leeftijd`, `fullName`, `stappen`, `fontsize`,`reisbegeleider`) VALUES (:id, :firstName, :age, :fullName, :stappen, :fontSize, :reisbegeleider)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
-      $stmt->bindValue(':naam', $data['naam']);
+      $stmt->bindValue(':firstName', $data['firstName']);
+      $stmt->bindValue(':age', $data['age']);
+      $stmt->bindValue(':fullName', $data['fullName']);
       $stmt->bindValue(':stappen', $data['stappen']);
-      $stmt->bindValue(':fontsize', $data['fontsize']);
+      $stmt->bindValue(':fontSize', $data['fontSize']);
       $stmt->bindValue(':reisbegeleider', $data['reisbegeleider']);
+      if($stmt->execute()) {
+        return $this->selectById($data['id']);
+      }
+    }
+    return false;
+  }
+
+  public function updateCurrentReis($data) {
+    $errors = $this->getValidationErrorsCurrentReis($data);
+    if(empty($errors)) {
+      $sql = "UPDATE `users` SET `currentReis_id` = :currentReis_id WHERE `id` = :id";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindValue(':id', $data['id']);
+      $stmt->bindValue(':currentReis_id', $data['currentReis_id']);
+      if($stmt->execute()) {
+        return $this->selectById($data['id']);
+      }
+    }
+    return false;
+  }
+
+  public function updateCurrentStappen($data) {
+    $errors = $this->getValidationErrorsCurrentReis($data);
+    if(empty($errors)) {
+      $sql = "UPDATE `users` SET `stappen` = :stappen WHERE `id` = :id";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindValue(':id', $data['id']);
+      $stmt->bindValue(':stappen', $data['stappen']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -44,12 +81,15 @@ class UserDAO extends DAO {
   public function update($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "UPDATE `users` SET `naam` = :naam, `stappen` = :stappen, `leeftijd`=:leeftijd, `fontsize` =:fontsize, `reisbegeleider` WHERE `id` = :id";
+      $sql = "UPDATE `users` SET `firstName` = :firstName, `fullName`, =:fullName, `stappen` = :stappen, `leeftijd`=:leeftijd, `fontsize` =:fontsize, `reisbegeleider` =:reisbegeleider, `currentReis_id` =:currentReis_id WHERE `id` = :id";      
       $stmt->bindValue(':id', $data['id']);
-      $stmt->bindValue(':naam', $data['naam']);
+      $stmt->bindValue(':firstName', $data['firstName']);
+      $stmt->bindValue(':fullName', $data['fullName']);
       $stmt->bindValue(':stappen', $data['stappen']);
-      $stmt->bindValue(':fontsize', $data['fontsize']);
+      $stmt->bindValue(':fontsize', $data['fontSize']);
+      $stmt->bindValue(':leeftijd', $data['leeftijd']);
       $stmt->bindValue(':reisbegeleider', $data['reisbegeleider']);
+      $stmt->bindValue(':currentReis_id', $data['currentReis_id']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -59,17 +99,39 @@ class UserDAO extends DAO {
 
   public function getValidationErrors($data) {
     $errors = array();
-    if(!isset($data['naam'])) {
-      $errors['naam'] = "Please fill in a name";
+    if(!isset($data['firstName'])) {
+      $errors['firstName'] = "Please fill in a first name";
+    }
+    if(!isset($data['fullName'])) {
+      $errors['fullName'] = "Please fill in the full name";
+    }
+    if(!isset($data['id'])) {
+      $errors['id'] = "Please fill in a id";
+    }
+    if(!isset($data['age'])) {
+      $errors['age'] = "Please fill in age";
     }
     if(!isset($data['stappen'])) {
-      $errors['stappen'] = "Please fill in stappen";
+      $errors['stappen'] = "Please fill in a stappen";
     }
-    if(!isset($data['fontsize'])) {
-      $errors['fontsize'] = "Please fill in fontsize";
+    // if(!isset($data['currentReis_id'])) {
+    //   $errors['currentReis_id'] = "Please fill in currentReis_id";
+    // }
+    return $errors;
+  }
+
+  public function getValidationErrorsCurrentReis($data) {
+    $errors = array();
+    if(!isset($data['currentReis_id'])) {
+      $errors['currentReis_id'] = "Please fill in a reis Id";
     }
-    if(!isset($data['reisbegeleider'])) {
-      $errors['reisbegeleider'] = "Please fill in reisbegeleider";
+    return $errors;
+  }
+
+  public function getValidationErrorsCurrentStappen($data) {
+    $errors = array();
+    if(!isset($data['stappen'])) {
+      $errors['stappen'] = "Please fill in the current steps";
     }
     return $errors;
   }

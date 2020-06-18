@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams, useHistory } from "react-router";
+import React from "react";
+import {  useHistory } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 
@@ -13,7 +13,7 @@ import { useObserver } from "mobx-react-lite";
 const FontSize = () => {
   const {uiStore} = useStores();
   const {dataStore} = useStores();
-  const currentProfile = uiStore.currentProfile;
+//   const currentProfile = uiStore.currentProfile;
 
   const history = useHistory();
 

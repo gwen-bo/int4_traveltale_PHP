@@ -21,7 +21,7 @@ const Profiel = () => {
       <p  className={styles.profiel_text}>Dit is de naam die gebruikt wordt om jou aan te spreken, hier in Travel Tale.<br></br>
       Klik op de naam om die te wijzigen.</p>
 
-      <input className={styles.profiel_name_input} type="text" placeholder="Type hier uw naam" onChange={e => dataStore.  setUsername(e)} name='username' id={'username'}></input>
+      <input className={styles.profiel_name_input} type="text" placeholder="Type hier uw naam" onChange={e => dataStore.setUsername(e)} name='username' id={'username'}></input>
    </div>
    <div className={`${styles.profiel_pos} ${styles.beweging_wrapper}`}>
       <p className={styles.profiel_title}>Bewegingsniveau </p>

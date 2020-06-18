@@ -1,5 +1,6 @@
 import {decorate, observable, configure, action} from 'mobx';
 import ActiviteitModel from '../models/ActiviteitModel';
+import RestService from "../services/RestService";
 
 configure({enforceActions: 'observed'});
 
@@ -8,16 +9,32 @@ class ActiviteitenStore {
   constructor(rootStore) {
     this.activiteiten = [];
     this.rootStore = rootStore;
+    this.activiteitenService = new RestService("activiteiten");
+
   }
 
-    seedActiviteitenStore(){
-      const hanoi = this.rootStore.bestemmingenStore.bestemmingen[0].steden[0];
-      console.log(hanoi);
-      
-      new ActiviteitModel({id: "1", name: 'bootje varen', steps: 500, stadId: hanoi.id, store: this});
-      new ActiviteitModel({id: "2" , name: 'zonsondergang', steps: 200, stadId: hanoi.id, store: this});
-      new ActiviteitModel({id: "3", name: 'gaan eten', steps: 300, stadId: hanoi.id, store: this});  
+  loadAllActiviteiten = async () => {
+    const jsonActiviteiten = await this.activiteitenService.getAll();
+    console.log('activiteiten store', jsonActiviteiten)
+    jsonActiviteiten.forEach(json => this.updateActiviteitenFromServer(json));
+  };
+
+
+  updateActiviteitenFromServer(json) {
+    let activiteit = this.activiteiten.find(activiteit => activiteit.id === json.id);
+    if (!activiteit) {
+      activiteit = new ActiviteitModel({
+        id: json.id,
+        store: this.rootStore.activiteitenStore
+      });
     }
+    if (json.isDeleted) {
+      this.activiteiten.remove(activiteit);
+    } else {
+      activiteit.updateFromJson(json);
+    }
+    return activiteit;
+  }
 
     addActiviteit(activiteit){
         this.activiteiten.push(activiteit)

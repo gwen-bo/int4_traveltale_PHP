@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useParams, Redirect } from "react-router";
 import { useStores } from "../../hooks";
 import Navigatie from "../Navigatie";
 import TerugOverzicht from "../buttons/TerugOverzicht";
@@ -11,40 +11,84 @@ import niveau3 from "../../assets/img/reisaanbod/niveau3.svg"
 import styles from "./LandDetail.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
+import { useObserver } from "mobx-react-lite";
 
 const LandDetail = () => {
   const { id } = useParams();
-  console.log(id);
 
-  const {bestemmingenStore} = useStores();
-  const bestemming = bestemmingenStore.getBestemmingById(id)
-  console.log(bestemming);
+  const {landenStore, uiStore} = useStores();
+
+  const STATE_LOADING = "aan het laden..";
+  const STATE_DOES_NOT_EXIST = "doesNotExist";
+  const STATE_FULLY_LOADED = "fullyLoaded";
+
+  const [bestemming, setBestemming] = useState(landenStore.getLandById(id));
+  const [state, setState] = useState(
+    bestemming ? STATE_FULLY_LOADED : STATE_LOADING
+  );
+
+  useEffect(() => {
+    const loadBestemming = async (id) => {
+      try {
+        const bestemming = await landenStore.getLandById(id);
+        console.log(bestemming)
+        if (!bestemming) {
+          uiStore.setFeedback({
+            title: 'Oeps!', 
+            uitleg: 'Het land dat je aan het zoeken bent, bestaat niet!',
+            animation: 'animatie',
+            sec_path: '', 
+            sec_name: 'Vorige',
+            prim_path: ROUTES.reisaanbod,
+            prim_name: 'Terug naar reisaanbod'
+          })
+          // setState(STATE_DOES_NOT_EXIST);
+          return;
+        }
+        setBestemming(bestemming);
+        setState(STATE_FULLY_LOADED);
+      } catch (error) {
+        /*if (error.response && error.response.status === 404) {
+          setState(STATE_DOES_NOT_EXIST);
+        }*/
+        console.log(error);
+      }
+    };
+    loadBestemming(id);
+  }, [id, landenStore, setBestemming]);
   
+  return useObserver(() => {
+  if (state === STATE_DOES_NOT_EXIST) {
+    return <Redirect to={ROUTES.feedback} />
+  }
+  if (state === STATE_LOADING) {
+    return <p className={styles.title}>Aan het laden..</p>
+  }
   return (
    <>
    <Navigatie />
    <TerugOverzicht />
    <section className={styles.detail}>
      <div className={styles.detail_info}>
-   <img className={styles.bestemming_niveau} src={(bestemming.steps === 1) ? niveau1 : (bestemming.steps === 2) ? niveau2 : niveau3}></img>
+   <img className={styles.bestemming_niveau} src={(bestemming.stappen_niveau === 1) ? niveau1 : (bestemming.stappen_niveau === 2) ? niveau2 : niveau3}></img>
    <div className={styles.info_wrapper}>
-    <p className={styles.title}>Reis door {bestemming.name}</p>
+    <p className={styles.title}>Reis door {bestemming.naam}</p>
     <div className={styles.tags_wrapper}>
-      <p className={styles.tag}>Actief</p>
-      <p className={styles.tag}>Avontuurlijk</p>
+      <p className={styles.tag}>{bestemming.tag}</p>
+      
     </div>
-    <p className={styles.intro}>Ontdek tijdens deze avontuurlijke reis de unieke steden van Vietnam. Hanoi, Cat Ba, Ninh Binh, Hoi An... </p>
-    <p className={styles.uitleg}>Reis te voet, met de nachtbus of per boot doorheen de adembenemende Vietnamese landschappen en ontdek de rijke en aangrijpende geschiedenis van deze Aziatische parel.</p>
+    <p className={styles.intro}>{bestemming.intro}</p>
+    <p className={styles.uitleg}>{bestemming.uitleg}</p>
     <Link className={styles.button} to={`${ROUTES.keuze.to}${bestemming.id}`} >Start deze reis</Link>
     </div>
     </div>
    <div className={styles.img_div}>
-   <img src={require(`../../assets/img/reisaanbod/detail/${bestemming.name}.svg`)}></img>
+   <img src={require(`../../assets/img/reisaanbod/detail/${bestemming.naam}.svg`)}></img>
    </div>
 
 </section>
    </>
-  );
+  )});
 };
 
 export default LandDetail;

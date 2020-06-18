@@ -1,5 +1,4 @@
-import React from "react";
-// import {ROUTES} from "../../consts";
+import React, { useEffect, useState } from "react";
 import {useStores} from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import { ROUTES } from "../../consts";
@@ -12,7 +11,7 @@ import lijn from "../../assets/img/reisoverzicht/lineDown.svg"
 import steps from "../../assets/img/stappenIcon.svg"
 import styles from "./ReisOverzicht.module.css";
 import AantalStappen from "../AantalStappen";
-import { useParams, Redirect, useHistory } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 
@@ -21,45 +20,50 @@ const ReisOverzicht = () => {
   const { id } = useParams();
   const history = useHistory();
 
-    const {uiStore, bestemmingenStore} = useStores()
-    const currentProfile = uiStore.currentProfile; 
-    const bestemming = bestemmingenStore.getBestemmingById(id)
-    console.log(bestemming);
+    const {uiStore, landenStore} = useStores()
+    // const currentProfile = uiStore.currentProfile; 
+    // const bestemming = landenStore.getLandById(id)
 
-    const checkSteps = (e, stad) => {
-        e.preventDefault();
-        console.log('dit is de stad', stad.steps);
-        if(uiStore.currentSteps > stad.steps){
-          console.log('je hebt genoeg stappen!');
-          uiStore.setFeedback({
-            title: `Welkom in ${stad.name}`, 
-            uitleg: `Om ${stad.name} te kunnen ontdekken, heb je ${stad.steps} stappen nodig. Wil je ${stad.steps} stappen indienen om Hanoi te ontdekken?`,
-            animation: 'animatie',
-            sec_path: `${ROUTES.reisoverzicht.to}${bestemming.id}`, 
-            sec_name: 'Terug naar overzicht',
-            prim_path: `${ROUTES.stadDetail.to}${stad.id}`,
-            prim_name: 'Stappen indienen'
-          })
-          history.push('/feedback')
+  const STATE_LOADING = "loading";
+  const STATE_DOES_NOT_EXIST = "doesNotExist";
+  const STATE_LOADING_MORE_DETAILS = "loadingMoreDetails";
+  const STATE_FULLY_LOADED = "fullyLoaded";
 
-        }else {
-          console.log('je hebt NIET genoeg stappen!');
-          uiStore.setFeedback({
-            title: `Je hebt nog niet genoeg stappen`, 
-            uitleg: `Het ziet er naar uit dat je nog niet genoeg stappen hebt verzameld om ${stad.name} te kunnen ontdekken. Kom je later nog eens terug?`,
-            animation: 'animatie',
-            sec_path: `${ROUTES.reisoverzicht.to}${bestemming.id}`, 
-            sec_name: 'Terug naar overzicht',
-            prim_path: `${ROUTES.reisoverzicht.to}${bestemming.id}`,
-            prim_name: 'Beginnen met stappen'
-          })
-          // Redirect to="/feedback"
-          history.push('/feedback')
+  const [bestemming, setBestemming] = useState(landenStore.getLandById(id));
+  const [state, setState] = useState(bestemming ? STATE_LOADING_MORE_DETAILS : STATE_LOADING);
+
+  useEffect(() => {
+    const loadLand = async (id) => {
+      try {
+        const bestemming = await landenStore.getLandById(id);
+        if (!bestemming) {
+          setState(STATE_DOES_NOT_EXIST);
+          return;
         }
-    }
-    
+        setBestemming(bestemming);
+        setState(STATE_LOADING_MORE_DETAILS);
+        console.log('loading steden');
+        await landenStore.loadStedenVanLand(id);
+        setState(STATE_FULLY_LOADED);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setState(STATE_DOES_NOT_EXIST);
+        }
+      }
+    };
+    loadLand(id);
+  }, [ id, landenStore, setBestemming ]); 
 
-  return useObserver(() => (
+  return useObserver(() => {
+    if (state === STATE_DOES_NOT_EXIST) {
+      return <p>Niet gevonden</p>;
+    }
+    if (state === STATE_LOADING) {
+      return <p>Aan het laden..</p>;
+    }
+    console.log(bestemming);
+    return (
+     
    <>
    <div className={styles.nav_wrapper}>
    <Terug path={ROUTES.overzicht}/>
@@ -68,8 +72,8 @@ const ReisOverzicht = () => {
    </div>
    <section>
      <div className={styles.reis_title}>
-          <img src={hangers}></img>
-          <p className={styles.bestemming_naam}> {bestemming.name}</p>
+          <img src={hangers} alt="hangers voor het naamplaatje"></img>
+          <p className={styles.bestemming_naam}> {bestemming.naam}</p>
      </div>
    
    <div className={styles.wrapper_steden}>
@@ -85,13 +89,13 @@ const ReisOverzicht = () => {
                 <div className={styles.stad_img}>
                   <div className={styles.tekst_wrapper}>
                     <div className={styles.steps_wrapper}>
-                    <img className={styles.steps_icon} src={steps}></img>
-                    <p>{stad.steps}</p>
+                    <img className={styles.steps_icon} src={steps} alt="icoontje voetstappen"></img>
+                    <p>{stad.stappen}</p>
                     </div>
-                    <p className={styles.stadName}>{stad.name}</p>
+                    <p className={styles.stadName}>{stad.naam}</p>
                     <img className={styles.lijn} src={lijn} alt="lijn naar beneden"></img>
                   </div>
-                  <img className={styles.stad_background} src={require(`../../assets/img/reisoverzicht/${bestemming.name}/${stad.name}.svg`)} alt={`illustratie van skyline ${stad.name}`}></img>
+                  <img className={styles.stad_background} src={require(`../../assets/img/reisoverzicht/${bestemming.naam}/${stad.naam}.svg`)} alt={`illustratie van skyline ${stad.naam}`}></img>
                 </div>
         </div>
         ))}
@@ -105,17 +109,17 @@ const ReisOverzicht = () => {
         {bestemming.steden.map(stad => (
           <div key={stad.id} className={styles.width_stad}>
             <div className={styles.progess_wrapper}>
-              {(uiStore.currentSteps > stad.steps) ?  <img alt={`${stad} is nog niet beschikbaar`} src={open}></img> :  <img alt={`${stad} is nog niet beschikbaar`} src={locked}></img>}
+              {(uiStore.currentSteps > stad.stappen) ?  <img alt={`${stad} is nog niet beschikbaar`} src={open}></img> :  <img alt={`${stad} is nog niet beschikbaar`} src={locked}></img>}
            
-            <Link key={stad.id} onClick={e => checkSteps(e, stad)} to={`${ROUTES.stadDetail.to}${stad.id}`} className={`${styles.button} ${styles.button_stad}`}>{stad.name} ontdekken</Link>
+            <Link to={`${ROUTES.stadkeuze.to}${stad.id}`} className={`${styles.button} ${styles.button_stad}`}>{stad.naam} ontdekken</Link>
           </div>
           </div>
         ))}
     </div>
     </div>
 </section>
-   </>
-  ));
+   </>)
+  });
 };
 
 export default ReisOverzicht;

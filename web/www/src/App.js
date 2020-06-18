@@ -7,7 +7,6 @@ import Landingpage from "./components/Landingpage"
 import LandDetail from "./components/LandDetail"
 import ActiviteitDetail from "./components/ActiviteitDetail"
 import ReisOverzicht from "./components/ReisOverzicht"
-import Login from "./components/Login"
 import Instellingen from "./flows/Instellingen/Instellingen"
 import StadDetail from './components/StadDetail';
 import Aanmelden from './flows/Aanmelden/Aanmelden';
@@ -20,14 +19,18 @@ import Bewegen from './flows/Registreren/Bewegen';
 import Bevestigen from './flows/Registreren/Bevestigen';
 import Keuze from './components/Keuze';
 import Rugzak from './components/Rugzak';
+import StadKeuze from './components/StadKeuze';
+import Intro from './flows/Activiteit/Intro';
+import Split from './flows/Activiteit/Split';
+import TeWeinig from './flows/Activiteit/TeWeinig';
+import Optie1 from './flows/Activiteit/Optie1';
+import Optie2 from './flows/Activiteit/Optie2';
+import Einde from './flows/Activiteit/Einde';
 
 function App() {
 
   return (
     <Switch>
-      <Route path={ROUTES.login}>
-          <Login />
-      </Route>
       <Route path={ROUTES.aanmelden}>
           <Aanmelden />
       </Route>
@@ -74,15 +77,39 @@ function App() {
       <Route exact path={ROUTES.reisaanbod}>
           <Reisaanbod />
       </Route>
+      <Route exact path={ROUTES.stadkeuze.path}>
+          <StadKeuze />
+      </Route>
       <Route path={ROUTES.aanbodDetail.path}>
         <LandDetail />
       </Route>
-      <Route path={ROUTES.stadDetail.path}>
+      <Route exact path={ROUTES.stadDetail.path}>
         <StadDetail />
       </Route>
-      <Route path={ROUTES.activiteitDetail.path}>
+
+      <Route exact path={ROUTES.activiteitDetail.path}>
         <ActiviteitDetail />
       </Route>
+
+{/* Activiteiten flow */}
+      <Route exact path={ROUTES.intro.path}>
+          <Intro />
+      </Route>
+      <Route exact path={ROUTES.split.path}>
+          <Split />
+      </Route>
+      <Route exact path={ROUTES.teweinig.path}>
+          <TeWeinig />
+      </Route>
+      <Route exact path={ROUTES.optie1.path}>
+          <Optie1 />
+      </Route>
+      <Route exact path={ROUTES.optie2.path}>
+          <Optie2 />
+      </Route>
+      <Route exact path={ROUTES.einde.path}>
+          <Einde />
+      </Route>
 
       <Route path={ROUTES.instellingen}>
           <Instellingen />

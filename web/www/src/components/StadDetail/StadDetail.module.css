@@ -1,72 +1,108 @@
-.activiteiten { 
-    display: flex;   
+
+.nav {
+    display: flex;
     flex-direction: row;
-    }
+    margin-bottom: 6rem;
+}
+
+.nav_stad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.stad_naam {
+    background: #FFBD3A;
+    box-shadow: 12px 8px 6px rgba(0, 0, 0, 0.1);    
+    height: 6rem;
+    margin: auto;
+    font-weight: 500;
+    font-size: 4.5rem;
+    text-align: center;
+    padding: .5rem 2rem;
     
-    .activiteit {
-        background-color: white;
-        width: 24rem;
-        height: 45rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.2);
-        margin: 1rem;
-    }
-    
-    .activiteit_title {
-        background-color: #FFBD3A;
-        font-size: 2.4rem;
-        font-weight: 500;
-        padding: 1rem;
-        width: fit-content;
-        margin-top: -2rem;
-    }
-    
-    .activiteit_text {
-        font-size: 1.8rem;
-        margin: 1rem;
-    }
-    .text_but_pos {
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 25rem;
-    }
-    .pos {
-        display: flex;
-        flex-direction: row;
-        width: 24rem;
-        padding: .1rem 1rem;
-        justify-content: space-between;
-    }
-    
-    .steps {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .img_act {
-        width: 24rem;
-        height: auto;
-    }
-    
-    .steps_aantal {
-        font-size: 1.8rem;
-        font-weight: 500;
-    
-    }
-    
-    .button {
+}
+
+.kaart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+.activiteiten {
+    display: flex;
+    flex-direction: row;
+    z-index: 2;
+
+}
+
+.activiteit {
+    background-color: white;
+    width: 24rem;
+    height: 45rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 2rem;
+    z-index: 2;
+}
+
+.activiteit_title {
+    background-color: #FFBD3A;
+    font-size: 2.4rem;
+    font-weight: 500;
+    padding: 1rem;
+    width: fit-content;
+    margin-top: -2rem;
+}
+
+.activiteit_text {
+    font-size: 1.8rem;
+    margin: 1rem;
+}
+.text_but_pos {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25rem;
+}
+.pos {
+    display: flex;
+    flex-direction: row;
+    width: 24rem;
+    padding: .1rem 1rem;
+    justify-content: space-between;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img_act {
+    width: 24rem;
+    height: auto;
+}
+
+.steps_aantal {
+    font-size: 1.8rem;
+    font-weight: 500;
+
+}
+
+.button {
     background-color: black;
     color: white;
     font-weight: 500;
     font-size: 2.2rem;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
     border: .3rem solid black;
     padding: 1rem 3rem;
     border-radius: 5rem;
     text-align: center;
-    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
-    }
+}

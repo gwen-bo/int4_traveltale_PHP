@@ -4,7 +4,7 @@
 
 class RestService {
   entity = ``;
-  url = `/api`;
+  url = `http://localhost/api`;
 
   constructor(entity) {
     this.entity = entity;
@@ -55,11 +55,24 @@ class RestService {
     }
   };
 
-  updateLinked = async (entity, relatedEntityPlural) => {
+  updateCurrentReis = async (entity) => {
     // await delay(REST_DELAY);
     try {
       const r = await fetch(
-        `${this.url}/${this.entity}/${entity.id}/${relatedEntityPlural}`,
+        `${this.url}/${this.entity}/${entity.id}/current`,
+        this.getOptions(`put`, entity)
+      );
+      return await r.json();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  updateCurrentStappen = async (entity) => {
+    // await delay(REST_DELAY);
+    try {
+      const r = await fetch(
+        `${this.url}/${this.entity}/${entity.id}/stappen`,
         this.getOptions(`put`, entity)
       );
       return await r.json();
@@ -85,8 +98,7 @@ class RestService {
     const options = {
       method: method.toUpperCase(),
       headers: {
-        "content-type": `application/json`
-      }
+        "content-type": `application/json`      }
     };
     if (body) {
       options.body = JSON.stringify(body);

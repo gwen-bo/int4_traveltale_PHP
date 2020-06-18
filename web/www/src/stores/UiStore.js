@@ -4,11 +4,18 @@ configure({enforceActions: 'observed'});
 
 class UiStore {
   constructor(rootStore) {
-    this.currentProfile = undefined;
     this.rootStore = rootStore;
     this.currentReis = undefined;
     this.currentSteps = 0
     this.begroeting = 'goeiemorgen';
+    // this.currentUser = this.rootStore.authStore.users[0];
+    // console.log('huidige gebruiker', this.currentUser);
+    this.currentUser = undefined;
+    if(this.currentUser === undefined && this.rootStore.authStore.accessToken !== undefined){
+      this.rootStore.authStore.fetchData();
+    }
+    console.log(this.currentUser);
+    // feedbackcomponent 
     this.title = ""; 
     this.uitleg = ""; 
     this.animation = ""; 
@@ -18,14 +25,14 @@ class UiStore {
     this.prim_name = ""; 
   }
 
-  setCurrentProfile(profile) {
-    this.currentProfile = profile;
+  setCurrentUser(profile) {
+    this.currentUser = profile;
   }
 
-  useSteps(amount){
-    let currentSteps = this.currentSteps;
-    this.currentSteps = currentSteps - amount;
-  }
+  // useSteps(amount){
+  //   let currentSteps = this.currentSteps;
+  //   this.currentSteps = currentSteps - amount;
+  // }
 
   setFeedback(feedback){
     this.title = feedback.title; 
@@ -37,33 +44,32 @@ class UiStore {
     this.prim_name = feedback.prim_name; 
   }
 
-
-  setCurrentReis(bestemming) {
+  setCurrentReis(id) {
+    const bestemming = this.rootStore.landenStore.landen.find(land => land.id === id);
     this.currentReis = bestemming;
+    console.log(this.currentUser);
+    this.currentUser.setCurrentReis_id(id)
   }
 
-  addSteps(data){
-    this.currentSteps = data.tracker.steps; 
-    // let profiel = this.rootStore.dataStore.profiles.find(profile => profile.id === this.currentProfile.id);
-    // profiel.addSteps(this.currentSteps);
+  setSteps(data){
+    this.currentSteps = data; 
   }
 
   setBegroeting(begroeting){
     this.begroeting = begroeting; 
   }
 
-
-
-
 }
 
 decorate(UiStore, {
-  // currentProfile: observable,
-  // setCurrentProfile: action, 
+  currentUser: observable,
+  setcurrentUser: action, 
+
+  currentReis: observable, 
+  setCurrentReis: action, 
 
   // steps: observable, 
   // addSteps: action,
-  
   begroeting: observable,
   setBegroeting: action, 
 });

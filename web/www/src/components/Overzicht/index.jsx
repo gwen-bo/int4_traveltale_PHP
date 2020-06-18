@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import {ROUTES} from "../../consts";
 import {useStores} from "../../hooks";
 import { useObserver } from "mobx-react-lite";
@@ -27,48 +27,23 @@ const Overzicht = () => {
       console.log("use effect wordt opgestart")
       if(authStore.accessToken === undefined){
       // window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%2Foverzicht%2F&scope=activity%20profile&expires_in=604800');
-      console.log('access token ophalen')
-      let url = window.location.hash; 
-  
-      console.log(url);
-      const access_token = url.split("=")[1].split("&")[0]
-      console.log(access_token);
-  
-      authStore.setAccessToken(access_token);
-      history.push('/overzicht');
+        console.log('access token ophalen')
+        let url = window.location.hash; 
+    
+        console.log(url);
+        const access_token = url.split("=")[1].split("&")[0]
+        console.log(access_token);
+
+        localStorage.setItem('access_token', access_token);
+        authStore.setAccessToken(localStorage.getItem('access_token'));
+        history.push('/overzicht');
     }else {
+      authStore.fetchData();
       history.push('/overzicht');
     };
-  
-    // const loadCurrentUser = async () => {
-    //   try {
-    //     const user = uiStore.currentProfile();
-    //     if (!user) {
-    //       setState(USER_NOT_FOUND);
-    //       return;
-    //     }
-    //     setUser(user);
-    //     //setState(STATE_LOADING_MORE_DETAILS);
-    //     //await groupStore.loadGroupUsers(id);
-    //     setState(USER_FOUND);
-    //   } catch (error) {
-    //     /*if (error.response && error.response.status === 404) {
-    //       setState(STATE_DOES_NOT_EXIST);
-    //     }*/
-    //     setState(USER_NOT_FOUND);
-    //   }
-    // };
-    // loadCurrentUser();
-
   }, []);
-    
 
-  return useObserver(() => {
-    
-    // if (state === USER_NOT_FOUND) {
-    //   return <p>Nog eens inloggen?</p>;
-    // }
-    return (
+  return useObserver(() => (
    <>
    <Navigatie />
    <section className={styles.overzicht}>
@@ -119,7 +94,7 @@ const Overzicht = () => {
     </section>
   
    </>
-  )});
+  ));
 };
 
 export default Overzicht;

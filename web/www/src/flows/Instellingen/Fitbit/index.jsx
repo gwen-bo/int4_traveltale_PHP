@@ -17,7 +17,7 @@ const Fitbit = () => {
       Om wijzigingen aan te brengen in jouw Fitbit account, verwijzen we je door naar de site van Fitbit. Klik op het logo om doorverwezen te worden.
       </p>
       <button className={styles.button_fitbit}>
-            <a hef="https://www.fitbit.com/" ><img className={styles.fitbit_logo} src={logo_fitbit} alt=""/></a>
+            <a href="https://www.fitbit.com/" ><img className={styles.fitbit_logo} src={logo_fitbit} alt=""/></a>
       </button>
       </div>
 

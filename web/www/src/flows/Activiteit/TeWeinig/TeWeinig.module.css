@@ -1,0 +1,99 @@
+.nav_wrapper {
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.midden {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    height: 10rem;
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+}
+
+.reis_title {
+    display: flex;
+    flex-flow: column;
+    top: 0;
+    margin: auto;
+}
+
+.bestemming_naam {
+    background: #FFBD3A;
+    box-shadow: 12px 8px 6px rgba(0, 0, 0, 0.1);    
+    width: fit-content;
+    margin: auto;
+    font-weight: 500;
+    font-size: 4.5rem;
+    text-align: center;
+    padding: .5rem 1rem;
+    min-width: 15rem;
+}
+
+.img_activiteit {
+    width: 100vw;
+    height: auto;
+    margin-top: 3rem;
+}
+
+.oma_ballon {
+    position: absolute;
+    top: 15rem;
+    left: 7rem;
+}
+
+.oma_img {
+
+}
+
+.oma_box {
+    background-color: white;
+    border: solid .3rem black;
+    padding: 2rem;
+    width: 55rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -7rem;
+    margin-left: 4rem;
+}
+
+.oma_title {
+    font-size: 2.4rem;
+    font-weight: 500;
+    margin: 1rem;
+    width: 35rem;
+}
+
+.oma_text {
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    margin-bottom: 3rem;
+    width: 45rem;
+}
+
+.button{
+    background-color: black;
+    color: white;
+    font-size: 2.4rem;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: 1rem 3rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.btton_pos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50rem;
+}

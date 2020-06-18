@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import Navigatie from "../Navigatie";
 import { useStores } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
@@ -36,13 +36,13 @@ const Reisaanbod = () => {
             <div className={styles.bestemming_info}>
               <div className={styles.bestemming_header}>
                 <img src={hangers}></img>
-                <p className={styles.bestemming_naam}> {bestemming.name}</p>
+                <p className={styles.bestemming_naam}> {bestemming.naam}</p>
               </div>
-              <img className={styles.bestemming_niveau} src={(bestemming.steps === 1) ? niveau1 : (bestemming.steps === 2) ? niveau2 : niveau3}></img>
+              <img className={styles.bestemming_niveau} src={(bestemming.stappen_niveau === 1) ? niveau1 : (bestemming.stappen_niveau === 2) ? niveau2 : niveau3}></img>
               <div className={`${styles.button} ${styles.details}`} to={`${ROUTES.aanbodDetail.to}${bestemming.id}`}  key={bestemming.id}>Details</div>
             </div>
               <div className={styles.bestemming_img}>
-                <img src={require(`../../assets/img/reisaanbod/kaarten/${bestemming.name}.svg`)}></img>
+                <img src={require(`../../assets/img/reisaanbod/kaarten/${bestemming.naam}.svg`)}></img>
               </div>
               
             </div>

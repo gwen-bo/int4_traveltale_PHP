@@ -19,9 +19,7 @@ class StedenDAO extends DAO {
 
   public function selectActiviteitenForSteden($id) {
     $sql = "
-    SELECT `activiteiten`.* FROM `activiteiten`,
-    INNER JOIN `users_groups` ON `users_groups`.`userId` = `users`.`id`
-    WHERE `activiteiten`.`stad_id` = :id
+    SELECT `activiteiten`.* FROM `activiteiten` WHERE `activiteiten`.`stad_id` = :id
     ";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);

@@ -1,5 +1,6 @@
 import {decorate, observable, configure, action} from 'mobx';
 import StedenModel from '../models/StedenModel';
+import RestService from "../services/RestService";
 
 configure({enforceActions: 'observed'});
 
@@ -8,27 +9,53 @@ class StedenStore {
   constructor(rootStore) {
     this.steden = [];
     this.rootStore = rootStore;
+    this.stedenService = new RestService("steden");
   }
 
-    seedStedenStore(){
-        new StedenModel({id: "1", name: 'Hanoi', countryId: '1', steps: '10000', store: this});
-        new StedenModel({id: "3", name: 'Sa Pa', countryId: '1', steps: '15000', store: this});  
-        new StedenModel({id: "2", name: 'Cat Ba', countryId: '1', steps: '20000', store: this});
-        new StedenModel({id: "4", name: 'Ninh Binh', countryId: '1', steps: '10000', store: this});  
+  loadAllSteden = async () => {
+    const jsonSteden = await this.stedenService.getAll();
+    jsonSteden.forEach(json => this.updateStedenFromServer(json));
+  };
+
+  loadActiviteitenVanStad = async (id) => {
+    const jsonActiviteiten = await this.stedenService.getById(id, 'activiteiten');
+    this.updateStedenFromServer({ id, activiteiten: jsonActiviteiten });
+    return this.getStadById(id);
+  };
+
+  updateStedenFromServer(json) {
+    let stad = this.steden.find(stad => stad.id === json.id);
+    if (!stad) {
+      stad = new StedenModel({
+        id: json.id,
+        store: this.rootStore.stedenStore
+      });
     }
+    if (json.isDeleted) {
+      this.steden.remove(stad);
+    } else {
+      stad.updateFromJson(json);
+    }
+    return stad;
+  }
 
     addStad(stad){
         this.steden.push(stad)
     }
 
     getStadById(id){
-        return this.steden.find(stad => stad.id === id);
-    }
+        const number = Number(id);
+        console.log(number);
+        return this.steden.find(stad => stad.id === number);
+      }
 }
 
 decorate(StedenStore, {
     steden: observable, 
     seedStedenStore: action, 
+
+    addStad: action, 
+    updateStedenFromServer: action, 
 });
 
 export default StedenStore;

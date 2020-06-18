@@ -58,6 +58,7 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(201);
     });
     
@@ -71,6 +72,7 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(200);
     });
     $routeGroup->get('/{id}/steden', function (Request $request, Response $response, $args) {
@@ -79,6 +81,7 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(200);
     });
   });
@@ -91,6 +94,7 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(200);
     });
     $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
@@ -107,10 +111,11 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
     });
     $routeGroup->get('/{id}/activiteiten', function (Request $request, Response $response, $args) {
       $stedenDAO = new StedenDAO();
-      $data = $groupDAO->selectActiviteitenForSteden($args['id']);
+      $data = $stedenDAO->selectActiviteitenForSteden($args['id']);
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(200);
     });
   });
@@ -123,6 +128,7 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(200);
     });
 
@@ -152,7 +158,17 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
 
   // USER OPHALEN
   $routeGroup->group('/users', function (RouteCollectorProxy $routeGroup) {
-   $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+    $routeGroup->get('', function (Request $request, Response $response) {
+      $userDAO = new UserDAO();
+      $data = $userDAO->selectAll();
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+    });
+   
+    $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
      $userDAO = new UserDAO();
      $data = $userDAO->selectById($args['id']);
      if (empty($data)) {
@@ -168,14 +184,48 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
    $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
     $userDAO = new UserDAO();
     $input = $request->getParsedBody();
-    // $errors = $userDAO->getValidationErrorsLinkGroups($input);
-    // if (!empty($errors)) {
-    //   $response->getBody()->write(json_encode($errors));
-    //   return $response
-    //           ->withHeader('Content-Type', 'application/json')
-    //           ->withStatus(422);
-    // }
+    $errors = $userDAO->getValidationErrors($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
     $data = $userDAO->update($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->put('/{id}/current', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsCurrentReis($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->updateCurrentReis($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->put('/{id}/stappen', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsCurrentStappen($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->updateCurrentStappen($input);
     $response->getBody()->write(json_encode($data));
     return $response
             ->withHeader('Content-Type', 'application/json')
@@ -199,24 +249,6 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
             ->withHeader('Content-Type', 'application/json')
             ->withStatus(200);
   });
-
-  // $routeGroup->post('/{id}/{checked}', function (Request $request, Response $response, $args) {
-  //   $userDAO = new UserDAO();
-  //   $input = $request->getParsedBody();
-
-  //   $errors = $userDAO->getValidationErrors($input);
-  //   if (!empty($errors)) {
-  //     $response->getBody()->write(json_encode($errors));
-  //     return $response
-  //             ->withHeader('Content-Type', 'application/json')
-  //             ->withStatus(422);
-  //   }
-  //   $result = $userDAO->insert($input);
-  //   $response->getBody()->write(json_encode($result));
-  //   return $response
-  //           ->withHeader('Content-Type', 'application/json')
-  //           ->withStatus(200);
-  // });
 
  });
 });

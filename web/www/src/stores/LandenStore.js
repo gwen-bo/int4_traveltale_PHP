@@ -16,7 +16,19 @@ class LandenStore {
   loadAllLanden = async () => {
     const jsonLanden = await this.landenService.getAll();
     console.log(jsonLanden)
-    // jsonLanden.forEach(json => this.updateLandenFromServer(json));
+    jsonLanden.forEach(json => this.updateLandenFromServer(json));
+  };
+
+  loadLand = async (id) => {
+    const jsonLand = await this.landenService.getById(id);
+    this.updateLandFromServer(jsonLand);
+    return this.getLandById(id);
+  }
+
+  loadStedenVanLand = async (id) => {
+    const jsonSteden = await this.landenService.getById(id, 'steden');
+    this.updateLandenFromServer({ id, steden: jsonSteden });
+    return this.getLandById(id);
   };
 
   updateLandenFromServer(json) {
@@ -24,7 +36,7 @@ class LandenStore {
     if (!land) {
       land = new LandModel({
         id: json.id,
-        store: this.rootStore.LandenStore
+        store: this.rootStore.landenStore
       });
     }
     if (json.isDeleted) {
@@ -39,9 +51,12 @@ class LandenStore {
         this.landen.push(land)
     }
 
-    getBestemmingById(id){
-        return this.landen.find(land => land.id === id);
+    getLandById(id){
+        const number = Number(id);
+        console.log(number);
+        return this.landen.find(land => land.id === number);
     }
+
 
     setSelectedBestemming(land){
         this.selectedLand = land;
@@ -51,7 +66,7 @@ class LandenStore {
 decorate(LandenStore, {
     landen: observable, 
     updateLandenFromServer: action, 
-
+    
     addLand: action, 
 
 

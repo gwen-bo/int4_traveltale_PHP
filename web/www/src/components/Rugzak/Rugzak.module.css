@@ -56,9 +56,9 @@
     font-weight: 500;
 }
 
-.rugzak_text {
+/* .rugzak_text {
     font-size: 2.4rem;
-}
+} */
 
 .rugzak_totaal {
     font-size: 2.8rem;
@@ -110,6 +110,18 @@
 .rugzak_item_naam {
     font-size: 2.4rem;
 }
+
+.small {
+    font-size: 1.6rem;
+  }
+  
+  .medium {
+    font-size: 1.8rem;
+  }
+  
+  .large {
+    font-size: 2rem;
+  }
 
 
   
