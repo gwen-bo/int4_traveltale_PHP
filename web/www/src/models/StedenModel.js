@@ -15,7 +15,7 @@ class StedenModel {
   }
 
   addActivity(activity){
-      this.activities.push(activity);
+      this.activiteiten.push(activity);
   }
 
   linkLand(land) {
@@ -54,9 +54,9 @@ class StedenModel {
     this.stappen = (stappen !== undefined) ? stappen : this.stappen;
     if (activiteiten !== undefined) {
       console.log('activiteiten zijn niet undefined');
-      this.activiteiten.empty();
       activiteiten.forEach(activiteit => {
-        this.store.rootStore.activiteitenStore.updateActiviteitFromServer(activiteit).linkStad(this);
+        console.log('activiteit update from server');
+        this.store.rootStore.activiteitenStore.updateActiviteitenFromServer(activiteit)
       });
     }
   
@@ -73,7 +73,10 @@ class StedenModel {
 
 decorate(StedenModel, {
   activiteiten: observable, 
-    addActivity: action,
+  addActivity: action,
+
+  updateFromJson: action, 
+  linkLand: action, 
 
 });
 

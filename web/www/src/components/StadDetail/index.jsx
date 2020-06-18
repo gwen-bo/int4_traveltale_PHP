@@ -53,18 +53,7 @@ const StadDetail = () => {
 
   return (
    <>
-   <div>
-
-   {/* <Terug path={`${ROUTES.reisoverzicht.to}${currentReis.id}`}/> */}
-
-
-    {/* <p>Detailpage van {stad.name}</p>
-    {stad.activities.map(
-            activiteit => (
-              // console.log(activiteit)
-                <Link key={activiteit.id} to={`${ROUTES.activiteitDetail.to}${activiteit.id}`}>{activiteit.name}</Link>
-        )
-        )} */}
+   <section>
 
         <div className={styles.nav}>
                <Terug path={``} />
@@ -77,57 +66,29 @@ const StadDetail = () => {
         </div>
         <img className={styles.kaart} src={kaart} alt=""/>
 
-        <div className={styles.activiteiten}>
-          <div className={styles.activiteit}>
-            <img className={styles.img_act} src={""} alt=""/>
-            <p className={styles.activiteit_title}>De Rooftopbar</p>
-            <div className={styles.text_but_pos}>
-              <p className={`${styles.activiteit_text}`}>Geen zin meer om de stad in te trekken? Kom mee naar de bekendste rooftopbar van Hanoi. Hier heb je een prachtig uitzicht over de stad.</p>
-              <div className={styles.pos}>
-                <div className={styles.steps}>
-                    <img  src={step} alt=""/>
-                    <p className={styles.steps_aantal}>500</p>
-                </div>
-                <button className={styles.button}>Starten</button>
-              </div>
-            </div>
-          </div>
+<div className={styles.activiteiten}>
+        {stad.activiteiten.map(
+            activiteit => (
+              // console.log(activiteit)
+                <div key ={activiteit.id}className={styles.activiteit}>
+                  <img className={styles.img_act} src={""} alt=""/>
+                  <p className={styles.activiteit_title}>{activiteit.naam}</p>
+                  <div className={styles.text_but_pos}>
+                    <p className={`${styles.activiteit_text}`}>{activiteit.activiteit_uitleg}</p>
+                    <div className={styles.pos}>
+                      <div className={styles.steps}>
+                          <img  src={step} alt=""/>
+                          <p className={styles.steps_aantal}>{activiteit.max_steps}</p>
+                      </div>
+                      <button className={styles.button}>Starten</button>
+                    </div>
+                  </div>
+                </div>        
 
-          <div className={styles.activiteit}>
-            <img className={styles.img_act} src={""} alt=""/>
-            <p className={styles.activiteit_title}>Treinstraat</p>
-            <div className={styles.text_but_pos}>
-              <p className={styles.activiteit_text}>Midden in Hanoi vind je een smalle straat waar de trein dwars door rijdt. Op tijd aan de kant gaan is de boodschap!</p>
-              <div className={styles.pos}>
-                <div className={styles.steps}>
-                    <img  src={step} alt=""/>
-                    <p className={styles.steps_aantal}>500</p>
-                </div>
-                <button className={styles.button}>Starten</button>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.activiteit}>
-            <img className={styles.img_act} src={""} alt=""/>
-            <p className={styles.activiteit_title}>Avondmarkt</p>
-            <div className={styles.text_but_pos}>
-              <p className={styles.activiteit_text}>Culinaire lekkernijen, de geur specerijen en exotisch fruit... Dompel je helemaal onder in de Vietnamese keuken!</p>
-              <div className={styles.pos}>
-                <div className={styles.steps}>
-                    <img  src={step} alt=""/>
-                    <p className={styles.steps_aantal}>500</p>
-                </div>
-                <button className={styles.button}>Starten</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        
-        
-    </div>
+          )
+        )}
+</div>
+   </section>
    </>
   );
 };

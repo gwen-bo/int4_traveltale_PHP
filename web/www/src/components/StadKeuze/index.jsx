@@ -3,7 +3,7 @@ import { Link, useParams, Redirect } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
-import logo from "../../assets/img/logo.png"
+import logo from "../../assets/img/logo.svg"
 
 import styles from "./StadKeuze.module.css";
 

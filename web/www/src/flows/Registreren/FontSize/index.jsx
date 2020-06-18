@@ -3,7 +3,7 @@ import {  useHistory } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 
-import logo from "../../../assets/img/logo.png"
+import logo from "../../../assets/img/logo.svg"
 
 
 import styles from "./FontSize.module.css";

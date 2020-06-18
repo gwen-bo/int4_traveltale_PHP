@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import {ROUTES} from "../../../consts";
 import { useStores } from "../../../hooks";
-import logo from "../../../assets/img/logo.png"
+import logo from "../../../assets/img/logo.svg"
 import animatie from "../../../assets/img/animatie.png"
 
 import styles from "./Bevestigen.module.css";

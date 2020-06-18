@@ -5,7 +5,7 @@ import {ROUTES} from "../../../consts";
 import scooter from "../../../assets/img/scooter_bomma.svg"
 import skate from "../../../assets/img/skate_bomma.svg"
 import fly from "../../../assets/img/fly_bomma.svg"
-import logo from "../../../assets/img/logo.png"
+import logo from "../../../assets/img/logo.svg"
 
 import styles from "./Bewegen.module.css";
 import { Link } from "react-router-dom";

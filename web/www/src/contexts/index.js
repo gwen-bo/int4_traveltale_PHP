@@ -6,8 +6,8 @@ const store = new RootStore();
 const loadAllData = async () => {
     console.log('alle loads worden gestart');
     await store.landenStore.loadAllLanden();
-    store.stedenStore.loadAllSteden();
-    // store.activiteitenStore.loadAllActiviteiten();
+    await store.stedenStore.loadAllSteden();
+    store.activiteitenStore.loadAllActiviteiten();
 };
   
 loadAllData();

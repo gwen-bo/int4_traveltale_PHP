@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import {ROUTES} from "../../../consts";
 import { useStores } from "../../../hooks";
-import logo from "../../../assets/img/logo.png"
+import logo from "../../../assets/img/logo.svg"
 
 import styles from "./Registratie_welkom.module.css";
 import { useState } from "react";
