@@ -18,8 +18,8 @@ class AuthStore {
   
    setAccessToken(access_token){
        this.accessToken= access_token;
+       sessionStorage.clear();
        sessionStorage.setItem('access_token', access_token);
-
        console.log(access_token);
        this.fetchData();
    }
