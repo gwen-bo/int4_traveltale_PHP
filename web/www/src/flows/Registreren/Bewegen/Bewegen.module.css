@@ -6,6 +6,7 @@
     align-items: center; 
     justify-content: space-between;
 }
+
     .bewegen_position input {
         opacity: 0;
     } 
@@ -47,8 +48,8 @@
     }
     
     .bewegen_img {
-    margin-top: -16rem;
-    margin-bottom: 1rem;
+        margin-top: -7rem;
+        margin-bottom: 1rem;
     }
     
     .button_wrapper{

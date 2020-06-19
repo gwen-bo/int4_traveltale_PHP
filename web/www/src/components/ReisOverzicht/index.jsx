@@ -13,6 +13,7 @@ import styles from "./ReisOverzicht.module.css";
 import AantalStappen from "../AantalStappen";
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import ScrollLottie from "../buttons/Scroll/ScrollLottie";
 
 
 
@@ -65,6 +66,11 @@ const ReisOverzicht = () => {
     return (
      
    <>
+   <div className={styles.scroll_pos}>
+   < ScrollLottie
+     props="handswipe"
+     />
+   </div>
    <div className={styles.nav_wrapper}>
    <Terug path={ROUTES.overzicht}/>
    <Rugzak/>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
@@ -13,22 +13,40 @@ import AantalStappen from "../../../components/AantalStappen";
 /* images */
 // import begin from "../../../assets/img/activiteiten/steden/Ninh Binh/tempel/begin.svg"
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
+import LottieUitleg from "../LottieUitleg";
 // import omaUitleg from "../../../assets/img/oma_uitleg.svg"
 
 
 const TeWeinig = () => {
-  const {uiStore} = useStores();
-  const {dataStore} = useStores();
-  const currentProfile = uiStore.currentProfile;
-
-  const history = useHistory();
-
-  const handleLink = (feedbackLink) => {
-    console.log(feedbackLink);
-    uiStore.setFeedback(feedbackLink);
-  }
-
-
+    const { id } = useParams();
+    const { activiteitenStore, uiStore} = useStores();
+  
+  const STATE_LOADING = "aan het laden"; 
+  const STATE_FULLY_LOADED = "volledig geladen"; 
+  const STATE_DOES_NOT_EXIST = "bestaat niet"; 
+  
+  const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
+  const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
+  
+  
+  useEffect (() => {
+    const loadActiviteit = async (id) => {
+      try {
+      const activiteit = await activiteitenStore.getActiviteitById(id);
+      if(!activiteit){
+        setState(STATE_DOES_NOT_EXIST)
+      }
+      setActiviteit(activiteit)
+      setState(STATE_FULLY_LOADED)
+    }catch (error){
+      if(error.response && error.response.status === 400){
+        setState(STATE_DOES_NOT_EXIST)
+      }
+    }
+    };
+    loadActiviteit(id);
+  
+  }, [id, activiteitenStore, setActiviteit])
   
   return useObserver (() =>
 
@@ -44,13 +62,17 @@ const TeWeinig = () => {
   </div>
    <AantalStappen/>
    </div>
-   <div>
-     {/* <img className={styles.img_activiteit} src={begin} alt=""/> */}
-   </div>
+   <div className={styles.background_img}>
+    <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
+    </div>
 
    <div className={styles.oma_ballon}>
-      {/* <img className={styles.oma_img} src={omaUitleg} alt=""/> */}
-      <div className={styles.oma_box}>
+   <div className={styles.oma_img}>
+      < LottieUitleg 
+     props="teleurgesteld"
+     />
+     </div> 
+     <div className={styles.oma_box}>
         <p className={styles.oma_title}>Ai, je hebt nog niet genoeg stappen gezet.</p>
         <p className={styles.oma_text}>Je komt nog <span className={styles.bold}>x stappen</span> tekort. Tijd om een wandeling te maken?</p>
         <div className={styles.btton_pos}>

@@ -12,13 +12,13 @@ import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
 
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
-import oma from "../../../assets/img/oma_uitleg.svg"
+import LottieUitleg from "../LottieUitleg";
 
 
 
 const Optie1 = () => {
     const { id } = useParams();
-    const { activiteitenStore} = useStores();
+    const { activiteitenStore, uiStore} = useStores();
   
   const STATE_LOADING = "aan het laden"; 
   const STATE_FULLY_LOADED = "volledig geladen"; 
@@ -52,12 +52,12 @@ const Optie1 = () => {
 
    <>
     <div className={styles.nav_wrapper}>
-   <Terug path={ROUTES.overzicht}/>
+   <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
    <Rugzak/>
    <div className={styles.midden}>
       <div className={styles.reis_title}>
             <img src={hangers}></img>
-            <p className={styles.bestemming_naam}> {activiteit.name}</p>
+            <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>
    <AantalStappen/>
@@ -67,12 +67,16 @@ const Optie1 = () => {
    </div>
 
    <div className={styles.oma_ballon}>
-      <img className={styles.oma_img} src={oma} alt="reisbegeleider die uitleg geeft"/>
-      <div className={styles.oma_box}>
+   <div className={styles.oma_img}>
+      < LottieUitleg 
+     props="uitleg"
+     />
+     </div>      
+     <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.optie1.titel}</p>
         <p className={styles.oma_text}>{activiteit.optie1.tekst}</p>
         <Link className={styles.button} to={`${ROUTES.einde.to}${activiteit.id}`}>
-          {activiteit.optie1_button}
+          {activiteit.optie1.button}
         </Link>
       </div>
    </div>

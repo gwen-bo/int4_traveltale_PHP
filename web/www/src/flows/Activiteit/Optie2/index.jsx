@@ -13,12 +13,13 @@ import AantalStappen from "../../../components/AantalStappen";
 
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import oma from "../../../assets/img/oma_uitleg.svg"
+import LottieUitleg from "../LottieUitleg";
 
 
 
 const Optie2 = () => {
     const { id } = useParams();
-    const { activiteitenStore} = useStores();
+    const { activiteitenStore, uiStore} = useStores();
   
 
   const STATE_LOADING = "aan het laden"; 
@@ -55,27 +56,31 @@ const Optie2 = () => {
 
    <>
     <div className={styles.nav_wrapper}>
-   <Terug path={ROUTES.overzicht}/>
+   <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
    <Rugzak/>
    <div className={styles.midden}>
       <div className={styles.reis_title}>
             <img src={hangers}></img>
-            <p className={styles.bestemming_naam}> {activiteit.name}</p>
+            <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>
    <AantalStappen/>
    </div>
    <div className={styles.background_img}>
-   <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/optie_1.svg`)} alt="achtergrondfoto van de activiteit"/>
+   <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/optie_2.svg`)} alt="achtergrondfoto van de activiteit"/>
    </div>
 
    <div className={styles.oma_ballon}>
-   <img className={styles.oma_img} src={oma} alt="reisbegeleider die uitleg geeft"/>
-      <div className={styles.oma_box}>
+   <div className={styles.oma_img}>
+      < LottieUitleg 
+     props="uitleg"
+     />
+     </div>     
+    <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.optie2.titel}</p>
         <p className={styles.oma_text}>{activiteit.optie2.tekst}</p>
         <Link className={styles.button} to={`${ROUTES.einde.to}${activiteit.id}`}>
-          {activiteit.optie2_button}
+          {activiteit.optie2.button}
         </Link>
       </div>
    </div>

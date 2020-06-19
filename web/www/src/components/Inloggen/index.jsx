@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
 import logo from "../../assets/img/logo.svg"
-
+import UncontrolledLottie from "../../flows/Onboarding/Onboarding1/UncontrolledLottie"
 import styles from "./Inloggen.module.css";
 
 const Inloggen = () => {
@@ -13,17 +13,21 @@ const Inloggen = () => {
 
   return (
    <>
-   <img src={logo} alt="logo Travel Tale"></img>
-   <h1 className={styles.title}>Welkom bij Travel Tale</h1>
    {(currentProfile === undefined)? 
   
-  <div className={styles.button_wrapper}>
-            <Link className={styles.button} to={ROUTES.registratie}>Dit is mijn eerste keer</Link>
-            <Link className={styles.button} to={ROUTES.aanmelden}>Ik heb al een account</Link>
+  <section className={styles.section}>
+    <UncontrolledLottie
+    // className={styles.animatie_circle}
+    props="welkom"
+  />
+    <div className={styles.button_wrapper}>
+              <Link className={styles.button} to={ROUTES.registratie}>Dit is mijn eerste keer</Link>
+              <Link className={styles.button} to={ROUTES.aanmelden}>Ik heb al een account</Link>
 
-  </div>
+    </div>
+  </section>
   : 
-    <Redirect to={ROUTES.reisoverzicht} /> 
+    <Redirect to={ROUTES.overzicht} /> 
    }
    </>
   );

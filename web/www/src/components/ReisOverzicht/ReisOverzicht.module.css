@@ -15,6 +15,13 @@
     top: 0;
 }
 
+.scroll_pos{
+    right: 49%;
+    position: absolute;
+    top: 25%;
+    z-index: 50;
+}
+
 .bestemming_naam {
     background: #FFBD3A;
     box-shadow: 12px 8px 6px rgba(0, 0, 0, 0.1);    

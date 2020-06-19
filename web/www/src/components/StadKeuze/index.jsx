@@ -45,7 +45,7 @@ const StadKeuze = () => {
     />           
         <div className={styles.button_wrapper}>
             <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
-            <Link className={styles.button} to={ROUTES.rugzak}>Beginnen met stappen</Link>
+            <Link className={styles.button} to={ROUTES.wandelplezier}>Beginnen met stappen</Link>
         </div>
     </section>
     : 

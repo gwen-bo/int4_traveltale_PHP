@@ -15,6 +15,7 @@ import oma from "../../../assets/img/oma_uitleg.svg"
 
 import { useEffect } from "react";
 import Empty from "../../../components/Empty";
+import LottieUitleg from "../LottieUitleg";
 
 
 
@@ -68,23 +69,30 @@ return useObserver (() => {
   }
   return (
    <>
-    <div className={styles.nav_wrapper}>
-   <Terug path={ROUTES.overzicht}/>
+<div className={styles.nav_wrapper}>
+   <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
    <Rugzak/>
-   <div className={styles.midden}>
-      <div className={styles.reis_title}>
-            <img src={hangers}></img>
-            <p className={styles.bestemming_naam}>{activiteit.naam}</p>
-      </div>
   </div>
    <AantalStappen />
-   </div>
+
+<div className={styles.midden}>
+<div className={styles.reis_title}>
+      <img src={hangers}></img>
+      <p className={styles.bestemming_naam}>{activiteit.naam}</p>
+</div>
+</div>
+
    <div className={styles.background_img}>
      <img className={styles.img_activiteit}  src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
    </div>
 
    <div className={styles.oma_ballon}>
-      <img className={styles.oma_img} src={oma} alt="jouw reisbegeleider die uitleg geeft"/>
+      {/* <img  src={oma} alt="jouw reisbegeleider die uitleg geeft"/> */}
+      <div className={styles.oma_img}>
+      < LottieUitleg 
+     props="uitleg"
+     />
+     </div>
       <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.intro.titel}</p>
         <p className={styles.oma_text}>{activiteit.intro.tekst}</p>

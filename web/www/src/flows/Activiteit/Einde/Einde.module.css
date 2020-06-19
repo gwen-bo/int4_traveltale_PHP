@@ -47,7 +47,7 @@
 }
 
 .oma_img {
-
+    margin-left: -43rem;
 }
 
 .oma_box {
@@ -96,4 +96,9 @@
     flex-direction: row;
     justify-content: space-between;
     width: 40rem;
+}
+
+.background_img{
+    position: absolute;
+    bottom: 0;
 }

@@ -14,6 +14,7 @@ import AantalStappen from "../../../components/AantalStappen";
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import steps from "../../../assets/img/stappenIcon.svg"
 import oma from "../../../assets/img/oma_uitleg.svg"
+import LottieUitleg from "../LottieUitleg";
 
 
 
@@ -78,7 +79,7 @@ const Split = () => {
 
    <>
     <div className={styles.nav_wrapper}>
-   <Terug path={ROUTES.overzicht}/>
+   <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
    <Rugzak/>
    <AantalStappen/>
    </div>
@@ -94,23 +95,27 @@ const Split = () => {
     </div>
 
     <div className={styles.oma_ballon}>
-        <img className={styles.oma_img} src={oma} alt="reisbegeleider die uitleg geeft"/>
+    <div className={styles.oma_img}>
+      < LottieUitleg
+     props="uitleg"
+     />
+     </div>
         <div className={styles.oma_box}>
           <p className={styles.oma_title}>{activiteit.split.titel}</p>
           <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={steps} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={steps} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
           
           <div className={styles.btton_pos}>
           <Link onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button} to={`${ROUTES.optie1.to}${activiteit.id}`}>
-          Offer brengen
+          {activiteit.split.button1_tekst}
           </Link>
           <Link onClick={e=> handleKeuze(e, activiteit.split.button2_kost, 'optie2')} className={styles.button} to={`${ROUTES.optie2.to}${activiteit.id}`}>
-          Kaarsje kopen
+          {activiteit.split.button2_tekst}
           </Link>
           </div>
         </div>
     </div>
-   </section>
-  </>
+    </section>
+    </>
   );
   
 };

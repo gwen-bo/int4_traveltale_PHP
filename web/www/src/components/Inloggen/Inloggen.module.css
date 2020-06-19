@@ -21,3 +21,10 @@
     text-align: center;
 }
 
+.section {
+    height: 75vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    margin-top: 10rem;;
+}

@@ -1,7 +1,7 @@
 .button_wrapper{
     display: flex;
     flex-flow: row;
-    width: 65vw;
+    width: 75vw;
     justify-content: space-between;
     margin: 0 auto;
 }
