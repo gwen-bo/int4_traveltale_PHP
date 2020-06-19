@@ -18,7 +18,6 @@ require __DIR__ . '/dao/StedenDAO.php';
 require __DIR__ . '/dao/ActiviteitenDAO.php';
 require __DIR__ . '/dao/UserDAO.php';
 
-
 /**
  * Instantiate App
  *
