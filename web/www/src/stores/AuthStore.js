@@ -6,7 +6,7 @@ configure({enforceActions: 'observed'});
 class AuthStore {
 
   constructor(rootStore) {
-    this.accessToken = sessionStorage.getItem('access_token');
+    this.accessToken = undefined;
     this.rootStore = rootStore;
     this.user_id = undefined;
     this.users_database = [];
@@ -76,7 +76,7 @@ class AuthStore {
     let response = await fetch('https://api.fitbit.com/1/user/-/profile.json',
     {
         headers: new Headers({
-            'Authorization': 'Bearer ' + this.accessToken
+            'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')
         }),
         mode: 'cors',
         method: 'GET'
@@ -95,7 +95,7 @@ class AuthStore {
       let response = await fetch('https://api.fitbit.com/1/user/-/activities.json',
       {
           headers: new Headers({
-              'Authorization': 'Bearer ' + this.accessToken
+              'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')
           }),
           mode: 'cors',
           method: 'GET'
