@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams, useHistory, Redirect } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import { useEffect } from "react";
@@ -11,11 +11,9 @@ import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
 
-/* images */
-// import begin from "../../../assets/img/activiteiten/steden/Ninh Binh/tempel/begin.svg"
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import steps from "../../../assets/img/stappenIcon.svg"
-// import omaUitleg from "../../../assets/img/oma_uitleg.svg"
+import oma from "../../../assets/img/oma_uitleg.svg"
 
 
 
@@ -58,6 +56,21 @@ const Split = () => {
   
   }, [id, activiteitenStore, setActiviteit])
   
+  const handleKeuze = (e, kost, optie) => {
+    // e.preventDefault();
+    const stappen = uiStore.currentUser.stappen;
+    if(stappen > kost){
+      const updateStappen = (stappen - kost);
+      uiStore.currentUser.setCurrentStappen(updateStappen);
+      if(optie === 'optie1'){
+        return <Redirect to={`${ROUTES.optie1}${activiteit.id}`} />
+      }else {
+        return <Redirect to={`${ROUTES.optie2}${activiteit.id}`} />
+      }
+    }else {
+      return <Redirect to={`${ROUTES.teweinig}${activiteit.id}`} />
+    }
+  }
   
 
   
@@ -72,26 +85,26 @@ const Split = () => {
    <div className={styles.midden}>
       <div className={styles.reis_title}>
             <img src={hangers}></img>
-            <p className={styles.bestemming_naam}> {activiteit.name}</p>
+            <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>
   <section>
-    <div>
-      {/* <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/steden/${activiteit.split.back_img}.svg`)} alt="background van de activiteit"/> */}
+    <div className={styles.background_img}>
+    <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
     </div>
 
     <div className={styles.oma_ballon}>
-        {/* <img className={styles.oma_img} src={omaUitleg} alt=""/> */}
+        <img className={styles.oma_img} src={oma} alt="reisbegeleider die uitleg geeft"/>
         <div className={styles.oma_box}>
           <p className={styles.oma_title}>{activiteit.split.titel}</p>
-          <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={steps} alt="spannen icon"/><span className={styles.bold}>{activiteit.split.span1}</span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={steps} alt="spannen icon"/>{activiteit.split.span2}</span>?</p>
+          <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={steps} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={steps} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
           
           <div className={styles.btton_pos}>
-          <Link to={`${ROUTES.optie1.to}${activiteit.id}`}>
-            <button className={styles.button}>Offer brengen</button>
+          <Link onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button} to={`${ROUTES.optie1.to}${activiteit.id}`}>
+          Offer brengen
           </Link>
-          <Link to={`${ROUTES.optie2.to}${activiteit.id}`}>
-            <button className={styles.button}>Kaarsje kopen</button>
+          <Link onClick={e=> handleKeuze(e, activiteit.split.button2_kost, 'optie2')} className={styles.button} to={`${ROUTES.optie2.to}${activiteit.id}`}>
+          Kaarsje kopen
           </Link>
           </div>
         </div>

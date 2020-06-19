@@ -15,8 +15,6 @@ import hangers from "../../assets/img/reisaanbod/nametag.svg"
 const Reisaanbod = () => {
   const {landenStore} = useStores()
 
-
-
    return useObserver(() => (
     <>
      <Navigatie />

@@ -8,21 +8,24 @@ import styles from "./StadDetail.module.css";
 import step from "../../assets/img/reisaanbod/niveau1.svg"
 import Terug from "../buttons/Terug";
 import AantalStappen from "../AantalStappen";
-
-import hang from "../../assets/img/reisoverzicht/hangers.svg"
+import Empty from "../Empty"
+import hangers from "../../assets/img/reisoverzicht/hangers.svg"
 import kaart from "../../assets/img/kaart.svg"
+import { ROUTES } from "../../consts";
+import { Link } from "react-router-dom";
+import { useObserver } from "mobx-react-lite";
 
 
 // import style from "./StadDetail.module.css";
 
 const StadDetail = () => {
-  const {stedenStore} = useStores();
+  const {stedenStore, uiStore} = useStores();
 
   const { id } = useParams();
   console.log(id);
 
-  const STATE_LOADING = "loading";
-  const STATE_DOES_NOT_EXIST = "doesNotExist";
+  const STATE_LOADING = "aan het laden..";
+  const STATE_DOES_NOT_EXIST = "bestaat niet..";
   const STATE_LOADING_MORE_DETAILS = "loadingMoreDetails";
   const STATE_FULLY_LOADED = "fullyLoaded";
 
@@ -49,48 +52,57 @@ const StadDetail = () => {
       }
     };
     loadStad(id);
-  }, [ id, stedenStore, setStad ]);
+  }, [id, stedenStore, setStad]);
 
-  return (
+  return useObserver(() => {
+    if (state === STATE_DOES_NOT_EXIST) {
+      return <Empty message={"Oeps! Deze stad hebben we niet gevonden."} />;
+    }
+    if (state === STATE_LOADING_MORE_DETAILS) {
+      return <Empty message={"Even geduld, we zijn de activiteiten aan het laden.."} />;
+    }
+    return (
    <>
    <section>
-
-        <div className={styles.nav}>
-               <Terug path={``} />
-               <div className={styles.nav_stad}>
-                  <img src={hang} alt=""/>
-                  <p className={styles.stad_naam}>Hanoi</p>
-               </div>
-               <AantalStappen/>
-
-        </div>
         <img className={styles.kaart} src={kaart} alt=""/>
+
+        <div className={styles.nav_wrapper}>
+            <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
+                <div className={styles.midden}>
+                    <div className={styles.reis_title}>
+                          <img src={hangers}></img>
+                          <p className={styles.bestemming_naam}>{stad.naam}</p>
+                    </div>
+                </div>
+            <AantalStappen />
+              </div>
 
 <div className={styles.activiteiten}>
         {stad.activiteiten.map(
             activiteit => (
               // console.log(activiteit)
                 <div key ={activiteit.id}className={styles.activiteit}>
-                  <img className={styles.img_act} src={""} alt=""/>
+                  <img className={styles.img_act} src={require(`../../assets/img/steden/${stad.naam}/${activiteit.header_img}.svg`)} alt={`hoofdafbeelding van de activiteit ${activiteit.naam}`}/>
                   <p className={styles.activiteit_title}>{activiteit.naam}</p>
                   <div className={styles.text_but_pos}>
                     <p className={`${styles.activiteit_text}`}>{activiteit.activiteit_uitleg}</p>
                     <div className={styles.pos}>
                       <div className={styles.steps}>
-                          <img  src={step} alt=""/>
+                          <img src={step} alt="voetstappen icoontje, maximum hoeveelheid stappen tijdens deze activiteit"/>
                           <p className={styles.steps_aantal}>{activiteit.max_steps}</p>
                       </div>
-                      <button className={styles.button}>Starten</button>
+                      <Link to={`${ROUTES.intro.to}${stad.id}`} className={styles.button}>Starten</Link>
                     </div>
                   </div>
                 </div>        
+
 
           )
         )}
 </div>
    </section>
    </>
-  );
+   )});
 };
 
 export default StadDetail;

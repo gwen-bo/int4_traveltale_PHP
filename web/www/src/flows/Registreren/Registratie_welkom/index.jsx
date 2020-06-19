@@ -34,7 +34,7 @@ const Welkom = () => {
             <Link className={styles.button} to={ROUTES.feedback} onClick={e => (handleLink({
   title: 'Wat gaat voor jou het best?', 
   uitleg: 'Om jou een optimale ervaring te kunnen aanbieden, passen we onze app aan, naar jouw voorkeur!',
-  animation: 'animatie',
+  animation: 'vergrootglas',
   sec_path: '', 
   sec_name: 'Vorige',
   prim_path: ROUTES.fontsize,

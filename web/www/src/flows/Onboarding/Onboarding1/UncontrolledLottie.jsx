@@ -4,13 +4,9 @@ import Lottie from "react-lottie";
 class UncontrolledLottie extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-
     this.state = {
       animatie: { path: `${props.props}` },
     };
-
-    this.setState(props);
   }
 
   render() {

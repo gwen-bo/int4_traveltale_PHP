@@ -16,15 +16,17 @@ const Onboarding1 = () => {
       <img src={logo} alt="logo Travel Tale"></img>
 
       <section className={styles.section}>
+        <div className={styles.animatie_circle}>
         <UncontrolledLottie
-          className={styles.animatie_circle}
+          // className={styles.animatie_circle}
           props="zwaaien"
         />
+        </div>
         <div className={styles.section_header}>
           <h1 className={styles.title}>Welkom bij Travel Tale!</h1>
           <p className={styles.uitleg}>
             Ga met je Fitbit op stap en ontgrendel jouw droomreis op Travel
-            Tale! Klik op de knop{" "}
+            Tale! <br></br>Klik op de knop{" "}
             <span className={styles.strong}>‘Volgende’</span> om Travel Tale
             beter te leren kennen!
           </p>
@@ -35,16 +37,10 @@ const Onboarding1 = () => {
             <li className={styles.list_item}></li>
           </ul>
           <div className={styles.button_wrapper}>
-          <button
-            onClick={() => {
-              history.goBack();
-            }}
-            className={styles.button_sec}
-            to={ROUTES.home}
-          >
-            Vorige
-          </button>
-          <Link className={styles.button} to={uiStore.prim_path}>
+          <Link className={styles.button_sec} to={ROUTES.inloggen}>
+            Overslaan
+          </Link>
+          <Link className={styles.button} to={ROUTES.onboarding2}>
             Volgende
           </Link>
         </div>

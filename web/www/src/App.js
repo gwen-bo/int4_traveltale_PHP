@@ -3,7 +3,12 @@ import {ROUTES} from "./consts/index";
 import { Switch, Route } from "react-router-dom";
 import Overzicht from "./components/Overzicht"
 import Reisaanbod from "./components/Reisaanbod"
-import Landingpage from "./components/Landingpage"
+import Inloggen from "./components/Inloggen"
+import Onboarding1 from './flows/Onboarding/Onboarding1';
+import Onboarding2 from './flows/Onboarding/Onboarding2';
+import Onboarding3 from './flows/Onboarding/Onboarding3';
+import Onboarding4 from './flows/Onboarding/Onboarding4';
+
 import LandDetail from "./components/LandDetail"
 import ActiviteitDetail from "./components/ActiviteitDetail"
 import ReisOverzicht from "./components/ReisOverzicht"
@@ -26,11 +31,14 @@ import TeWeinig from './flows/Activiteit/TeWeinig';
 import Optie1 from './flows/Activiteit/Optie1';
 import Optie2 from './flows/Activiteit/Optie2';
 import Einde from './flows/Activiteit/Einde';
+import Wandelplezier from './components/Wandelplezier';
 
 function App() {
 
   return (
     <Switch>
+
+
       <Route path={ROUTES.aanmelden}>
           <Aanmelden />
       </Route>
@@ -114,8 +122,33 @@ function App() {
       <Route path={ROUTES.instellingen}>
           <Instellingen />
       </Route>
+
+      <Route path={ROUTES.wandelplezier}>
+          <Wandelplezier />
+      </Route>
+
+      <Route path={ROUTES.instellingen}>
+          <Instellingen />
+      </Route>
+
+      <Route exact path={ROUTES.inloggen}>
+          <Inloggen />
+      </Route>
+
+      <Route exact path={ROUTES.onboarding4}>
+          <Onboarding4 />
+      </Route>
+
+      <Route exact path={ROUTES.onboarding3}>
+          <Onboarding3 />
+      </Route>
+
+      <Route exact path={ROUTES.onboarding2}>
+          <Onboarding2 />
+      </Route>
+
       <Route path="/" exact >
-        <Landingpage />
+        <Onboarding1 />
       </Route>
   </Switch> 
   );

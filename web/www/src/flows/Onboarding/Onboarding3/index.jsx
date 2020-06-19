@@ -34,16 +34,10 @@ const Onboarding1 = () => {
             <li className={styles.list_item}></li>
           </ul>
           <div className={styles.button_wrapper}>
-            <button
-              onClick={() => {
-                history.goBack();
-              }}
-              className={styles.button_sec}
-              to={ROUTES.home}
-            >
+          <Link className={styles.button_sec} to={ROUTES.onboarding2}>
               Vorige
-            </button>
-            <Link className={styles.button} to={uiStore.prim_path}>
+            </Link>
+            <Link className={styles.button} to={ROUTES.onboarding4}>
               Volgende
             </Link>
           </div>

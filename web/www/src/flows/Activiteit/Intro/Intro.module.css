@@ -70,6 +70,7 @@
     font-weight: 500;
     margin: 1rem;
     text-align: center;
+    width: 25rem;
 }
 
 .oma_text {
@@ -87,4 +88,9 @@
     padding: 1rem 3rem;
     border-radius: 5rem;
     text-align: center;
+}
+
+.background_img{
+    position: absolute;
+    bottom: 0;
 }

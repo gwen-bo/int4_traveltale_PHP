@@ -68,7 +68,7 @@ const FontSize = () => {
                   <Link className={styles.button} to={ROUTES.feedback} onClick={e => (handleLink({
                    title: 'We zijn er bijna!', 
                   uitleg: 'Om zeker te zijn dat je reis een onvergetelijke ervaring wordt, polsen we hoe graag en ver je nog wandelt. Zo kunnen we een reis maken op jouw maat!',
-                  animation: 'animatie',
+                  animation: 'fitness',
                   sec_path: '', 
                   sec_name: 'Vorige',
                   prim_path: ROUTES.bewegen,

@@ -5,6 +5,8 @@ import { useStores } from "../../hooks";
 import logo from "../../assets/img/logo.svg"
 
 import styles from "./Feedback.module.css";
+import UiStore from "../../stores/UiStore";
+import LottieFeedback from "./LottieFeedback";
 
 const Feedback = () => {
  
@@ -20,8 +22,9 @@ const Feedback = () => {
         <h1 className={styles.title}>{uiStore.title}</h1>
         <p className={styles.uitleg}>{uiStore.uitleg}</p>
     </div>
-    <img className={styles.animatie_circle} src={require(`../../assets/img/${uiStore.animation}.png`)} alt="animatie"></img>
-
+    <LottieFeedback
+          props={uiStore.animation}
+        />
         <div className={styles.button_wrapper}>
             <button onClick={() => {history.goBack();}} className={styles.button_sec} to={ROUTES.home}>{uiStore.sec_name}</button>
             <Link className={styles.button} to={uiStore.prim_path}>{uiStore.prim_name}</Link>

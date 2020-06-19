@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.lottie {
+    margin-left: -3rem;
+}
+
 .links_wrapper {
     display: flex; 
     flex-flow: column;
@@ -99,7 +103,6 @@
 }
 
 .kaart {
-    margin-top: 10rem;
     margin-right: -5rem;
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import { useEffect } from "react";
@@ -11,25 +11,16 @@ import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
 
-/* images */
-// import back from "../../../assets/img/activiteiten/steden/Ninh Binh/tempel/optie_1.svg"
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
-// import omaUitleg from "../../../assets/img/oma_uitleg.svg"
+import oma from "../../../assets/img/oma_uitleg.svg"
 
 
 
 const Optie2 = () => {
     const { id } = useParams();
-    const {uiStore , activiteitenStore} = useStores();
-    const currentProfile = uiStore.currentProfile;
+    const { activiteitenStore} = useStores();
   
-    const history = useHistory();
-  
-    const handleLink = (feedbackLink) => {
-      console.log(feedbackLink);
-      uiStore.setFeedback(feedbackLink);
-    }
-  
+
   const STATE_LOADING = "aan het laden"; 
   const STATE_FULLY_LOADED = "volledig geladen"; 
   const STATE_DOES_NOT_EXIST = "bestaat niet"; 
@@ -74,17 +65,17 @@ const Optie2 = () => {
   </div>
    <AantalStappen/>
    </div>
-   <div>
-     {/* <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/steden/${activiteit.optie2.back_img}.svg`)} alt="background van de activiteit"/> */}
+   <div className={styles.background_img}>
+   <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/optie_1.svg`)} alt="achtergrondfoto van de activiteit"/>
    </div>
 
    <div className={styles.oma_ballon}>
-      {/* <img className={styles.oma_img} src={omaUitleg} alt=""/> */}
+   <img className={styles.oma_img} src={oma} alt="reisbegeleider die uitleg geeft"/>
       <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.optie2.titel}</p>
         <p className={styles.oma_text}>{activiteit.optie2.tekst}</p>
-        <Link to={`${ROUTES.einde.to}${activiteit.id}`}>
-          <button className={styles.button}>{activiteit.optie2.button}</button>
+        <Link className={styles.button} to={`${ROUTES.einde.to}${activiteit.id}`}>
+          {activiteit.optie2_button}
         </Link>
       </div>
    </div>

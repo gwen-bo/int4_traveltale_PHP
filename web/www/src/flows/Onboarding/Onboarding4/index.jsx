@@ -16,7 +16,10 @@ const Onboarding1 = () => {
       <img src={logo} alt="logo Travel Tale"></img>
 
       <section className={styles.section}>
-        <UncontrolledLottie className={styles.animatie_circle} props="feest" />
+        <div className={styles.animatie_circle}>
+          <UncontrolledLottie className={styles.animatie_circle} props="feest" />
+          </div>
+
         <div className={styles.section_header}>
           <h1 className={styles.title}>Veel plezier met Travel Tale! </h1>
           <p className={styles.uitleg}>
@@ -31,17 +34,11 @@ const Onboarding1 = () => {
             <li className={styles.list_item_active}>4</li>
           </ul>
           <div className={styles.button_wrapper}>
-            <button
-              onClick={() => {
-                history.goBack();
-              }}
-              className={styles.button_sec}
-              to={ROUTES.home}
-            >
+          <Link className={styles.button_sec} to={ROUTES.onboarding3}>
               Vorige
-            </button>
-            <Link className={styles.button} to={uiStore.prim_path}>
-              Volgende
+            </Link>
+            <Link className={styles.button} to={ROUTES.inloggen}>
+              Inloggen
             </Link>
           </div>
         </div>

@@ -73,3 +73,8 @@
     align-items: center;
     margin-top: -4rem;
 }
+
+.icon::before {
+    content: url("../../assets/img/stappenIcon.svg");
+}
+

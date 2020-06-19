@@ -105,3 +105,8 @@
     height: 1.8rem;
     margin-bottom: -.5rem;
 }
+
+.background_img{
+    position: absolute;
+    bottom: 0;
+}

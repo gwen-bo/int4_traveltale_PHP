@@ -10,18 +10,17 @@ import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
 
-/* images */
-// import begin from "../../../assets/img/activiteiten/steden/Ninh Binh/tempel/begin.svg"
-// import omaUitleg from "../../../assets/img/oma_uitleg.svg"
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
+import oma from "../../../assets/img/oma_uitleg.svg"
+
 import { useEffect } from "react";
+import Empty from "../../../components/Empty";
 
 
 
 const Intro = () => {
   const { id } = useParams();
   const {uiStore , activiteitenStore} = useStores();
-  const currentProfile = uiStore.currentProfile;
 
   const history = useHistory();
 
@@ -42,11 +41,12 @@ useEffect (() => {
   const loadActiviteit = async (id) => {
     try {
     const activiteit = await activiteitenStore.getActiviteitById(id);
+    console.log('dit is de activiteit', activiteit);
     if(!activiteit){
       setState(STATE_DOES_NOT_EXIST)
     }
-    setActiviteit(activiteit)
-    setState(STATE_FULLY_LOADED)
+    setActiviteit(activiteit);
+    setState(STATE_FULLY_LOADED);
   }catch (error){
     if(error.response && error.response.status === 400){
       setState(STATE_DOES_NOT_EXIST)
@@ -58,17 +58,15 @@ useEffect (() => {
 }, [id, activiteitenStore, setActiviteit])
 
 
-  
-  return useObserver (() => {
+return useObserver (() => {
 
-  if (state === STATE_DOES_NOT_EXIST){
-    return <p>bestaat niet</p>;
+  if (state === STATE_DOES_NOT_EXIST) {
+    return <Empty message={"Oeps! Deze activiteit hebben we niet gevonden."} />;
   }
-  if (state === STATE_LOADING){
-    return <p>aan het laden</p>
+  if (state === STATE_LOADING) {
+    return <Empty message={"Even geduld.."} />;
   }
   return (
-
    <>
     <div className={styles.nav_wrapper}>
    <Terug path={ROUTES.overzicht}/>
@@ -76,22 +74,22 @@ useEffect (() => {
    <div className={styles.midden}>
       <div className={styles.reis_title}>
             <img src={hangers}></img>
-            <p className={styles.bestemming_naam}>{activiteit.name}</p>
+            <p className={styles.bestemming_naam}>{activiteit.naam}</p>
       </div>
   </div>
    <AantalStappen />
    </div>
-   <div>
-     {/* <img className={styles.img_activiteit}  src={require(`../../../assets/img/activiteiten/steden/${activiteit.intro.back_img}.svg`)} alt="background van de activiteit"/> */}
+   <div className={styles.background_img}>
+     <img className={styles.img_activiteit}  src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
    </div>
 
    <div className={styles.oma_ballon}>
-      {/* <img className={styles.oma_img}  src={require(`../../../assets/img/${activiteit.intro.img}.svg`)} alt="oma in het text ballon die uitleg geeft"/> */}
+      <img className={styles.oma_img} src={oma} alt="jouw reisbegeleider die uitleg geeft"/>
       <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.intro.titel}</p>
         <p className={styles.oma_text}>{activiteit.intro.tekst}</p>
-        <Link to={`${ROUTES.split.to}${activiteit.id}`}>
-          <button className={styles.button}>{activiteit.intro.button}</button>
+        <Link className={styles.button} to={`${ROUTES.split.to}${activiteit.id}`}>
+          Volgende
         </Link>
       </div>
    </div>

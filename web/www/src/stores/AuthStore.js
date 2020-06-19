@@ -6,7 +6,7 @@ configure({enforceActions: 'observed'});
 class AuthStore {
 
   constructor(rootStore) {
-    this.accessToken = localStorage.getItem('access_token');
+    this.accessToken = sessionStorage.getItem('access_token');
     this.rootStore = rootStore;
     this.user_id = undefined;
     this.users_database = [];

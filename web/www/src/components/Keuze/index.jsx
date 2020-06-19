@@ -6,6 +6,7 @@ import { useStores } from "../../hooks";
 import logo from "../../assets/img/logo.svg"
 
 import styles from "./Keuze.module.css";
+import LottieFeedback from "../Feedback/LottieFeedback";
 
 const Keuze = () => {
  
@@ -29,8 +30,10 @@ const Keuze = () => {
         <h1 className={styles.title}>Laten we beginnen!</h1>
         <p className={styles.uitleg}>Klaar om <span className={styles.uitleg_nadruk}>{bestemming.naam}</span> te ontdekken?</p>
     </div>
-    <img className={styles.animatie_circle} src={require(`../../assets/img/animatie.png`)} alt="animatie"></img>
-        <div className={styles.button_wrapper}>
+    <LottieFeedback
+          props="vertrekt"
+    />          
+    <div className={styles.button_wrapper}>
             <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
             <Link onClick={e => handleStart()} className={styles.button} to={`${ROUTES.reisoverzicht.to}${bestemming.id}`}>Start deze reis</Link>
         </div>
@@ -42,8 +45,10 @@ const Keuze = () => {
         <p className={styles.uitleg}>Het ziet er naar uit dat je momenteel al in <span className={styles.uitleg_nadruk}>{uiStore.currentReis.naam}</span> zit.</p>
         <p className={styles.uitleg_nadruk}>Ben je zeker dat je deze reis wilt verlaten om een nieuwe reis te beginnen?</p>
     </div>
-    <img className={styles.animatie_circle} src={require(`../../assets/img/animatie.png`)} alt="animatie"></img>
-        <div className={styles.button_wrapper}>
+    <LottieFeedback
+          props="verbaasd"
+    />       
+    <div className={styles.button_wrapper}>
             <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
             <Link onClick={e => handleStart()} className={styles.button} to={`${ROUTES.reisoverzicht.to}${bestemming.id}`}>Start deze reis</Link>
 

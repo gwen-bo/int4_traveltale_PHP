@@ -6,6 +6,7 @@ import { useStores } from "../../hooks";
 import logo from "../../assets/img/logo.svg"
 
 import styles from "./StadKeuze.module.css";
+import LottieFeedback from "../Feedback/LottieFeedback";
 
 const StadKeuze = () => {
  
@@ -39,7 +40,9 @@ const StadKeuze = () => {
         <p className={styles.uitleg}>Het ziet er naar uit dat je nog niet genoeg stappen hebt verzameld om <span className={styles.uitleg_nadruk}>{stad.naam}</span> te kunnen ontdekken.</p>
         <p className={styles.vraag}>Kom je later nog eens terug?</p>
     </div>
-    <img className={styles.animatie_circle} src={require(`../../assets/img/animatie.png`)} alt="animatie"></img>
+    <LottieFeedback
+          props="verbaasd"
+    />           
         <div className={styles.button_wrapper}>
             <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
             <Link className={styles.button} to={ROUTES.rugzak}>Beginnen met stappen</Link>
@@ -49,11 +52,13 @@ const StadKeuze = () => {
     <section className={styles.section}>
         <div className={styles.section_header}>
         <h1 className={styles.title}>Welkom in {stad.naam}</h1>
-        <p className={styles.uitleg}>Om <span className={styles.uitleg_nadruk}>{stad.naam}</span> te ontdekken heb je {stad.stappen} nodig</p>
-    <p className={styles.vraag}>Wil je {stad.stappen} indienen om {stad.naam} te ontdekken?</p>
+        <p className={styles.uitleg}>Om <span className={styles.uitleg_nadruk}>{stad.naam}</span> te ontdekken heb je {stad.stappen} <span className={styles.icon}></span> stappen nodig</p>
+    <p className={styles.vraag}>Wil je {stad.stappen} <span className={styles.icon}></span> stappen indienen om {stad.naam} te ontdekken?</p>
     </div>
-    <img className={styles.animatie_circle} src={require(`../../assets/img/animatie.png`)} alt="animatie"></img>
-        <div className={styles.button_wrapper}>
+    <LottieFeedback
+          props="vertrekt"
+    />          
+    <div className={styles.button_wrapper}>
             <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
             <Link onClick={e => handleStart(e)} className={styles.button} to={`${ROUTES.stadDetail.to}${stad.id}`}>Stappen indienen</Link>
 

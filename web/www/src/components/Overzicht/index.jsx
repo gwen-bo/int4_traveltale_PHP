@@ -12,6 +12,7 @@ import vietnam from "../../assets/img/vietnamKaart.png"
 import vlag from "../../assets/img/vlag.svg"
 import weer from "../../assets/img/weer.svg"
 import finish from "../../assets/img/finish.svg"
+import LottieOverzicht from "./LottieOverzicht";
 
 const Overzicht = () => {
     const {uiStore, authStore} = useStores()
@@ -26,16 +27,16 @@ const Overzicht = () => {
     useEffect(() => {
       console.log("use effect wordt opgestart")
       if(authStore.accessToken === undefined){
-      // window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=22BM45&redirect_uri=http%3A%2F%2Flocalhost%2Foverzicht%2F&scope=activity%20profile&expires_in=604800');
         console.log('access token ophalen')
         let url = window.location.hash; 
     
         console.log(url);
         const access_token = url.split("=")[1].split("&")[0]
         console.log(access_token);
-
-        localStorage.setItem('access_token', access_token);
-        authStore.setAccessToken(localStorage.getItem('access_token'));
+        
+        sessionStorage.clear();
+        sessionStorage.setItem('access_token', access_token);
+        authStore.setAccessToken(sessionStorage.getItem('access_token'));
         history.push('/overzicht');
     }else {
       authStore.fetchData();
@@ -86,8 +87,10 @@ const Overzicht = () => {
       </div>
     <div>
     {(currentReis === undefined) ? 
-      <img src={geenReis}></img>
-      : 
+    <div className={styles.lottie}>
+      <LottieOverzicht
+      props="kaartkijken"/>  
+      </div>    : 
       <img className={styles.kaart} src={vietnam}></img>
       }
     </div>

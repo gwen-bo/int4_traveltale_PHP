@@ -11,14 +11,14 @@ class UiStore {
     // this.currentUser = this.rootStore.authStore.users[0];
     // console.log('huidige gebruiker', this.currentUser);
     this.currentUser = undefined;
-    if(this.currentUser === undefined && this.rootStore.authStore.accessToken !== undefined){
-      this.rootStore.authStore.fetchData();
-    }
+    // if(this.currentUser === undefined && this.rootStore.authStore.accessToken !== undefined){
+    //   this.rootStore.authStore.fetchData();
+    // }
     console.log(this.currentUser);
     // feedbackcomponent 
     this.title = ""; 
     this.uitleg = ""; 
-    this.animation = ""; 
+    this.animation = "zwaaien"; 
     this.sec_path = ""; 
     this.sec_name = ""; 
     this.prim_path = ""; 
