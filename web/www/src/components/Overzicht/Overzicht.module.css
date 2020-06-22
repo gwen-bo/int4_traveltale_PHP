@@ -11,6 +11,12 @@
     justify-content: center;
 }
 
+.stappen_pos {
+    position: absolute;
+    right: 5%;
+    top: 25%;
+}
+
 .wrapper {
     display: flex;
     flex-direction: row;
@@ -35,7 +41,7 @@
     flex-flow: column;
     justify-content: space-evenly;
     align-items: flex-start;
-    height: 60vh;
+    height: 70vh;
 }
 
 .button_wrapper{
@@ -121,8 +127,12 @@
 }
 
 .kaart {
-    margin-right: -5rem;
+    /* margin-right: -5rem; */
+    width: 30vw;
+    max-width: 40rem;
 }
+
+
 
 .info_icon {
     background-color: #539882;

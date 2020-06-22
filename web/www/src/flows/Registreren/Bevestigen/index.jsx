@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./Bevestigen.module.css";
 import LottieFeedback from "../../../components/Feedback/LottieFeedback";
+import Help from "../../../components/buttons/Help";
 
 const Bevestigen = () => {
 
   return (
     <>
     <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
+    <Help />
 
     <section className={styles.section}>
         <div className={styles.section_header}>

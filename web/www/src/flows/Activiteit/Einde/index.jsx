@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import LottieUitleg from "../LottieUitleg";
 import Empty from "../../../components/Empty";
 import LottieActiviteit from "../Intro/LottieActiviteit";
+import Help from "../../../components/buttons/Help";
 
 const Einde = () => {
   const { id } = useParams();
@@ -57,7 +58,7 @@ const Einde = () => {
     }
     };
     loadActiviteit(id);
-  }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
+  }, [id, setState, stedenStore, activiteit, activiteitenStore, setActiviteit, history, uiStore])
 
   const handleEinde = (id) => {
     const isChecked = uiStore.currentUser.checkifCheckedActiviteit(id); 
@@ -74,9 +75,11 @@ const Einde = () => {
    <div className={styles.nav_wrapper}>
    <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}/>
    <Rugzak/>
+   <Help />
+
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-            <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+      <img alt="de touwtjes waaraan het naambordje hangt" src={'/assets/img/reisoverzicht/hangers.svg'}></img>
             <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>

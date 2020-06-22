@@ -8,13 +8,13 @@ class LandModel {
 
     this.steden = [];   
     this.id = id;
-
+    this.souvenirs = [];
     if (!store) {
       throw new Error("voorzie een store");
     }
     this.store = store; 
     this.store.addLand(this);
-    
+    this.store.loadSouvenirs(this.id);
     this.updateFromJson(json);
   }
 
@@ -30,6 +30,7 @@ class LandModel {
     uitleg = undefined,
     tag = undefined,
     steden = undefined, 
+    souvenirs = undefined
 
   }) => {
     this.naam = (naam !== undefined) ? naam : this.naam;
@@ -44,8 +45,18 @@ class LandModel {
         this.store.rootStore.stedenStore.updateStedenFromServer(stad).linkLand(this);
       });
     }
-  
+    if(souvenirs !== undefined){
+      this.souvenirs = [];
+      console.log('souvenirs aan het pushen', this)
+      souvenirs.forEach(souvenir => {
+        this.addSouvenir(souvenir)
+      })
+    }
   };
+
+  addSouvenir(souvenir){
+    this.souvenirs.push(souvenir);
+  }
 
   get asJson() {
     return {
@@ -68,6 +79,8 @@ decorate(LandModel, {
   uitleg: observable, 
   
   addStad: action,
+  souvenirs: observable, 
+  addSouvenir: action, 
 
   updateFromJson: action, 
   asJson: computed

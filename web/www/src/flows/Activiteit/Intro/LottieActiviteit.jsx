@@ -8,7 +8,8 @@ class LottieActiviteit extends Component {
 
     this.state = {
       name: props.name,
-      place: props.place
+      place: props.place,
+      loop: props.loop
     };
   }
 

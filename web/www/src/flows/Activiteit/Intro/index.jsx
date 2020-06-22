@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import Empty from "../../../components/Empty";
 import LottieUitleg from "../LottieUitleg";
 import LottieActiviteit from "./LottieActiviteit";
+import Help from "../../../components/buttons/Help";
 
 
 
@@ -57,7 +58,7 @@ useEffect (() => {
   }
   };
   loadActiviteit(id);
-}, [id, setState, stedenStore, activiteitenStore, setActiviteit])
+}, [id, setState, stedenStore, activiteitenStore, setActiviteit, history, uiStore])
 
 
 return useObserver (() => {
@@ -69,12 +70,13 @@ return useObserver (() => {
 <div className={styles.nav_wrapper}>
    <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}/>
    <Rugzak/>
+   <Help />
   </div>
    <AantalStappen />
 
 <div className={styles.midden}>
 <div className={styles.reis_title}>
-      <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+      <img alt="de touwtjes waaraan het naambordje hangt" src={'/assets/img/reisoverzicht/hangers.svg'}></img>
       <p className={styles.bestemming_naam}>{activiteit.naam}</p>
 </div>
 </div>

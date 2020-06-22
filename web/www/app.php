@@ -83,6 +83,16 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Access-Control-Allow-Origin', '*')
               ->withStatus(200);
     });
+
+    $routeGroup->get('/{id}/souvenirs', function (Request $request, Response $response, $args) {
+      $landenDAO = new LandenDAO();
+      $data = $landenDAO->selectSouvenirsForLand($args['id']);
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+    });
   });
 
   // STEDEN OPHALEN

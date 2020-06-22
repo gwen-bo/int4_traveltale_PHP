@@ -7,8 +7,6 @@ import Loading from "./Loading";
 const AantalStappen = () => {
  
     const {uiStore, authStore} = useStores();
-    // const stappen = uiStore.currentSteps;
-    const [user, setUser] = useState(uiStore.currentUser);
     const [stappen, setStappen] = useState(uiStore.currentSteps);
 
     const STATE_LOADING = "loading";
@@ -22,14 +20,13 @@ const AantalStappen = () => {
         if(uiStore.currentUser === undefined){
         await authStore.fetchData();
         const steps = uiStore.currentSteps;
-        setUser(uiStore.currentUser);
         setStappen(steps);
         setState(STATE_FULLY_LOADED);
       }else {
         setState(STATE_FULLY_LOADED);
       }}
       loadData();
-    }, []);
+    }, [setState, authStore, uiStore.currentSteps, uiStore.currentUser]);
 
     return useObserver(() => {
       if (state === STATE_LOADING) {

@@ -46,6 +46,14 @@ code {
   font-style: normal;
 }
 
+@font-face{
+  font-family: "Geomanist"; 
+  src: url("/assets/fonts/bold/Geomanist-Bold.woff2") format("woff2"),
+      url("/assets/fonts/bold/Geomanist-Bold.woff2") format("woff2");
+  font-weight: 800; 
+  font-style: normal;
+}
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;

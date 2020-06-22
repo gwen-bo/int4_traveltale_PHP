@@ -20,7 +20,7 @@ const AccessToken = () => {
         sessionStorage.setItem('access_token', access_token);
         authStore.setAccessToken(sessionStorage.getItem('access_token'));
         history.push('/overzicht');
-  }, []);
+  }, [authStore, history]);
 
   return (
    <>

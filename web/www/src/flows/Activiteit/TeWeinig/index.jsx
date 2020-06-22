@@ -10,6 +10,7 @@ import AantalStappen from "../../../components/AantalStappen";
 import LottieUitleg from "../LottieUitleg";
 import LottieActiviteit from "../Intro/LottieActiviteit";
 import Empty from "../../../components/Empty";
+import Help from "../../../components/buttons/Help";
 
 
 const TeWeinig = () => {  
@@ -50,7 +51,7 @@ const TeWeinig = () => {
     }
     };
     loadActiviteit(id);
-  }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
+  }, [id, setState, stedenStore, activiteitenStore, setActiviteit, history, uiStore])
   
   return useObserver (() => {
   if (state === STATE_LOADING) {
@@ -61,9 +62,10 @@ const TeWeinig = () => {
     <div className={styles.nav_wrapper}>
    <Terug path={ROUTES.overzicht}/>
    <Rugzak/>
+   <Help />
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-            <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+      <img alt="de touwtjes waaraan het naambordje hangt" src={'/assets/img/reisoverzicht/hangers.svg'}></img>
             <p className={styles.bestemming_naam}>{activiteit.naam}</p>
       </div>
   </div>

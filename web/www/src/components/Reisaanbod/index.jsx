@@ -6,6 +6,7 @@ import styles from "./Reisaanbod.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import Empty from "../Empty";
+import Help from "../buttons/Help";
 
 const Reisaanbod = () => {
   const {landenStore} = useStores()
@@ -19,7 +20,7 @@ const Reisaanbod = () => {
     const loadBestemmingen = async () => {
       if (landenStore.landen.length === 0) {
       try {
-        await landenStore.loadAllLanden();
+        // await landenStore.loadAllLanden();
         setState(STATE_FULLY_LOADED);
       } catch (error) {
         if (error.response && error.response.status === 404) {
@@ -38,6 +39,7 @@ const Reisaanbod = () => {
     } return (
     <>
       <Navigatie />
+      <Help />
       <div className={styles.center}>
         <div className={styles.wrapper}>
           <section className={styles.reisaanbod}>
@@ -56,13 +58,13 @@ const Reisaanbod = () => {
                     <div className={styles.bestemming}>
                       <div className={styles.bestemming_info}>
                         <div className={styles.bestemming_header}>
-                          <img src={'/assets/img/reisaanbod/nametag.svg'}></img>
+                          <img alt={`naamplaatje van ${bestemming.naam}`} src={'/assets/img/reisaanbod/nametag.svg'}></img>
                           <p className={styles.bestemming_naam}>
                             {" "}
                             {bestemming.naam}
                           </p>
                         </div>
-                        <img
+                        <img alt="het stappenniveau van de bestemming"
                           className={styles.bestemming_niveau}
                           src={
                             bestemming.stappen_niveau === 1
@@ -81,7 +83,7 @@ const Reisaanbod = () => {
                         </div>
                       </div>
                       <div className={styles.bestemming_img}>
-                        <img
+                        <img alt={`de kaart van ${bestemming.naam}`}
                           src={`/assets/img/reisaanbod/kaarten/${bestemming.naam}.svg`}
                         ></img>
                       </div>

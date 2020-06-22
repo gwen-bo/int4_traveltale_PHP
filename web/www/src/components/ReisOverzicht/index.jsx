@@ -11,6 +11,8 @@ import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import ScrollLottie from "../buttons/Scroll/ScrollLottie";
 import OmaWalkLottie from "../buttons/Scroll/OmaWalkLottie";
+import Help from "../buttons/Help";
+import HelpReisoverzicht from "../../flows/HelpScreens/HelpReisoverzicht";
 
 const ReisOverzicht = () => {
   const { id } = useParams();
@@ -24,7 +26,7 @@ const ReisOverzicht = () => {
   const [bestemming, setBestemming] = useState(landenStore.getLandById(id));
   const [state, setState] = useState(bestemming ? STATE_FULLY_LOADED : STATE_LOADING);
   const [progress, setProgress] = useState("");
-
+  
   useEffect(() => {
     const loadLand = async (id) => {
       if(uiStore.currentUser === undefined){
@@ -88,9 +90,12 @@ const ReisOverzicht = () => {
     }
     return (
       <>
+      {uiStore.help === true ? <HelpReisoverzicht /> : "" }
+
       <div className={styles.scroll_pos}>
         <ScrollLottie props="handswipe" />
       </div>
+      <Help />
       <div className={styles.oma}>
         <OmaWalkLottie props="wandelen" />
       </div>

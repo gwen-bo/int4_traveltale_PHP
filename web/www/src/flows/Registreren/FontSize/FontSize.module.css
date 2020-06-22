@@ -18,11 +18,6 @@
     justify-content: center;
 }
 
-input[type="radio"]:checked +label {
-    border: solid .3rem #FFBD3A;
-    border-radius: 20%;
-}
-
 .title {
     font-size: 5rem;
     width: 60vw;
@@ -49,6 +44,10 @@ input[type="radio"]:checked +label {
     justify-content: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 1.5rem;
+}
+
+.input_fontsize:checked + .fontsize_text {
+    border: solid .3rem #FFBD3A;
 }
 
 .small {    

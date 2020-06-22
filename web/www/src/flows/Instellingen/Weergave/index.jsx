@@ -15,16 +15,16 @@ const Profiel = () => {
       <p className={styles.title}>Jouw reisbegeleider </p>
       <p className={styles.text}>Kies hier wie jouw reisbegeleider zal worden doorheen de reizen die je zal maken.</p>
       <div className={styles.bewegen_position}>
-          <input type="radio" checked={uiStore.reisBegeleider === 'Maria'} onChange={e => uiStore.setBegeleider('Maria')} name='Maria' id={'Maria'}></input>
-          <label className={styles.thema_radio} htmlFor={'Maria'}>
+          <input type="radio" checked={uiStore.reisBegeleider === 'oma'} onChange={e => uiStore.setBegeleider('oma')} name='oma' id={'oma'}></input>
+          <label className={styles.thema_radio} htmlFor={'oma'}>
                 <div className={`${styles.bewegen_text} ${styles.box}`}>
                   <img className={styles.bewegen_img} src={'/assets/img/instellingen/oma.svg'} alt=""/>
-                <p className={styles.bewegen_label}>Maria</p>
+                <p className={styles.bewegen_label}>Annet</p>
                 </div>
             </label>
 
-            <input type="radio" checked={uiStore.reisBegeleider === 'Fons'} onChange={e => uiStore.setBegeleider('Fons')} name='Fons' id={'Fons'}></input>
-            <label className={styles.thema_radio} htmlFor={'Fons'}>
+            <input type="radio" checked={uiStore.reisBegeleider === 'opa'} onChange={e => uiStore.setBegeleider('opa')} name='opa' id={'opa'}></input>
+            <label className={styles.thema_radio} htmlFor={'opa'}>
                   <div className={`${styles.bewegen_text} ${styles.box}`}>
                   <img className={styles.bewegen_img} src={'/assets/img/instellingen/opa.svg'} alt=""/>
                   <p className={styles.bewegen_label}>Fons</p>

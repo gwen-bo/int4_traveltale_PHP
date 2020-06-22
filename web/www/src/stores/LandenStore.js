@@ -25,8 +25,16 @@ class LandenStore {
   }
 
   loadStedenVanLand = async (id) => {
-    const jsonSteden = await this.landenService.getById(id, 'steden');
-    this.updateLandenFromServer({ id, steden: jsonSteden });
+    const jsonSouvenirs = await this.landenService.getById(id, 'steden');
+    console.log(jsonSouvenirs)
+    this.updateLandenFromServer({ id, steden: jsonSouvenirs });
+    return this.getLandById(id);
+  };
+
+  loadSouvenirs = async (id) => {
+    const jsonSouvenirs = await this.landenService.getById(id, 'souvenirs');
+    console.log(jsonSouvenirs)
+    this.updateLandenFromServer({ id, souvenirs: jsonSouvenirs });
     return this.getLandById(id);
   };
 

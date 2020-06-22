@@ -32,6 +32,7 @@ import Optie1 from './flows/Activiteit/Optie1';
 import Optie2 from './flows/Activiteit/Optie2';
 import Einde from './flows/Activiteit/Einde';
 import Wandelplezier from './components/Wandelplezier';
+import NotFound from './components/NotFound';
 
 function App() {
 
@@ -45,6 +46,8 @@ function App() {
       <Route path={ROUTES.aanmelden}>
           <Aanmelden />
       </Route>
+
+      
 
       {/* registratieproces */}
       <Route exact path={ROUTES.registratie}>
@@ -150,9 +153,14 @@ function App() {
           <OnboardingHulp />
       </Route>
 
+    
       <Route path="/" exact >
         <OnboardingIntro />
       </Route>
+
+      <Route path="*" >
+            <NotFound />
+        </Route>
   </Switch> 
   );
 }

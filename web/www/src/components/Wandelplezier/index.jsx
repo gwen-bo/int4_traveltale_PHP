@@ -4,6 +4,7 @@ import styles from "./Wandelplezier.module.css";
 import Rugzak from "../buttons/Rugzak";
 import AantalStappen from "../AantalStappen";
 import LottieFeedback from "../Feedback/LottieFeedback";
+import Help from "../buttons/Help";
 
 
 const Wandelplezier = () => {
@@ -12,12 +13,12 @@ const Wandelplezier = () => {
     <>
 
     <div className={styles.nav_wrapper}>
-      <button className={styles.nav_li}>
+      <button onClick={history.goBack()} className={styles.nav_li}>
           <div className={`${styles.nav_button} ${styles.terug_button}`}>
           </div>
           <p className={styles.nav_tekst}>Terug</p>
       </button>
-
+      <Help />
       <Rugzak />
       <AantalStappen />
     </div>
@@ -29,9 +30,9 @@ const Wandelplezier = () => {
 
           </div>
           <div className={styles.text}>
-            <p className={styles.title}>Veel wandelplezier!</p>
-              <p className={styles.text_bot}>Bij Travel Tale maken we gebruik van de Fitbit. Een Fitbit is een sporthorloge dat onder andere jouw stappen telt en je hartslag meet.</p>
-              <p>Om jou een onvergetelijke reiservaring te bieden, moeten we weten hoeveel stappen je doorheen de dag zet. Voorlopig werken we daarvoor enkel met Fitbit.</p>
+            <h1 className={styles.title}>Veel wandelplezier!</h1>
+              <h2 className={styles.text_bot}>Klaar om wat stappen te verzamelen? <br></br>Dan mag je nu gerust jouw tablet aan de kant leggen en genieten van je wandeling.</h2>
+              <p>Wanneer je terug komt, zullen wij jouw nieuw stappen aantal ophalen zodat je direct weer verder kan gaan! </p>
               <div className={styles.button_wrapper}>
 
               <button onClick={() => {history.goBack();}} className={styles.butotn_terug}>Terug</button>

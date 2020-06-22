@@ -5,6 +5,7 @@ import styles from "./Instellingen.module.css";
 import Profiel from "../Profiel";
 import Weergave from "../Weergave";
 import Fitbit from "../Fitbit";
+import Help from "../../../components/buttons/Help";
 
 const Instellingen = () => {
   const [view, setView] = useState("profiel");
@@ -12,6 +13,7 @@ const Instellingen = () => {
   return useObserver(() => (
     <>
       <Navigatie />
+      <Help />
       <div className={styles.center}>
         <div className={styles.wrapper}>
           <article className={styles.instellingen_pos}>

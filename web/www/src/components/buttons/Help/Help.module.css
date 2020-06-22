@@ -1,0 +1,41 @@
+.wrapper {
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: center;
+    align-items: center;
+    z-index: 5; 
+    background-color: transparent;
+    border: none;
+}
+
+.bol {
+    background: #FFBD3A;
+    border-radius: 30rem;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.active {
+    background: black;
+    border-radius: 30rem;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.text {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}

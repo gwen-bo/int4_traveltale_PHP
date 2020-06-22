@@ -5,6 +5,7 @@ import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
 import styles from "./Keuze.module.css";
 import LottieFeedback from "../Feedback/LottieFeedback";
+import Help from "../buttons/Help";
 
 const Keuze = () => {
  
@@ -20,6 +21,7 @@ const Keuze = () => {
 
   return useObserver(() => (
     <>
+    <Help />
     <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     {(uiStore.currentReis === undefined) ?

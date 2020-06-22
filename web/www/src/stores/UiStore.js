@@ -22,6 +22,17 @@ class UiStore {
     this.begroeting = 'Hallo';
     this.reisBegeleider = "oma";
     this.beweegNiveau = "skate";
+    this.help = false; 
+  }
+
+  setUsername(name) {
+    // naar current user gaan
+    // this.name instelle
+    // profiel updaten
+  }
+
+  setHelp(value){
+    this.help = value; 
   }
 
   setCurrentUser(profile) {
@@ -33,18 +44,12 @@ class UiStore {
   }
 
   setSize(value) {
-        console.log(value);
-        this.fontSize = value;
+    this.fontSize = value;
   }
 
   setBegeleider(begeleider){
     this.reisBegeleider = begeleider;
   }
-    
-  setBewegen(value) {
-    console.log(value);
-    this.bewegen.beweeg = value;
-  }
 
   setFeedback(feedback){
     this.title = feedback.title; 
@@ -91,8 +96,15 @@ decorate(UiStore, {
   currentSteps: observable, 
   setSteps: action,
 
-  // steps: observable, 
-  // addSteps: action,
+  beweegNiveau: observable, 
+  setBewegen: action, 
+
+  fontSize: observable, 
+  setSize: action, 
+
+  help: observable, 
+  setHelp: action,
+  
   begroeting: observable,
   setBegroeting: action, 
 });

@@ -1,26 +1,21 @@
 import React, { useState, useEffect }  from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams } from "react-router";
 import { useStores } from "../../hooks";
 import styles from "./Rugzak.module.css";
 import { ROUTES } from "../../consts";
 import Terug from "../buttons/Terug";
 import { useObserver } from "mobx-react-lite";
 import Empty from "../Empty";
+import Help from "../buttons/Help";
 
 const Rugzak = () => {
-  const { id } = useParams();
-  console.log(id);
-  const history = useHistory();
-
-  const {uiStore, authStore} = useStores();
-
+  const {uiStore, authStore, landenStore} = useStores();
   const STATE_LOADING = "loading";
   const STATE_FULLY_LOADED = "FullyLoaded";
-
   const [user, setUser] = useState(uiStore.currentUser);
   const [state, setState] = useState(user ? STATE_FULLY_LOADED : STATE_LOADING);
   const [fontsize, setFontSize] = useState("medium");
-
+  
   useEffect(() => {
     const loadData = async () => {
       if(uiStore.currentUser === undefined){
@@ -40,15 +35,8 @@ const Rugzak = () => {
     }
     return(
    <>
-    {/* <Link
-        className={styles.back}
-        to={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}
-        >
-        <div className={`${styles.nav_button} ${styles.mijn_reis}`}>
-              </div>
-              <p className={styles.nav_tekst}>Terug</p>
-      </Link> */}
       <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`} />
+      <Help />
       <article className={styles.rugzak_pos}>
         <div className={styles.rugzak_pos_header}>
           <div className={styles.rugzak_intro}>
@@ -58,41 +46,24 @@ const Rugzak = () => {
           </div>
           <div className={styles.rugzak_stappen}>
             <p className={styles.rugzak_totaal}>Totaal aantal gezette stappen</p>
-            <p className={styles.rugzak_totaal_stappen}>{user.stappen}</p>
+            <p className={styles.rugzak_totaal_stappen}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {user.stappen}</p>
           </div>
         </div>
-        <div className={styles.rugzak_items_pos}>
-          <div className={styles.rugzak_items}>
-            <p className={styles.rugzak_plaats}>Hanoi</p>
-            <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
-            </div>
-            <p className={styles.rugzak_item_naam}>Zijden kimono</p>
-          </div>
-          <div className={styles.rugzak_items}>
-            <p className={styles.rugzak_plaats}>Hanoi</p>
-            <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
-            </div>
-            <p className={styles.rugzak_item_naam}>Zijden kimono</p>
-          </div>
-          <div className={styles.rugzak_items}>
-            <p className={styles.rugzak_plaats}>Hanoi</p>
-            <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
-            </div>
-            <p className={styles.rugzak_item_naam}>Zijden kimono</p>
-          </div>
-          <div className={styles.rugzak_items}>
-            <p className={styles.rugzak_plaats}>Hanoi</p>
-            <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
-            </div>
-            <p className={styles.rugzak_item_naam}>Zijden kimono</p>
-          </div>
-        </div>
-        
 
+        
+        <div className={styles.rugzak_items_pos}>
+              {uiStore.currentReis.souvenirs.map(souvenir => {
+                return (
+                    <div key={souvenir.stad_naam} className={styles.rugzak_items}>
+                    <p className={styles.rugzak_plaats}>{souvenir.stad_naam}</p>
+                    <div className={styles.rugzak_item_bol}>
+                      <img className={styles.rugzak_item} src={`/assets/img/steden/${souvenir.stad_naam}/${souvenir.souvenir_img}.svg`} alt={`Dit is de ${souvenir.souvenir_naam}, dit heb je verdient in ${souvenir.stad_naam}`}/>
+                    </div>
+                    <p className={styles.rugzak_item_naam}>{souvenir.souvenir_naam}</p>
+                  </div>
+                    )
+              })}
+        </div>
       </article>
    </>  
    )});

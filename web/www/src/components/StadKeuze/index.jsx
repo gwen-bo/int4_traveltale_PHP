@@ -6,6 +6,7 @@ import { useStores } from "../../hooks";
 
 import styles from "./StadKeuze.module.css";
 import LottieFeedback from "../Feedback/LottieFeedback";
+import Help from "../buttons/Help";
 
 const StadKeuze = () => {
  
@@ -31,6 +32,7 @@ const StadKeuze = () => {
 
     {(uiStore.currentSteps < stad.stappen) ?
     <section className={styles.section}>
+    <Help />
         <div className={styles.section_header}>
         <h1 className={styles.title}>Je hebt nog niet genoeg stappen.</h1>
         <p className={styles.uitleg}>Het ziet er naar uit dat je nog niet genoeg stappen hebt verzameld om <span className={styles.uitleg_nadruk}>{stad.naam}</span> te kunnen ontdekken.</p>

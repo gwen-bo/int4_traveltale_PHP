@@ -7,8 +7,6 @@ import styles from "./Registratie_welkom.module.css";
 
 const Welkom = () => {
   const {uiStore} = useStores();
-  const currentProfile = uiStore.currentProfile;
-
   const history = useHistory();
 
   const handleLink = (feedbackLink) => {

@@ -37,10 +37,6 @@ class DataStore {
 }
 
 decorate(DataStore, {
-  sizes: observable, 
-  bewegen: observable, 
-  setBewegen: action, 
-  setSize: action, 
 });
 
 export default DataStore;

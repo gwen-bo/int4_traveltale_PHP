@@ -55,7 +55,7 @@ class AuthStore {
     user.setCurrentStappen(stappen);
     user.setLifeTimeStappen(this.fitbit_steps);
     this.loadCheckedForUser(user);
-    if (user.currentReis_id != undefined) {
+    if (user.currentReis_id !== undefined) {
       console.log('reis id is aanwezig', user.currentReis_id);
       sessionStorage.setItem('currentReis_id', user.currentReis_id);
       this.rootStore.uiStore.setCurrentReis(user.currentReis_id);

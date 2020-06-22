@@ -12,6 +12,7 @@ import AantalStappen from "../../../components/AantalStappen";
 import LottieUitleg from "../LottieUitleg";
 import LottieActiviteit from "../Intro/LottieActiviteit";
 import Empty from "../../../components/Empty";
+import Help from "../../../components/buttons/Help";
 
 
 
@@ -54,7 +55,7 @@ const Optie2 = () => {
     }
     };
     loadActiviteit(id);
-  }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
+  }, [id, setState, stedenStore, activiteitenStore, setActiviteit, history, uiStore])
 
   
 
@@ -66,9 +67,10 @@ const Optie2 = () => {
     <div className={styles.nav_wrapper}>
     <Terug path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}/>
    <Rugzak/>
+   <Help />
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-      <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+      <img alt="de touwtjes waaraan het naambordje hangt" src={'/assets/img/reisoverzicht/hangers.svg'}></img>
             <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>

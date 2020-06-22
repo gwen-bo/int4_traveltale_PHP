@@ -4,6 +4,8 @@ import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import styles from "./FontSize.module.css";
 import { Link } from "react-router-dom";
+import Help from "../../../components/buttons/Help";
+import { useObserver } from "mobx-react-lite";
 
 const FontSize = () => {
   const {uiStore} = useStores();
@@ -15,9 +17,11 @@ const FontSize = () => {
     uiStore.setFeedback(feedbackLink);
   }
   
-  return (
+  return useObserver(() => 
 
    <>
+    <Help/>
+
     <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
   <section className={styles.fontsize}>
   <p className={styles.title}>Selecteer de tekst die voor jou het beste leesbaar is</p>
@@ -25,7 +29,7 @@ const FontSize = () => {
       <form action="" className={styles.fontsize_position}>
       <div className={styles.input_wrapper}>
                   <label className={styles.thema_radio} htmlFor="smal">
-                    <input className={styles.input_fontsize} type="radio" checked={uiStore.sizes.font === 'smal'} onChange={e => uiStore.setSize('smal')} name='font' id="smal" ></input>
+                    <input className={styles.input_fontsize} type="radio" checked={uiStore.fontSize === 'smal'} onChange={e => uiStore.setSize('smal')} name='font' id="smal" ></input>
                     <div className={`${styles.fontsize_text} ${styles.small}`} key={'smal'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken.</p>  
@@ -34,7 +38,7 @@ const FontSize = () => {
                 </div>
                 <div className={styles.input_wrapper}>
                   <label className={styles.thema_radio} htmlFor="medium">
-                    <input className={styles.input_fontsize} type="radio" checked={uiStore.sizes.font === 'medium'} onChange={e => uiStore.setSize('medium')} name='font' id="medium"></input>
+                    <input className={styles.input_fontsize} type="radio" checked={uiStore.fontSize === 'medium'} onChange={e => uiStore.setSize('medium')} name='font' id="medium"></input>
                     <div className={`${styles.fontsize_text} ${styles.medium}`} key={'medium'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken.</p>  
@@ -44,7 +48,7 @@ const FontSize = () => {
                 
                 <div className={styles.input_wrapper}>
                   <label className={styles.thema_radio} htmlFor="big">
-                    <input className={styles.input_fontsize} type="radio" checked={uiStore.sizes.font === 'big'} onChange={e => uiStore.setSize('big')} name='font' id="big"></input>
+                    <input className={styles.input_fontsize} type="radio" checked={uiStore.fontSize === 'big'} onChange={e => uiStore.setSize('big')} name='font' id="big"></input>
                       <div className={`${styles.fontsize_text} ${styles.big}`} key={'big'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken. 

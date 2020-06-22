@@ -4,6 +4,7 @@ import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
 import UncontrolledLottie from "../../flows/Onboarding/OnboardingIntro/UncontrolledLottie"
 import styles from "./Inloggen.module.css";
+import Help from "../buttons/Help";
 
 const Inloggen = () => {
   const {uiStore} = useStores();
@@ -13,8 +14,9 @@ const Inloggen = () => {
   return (
    <>
    {(currentProfile === undefined)? 
-  
-  <section className={styles.section}>
+    
+    <section className={styles.section}>
+     <Help />
     <UncontrolledLottie
     // className={styles.animatie_circle}
     props="welkom"

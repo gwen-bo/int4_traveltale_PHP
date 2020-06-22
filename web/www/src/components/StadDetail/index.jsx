@@ -8,6 +8,7 @@ import Empty from "../Empty"
 import { ROUTES } from "../../consts";
 import { Link } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
+import Help from "../buttons/Help";
 
 
 
@@ -81,11 +82,12 @@ const StadDetail = () => {
             </div>
           </div>
           <AantalStappen />
+          <Help />
+
         </div>
         <div className={styles.center}>
           <div className={styles.activiteiten}>
             {stad.activiteiten.map((activiteit) => (
-              // console.log(activiteit)
               <div key={activiteit.id} className={styles.activiteit}>
                 <img
                   className={styles.img_act}
@@ -100,11 +102,11 @@ const StadDetail = () => {
                   <div className={styles.pos}>
                     <div className={styles.steps}>
                       <img
-                        src={'assets/img/reisaanbod/niveau1.svg'}
+                        src={'/assets/img/reisaanbod/niveau1.svg'}
                         alt="voetstappen icoontje, maximum hoeveelheid stappen tijdens deze activiteit"
                       />
                       <p className={styles.steps_aantal}>
-                        {activiteit.max_steps}
+                        max. {activiteit.max_steps}
                       </p>
                     </div>
                     <Link

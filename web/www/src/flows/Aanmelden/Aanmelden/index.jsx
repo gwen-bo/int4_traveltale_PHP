@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import {ROUTES} from "../../../consts";
 import styles from "./Aanmelden.module.css";
 import LottieFeedback from "../../../components/Feedback/LottieFeedback";
+import Help from "../../../components/buttons/Help";
 
 const Aanmelden = () => { 
   const history = useHistory();
@@ -10,6 +11,7 @@ const Aanmelden = () => {
   return (
     <>
     <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
+    <Help />
 
     <section className={styles.section}>
         <div>

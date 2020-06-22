@@ -16,6 +16,7 @@ class ProfileModel {
     this.currentReis_id = undefined;
     this.checkedSteden = [];
     this.checkedLanden = [];
+    this.checkedSouvenirs = [];
     this.checkedActiviteiten = [];
     this.updateFromJson(json);
   }
@@ -26,6 +27,10 @@ class ProfileModel {
 
   checkifCheckedActiviteit(id){
     return this.checkedActiviteiten.find(activiteit => activiteit.activiteit_id === id);
+  }
+
+  checkifCheckedSouvenir(id){
+    return this.checkedSouvenirs.find(souvenir => souvenir.souvenir_id === id);
   }
 
   updateFromJson = ({
@@ -73,6 +78,11 @@ class ProfileModel {
   addCheckedActiviteit(id){
     this.checkedActiviteiten.push(id);
     this.store.insertCheckedActiviteit({activiteit_id: id, user_id: this.id})
+  }
+
+  addCheckedSouvenir(id){
+    this.checkedSouvenirs.push(id);
+    this.store.insertCheckedSouvenir({souvenir_id: id, user_id: this.id})
   }
 
   updateReis = async () => {

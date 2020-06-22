@@ -18,10 +18,18 @@ class LandenDAO extends DAO {
   }
 
   public function selectStedenForLand($id) {
-    $sql = "
-    SELECT `steden`.* FROM `steden`
+    $sql = "SELECT `steden`.* FROM `steden`
     WHERE `steden`.`land_id` = :id
     ";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function selectSouvenirsForLand($id) {
+    $sql = " SELECT * FROM `souvenirs`
+    WHERE `souvenirs`.`land_id` = :id ";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();

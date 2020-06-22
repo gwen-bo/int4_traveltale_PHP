@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import { useObserver } from "mobx-react-lite";
 import Empty from "../Empty";
+import Help from "../buttons/Help";
 
 const LandDetail = () => {
   const { id } = useParams();
@@ -50,7 +51,7 @@ const LandDetail = () => {
       }
     };
     loadBestemming(id);
-  }, [id, landenStore, setBestemming]);
+  }, [id, landenStore, setBestemming, history, uiStore]);
   
   return useObserver(() => {
   if (state === STATE_LOADING) {
@@ -60,11 +61,12 @@ const LandDetail = () => {
    <>
    <div className={styles.nav_wrapper}>
    <Navigatie />
+   <Help />
    <TerugOverzicht />
    </div>
    <section className={styles.detail}>
      <div className={styles.detail_info}>
-   <img className={styles.bestemming_niveau} src={(bestemming.stappen_niveau === 1) ? '/assets/img/reisaanbod/niveau1.svg' : (bestemming.stappen_niveau === 2) ? '/assets/img/reisaanbod/niveau2.svg' : '/assets/img/reisaanbod/niveau3.svg'}></img>
+   <img className={styles.bestemming_niveau} alt="het niveau van deze bestemming" src={(bestemming.stappen_niveau === 1) ? '/assets/img/reisaanbod/niveau1.svg' : (bestemming.stappen_niveau === 2) ? '/assets/img/reisaanbod/niveau2.svg' : '/assets/img/reisaanbod/niveau3.svg'}></img>
    <div className={styles.info_wrapper}>
     <p className={styles.title}>Reis door {bestemming.naam}</p>
     <div className={styles.tags_wrapper}>
@@ -77,7 +79,7 @@ const LandDetail = () => {
     </div>
     </div>
    <div className={styles.img_div}>
-   <img src={`/assets/img/reisaanbod/detail/${bestemming.naam}.svg`}></img>
+   <img alt={`de kaart van ${bestemming.naam}`} src={`/assets/img/reisaanbod/detail/${bestemming.naam}.svg`}></img>
    </div>
 
 </section>

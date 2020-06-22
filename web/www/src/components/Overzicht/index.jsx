@@ -7,31 +7,29 @@ import { ROUTES } from "../../consts";
 import styles from "./Overzicht.module.css";
 import LottieOverzicht from "./LottieOverzicht";
 import Empty from "../Empty";
+import Help from "../buttons/Help";
+import HelpOverzicht from "../../flows/HelpScreens/HelpOverzicht";
+import AantalStappen from "../AantalStappen";
 
 const Overzicht = () => {
     const {uiStore, authStore} = useStores()
-    // const currentProfile = uiStore.currentProfile; 
     const currentReis = uiStore.currentReis; 
-
     const STATE_LOADING = "loading";
     const STATE_FULLY_LOADED = "FullyLoaded";
-
     const [state, setState] = useState(STATE_LOADING);
-    const [reis, setReis] = useState(uiStore.currentReis);
     const [user, setUser] = useState(uiStore.currentUser);
 
     useEffect(() => {
       const loadData = async () => {
         if(uiStore.currentUser === undefined || uiStore.currentReis === undefined){
         await authStore.fetchData();
-        setReis(uiStore.currentReis);
         setUser(uiStore.currentUser);
         setState(STATE_FULLY_LOADED);
       }else {
         setState(STATE_FULLY_LOADED);
       }}
       loadData();
-    }, []);
+    }, [authStore, setState, uiStore.currentUser, uiStore.currentReis]);
 
   return useObserver(() => {
 
@@ -40,7 +38,12 @@ const Overzicht = () => {
     }
    return (
     <>
+        {uiStore.help === true ? <HelpOverzicht /> : "" }
+    <Help />
     <Navigatie />
+    <div className={styles.stappen_pos}>
+    <AantalStappen />
+    </div>
     <div className={styles.center}>
       <div className={styles.wrapper}>
         <section className={styles.overzicht}>
@@ -62,6 +65,7 @@ const Overzicht = () => {
               </>
             ) : (
               <>
+              <div className={styles.wrapper_top}>
                 <p className={styles.uitleg}>Welkom terug! </p>
                 <p className={styles.uitleg}>
                   Momenteel ben je op reis in <span className={styles.uitleg_nadruk}>{currentReis.naam}</span>! Klaar om
@@ -92,12 +96,13 @@ const Overzicht = () => {
                     <div className={styles.info_icon}>
                       <img
                         className={styles.icon_img}
-                        src={'/assets/img/weer.svg'}
+                        src={'/assets/img/finish.svg'}
                         alt="Finish vlag (in hoeverre het land voltooid is)"
                       />
                     </div>
-                    <p className={styles.icon_tekst}>80% voltooid</p>
+                    <p className={styles.icon_tekst}>20% voltooid</p>
                   </div>
+                </div>
                 </div>
                 <Link
                   className={styles.button}
@@ -114,7 +119,7 @@ const Overzicht = () => {
                 <LottieOverzicht props="kaartkijken" />
               </div>
             ) : (
-              <img className={styles.kaart} src={'assets/img/vietnamKaart.png'}></img>
+              <img alt="de kaart van jouw bestemming" className={styles.kaart} src={'assets/img/vietnamKaart.png'}></img>
             )}
           </div>
         </section>

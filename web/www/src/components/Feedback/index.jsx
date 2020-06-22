@@ -4,6 +4,7 @@ import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
 import styles from "./Feedback.module.css";
 import LottieFeedback from "./LottieFeedback";
+import Help from "../buttons/Help";
 
 const Feedback = () => {
  
@@ -13,7 +14,7 @@ const Feedback = () => {
   return (
     <>
     <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
-
+    <Help />
     <section className={styles.section}>
         <div className={styles.section_header}>
         <h1 className={styles.title}>{uiStore.title}</h1>
