@@ -43,7 +43,6 @@ class StedenModel {
     land_id = undefined,
     activiteiten = undefined,
   }) => {
-    console.log('update stad from json', id, naam, stappen, land_id, activiteiten)
     this.id = (id !== undefined) ? id : this.id;
     this.naam = (naam !== undefined) ? naam : this.naam;
     this.land_id = 
@@ -59,7 +58,6 @@ class StedenModel {
         this.store.rootStore.activiteitenStore.updateActiviteitenFromServer(activiteit)
       });
     }
-  
   };
 
   get asJson() {
@@ -74,6 +72,7 @@ class StedenModel {
 decorate(StedenModel, {
   activiteiten: observable, 
   addActivity: action,
+  resolveLand: action,
 
   updateFromJson: action, 
   linkLand: action, 

@@ -15,8 +15,15 @@ class StedenStore {
   loadAllSteden = async () => {
     const jsonSteden = await this.stedenService.getAll();
     jsonSteden.forEach(json => this.updateStedenFromServer(json));
+    return; 
   };
 
+  loadStad = async (id) => {
+    const jsonStad = await this.stedenService.getById(id);
+    this.updateStedenFromServer(jsonStad);
+    return this.getStadById(id);
+  }
+  
   loadActiviteitenVanStad = async (id) => {
     const jsonActiviteiten = await this.stedenService.getById(id, 'activiteiten');
     this.updateStedenFromServer({ id, activiteiten: jsonActiviteiten });
@@ -45,7 +52,6 @@ class StedenStore {
 
     getStadById(id){
         const number = Number(id);
-        console.log(number);
         return this.steden.find(stad => stad.id === number);
       }
 }

@@ -36,10 +36,22 @@ class RestService {
     return await r.json();
   };
 
-  insertCheckedLand = async (id, entity, checked) => {
+  insertChecked = async (entity, checked) => {
     // await delay(REST_DELAY);
     const options = this.getOptions(`post`, entity);
-    const r = await fetch(`${this.url}/${this.entity}/${id}/${checked}`, options);
+    const r = await fetch(`${this.url}/${this.entity}/${entity.user_id}/checked/${checked}`, options);
+    return await r.json();
+  };
+
+  loadChecked = async (id, checked) => {
+    // await delay(REST_DELAY);
+    const r = await fetch(`${this.url}/${this.entity}/${id}/load/${checked}`);
+    // const r = await fetch(url);
+    if (!r.ok) {
+      const error = new Error(r.statusText || r.status);
+      error.response = r;
+      throw error;
+    }
     return await r.json();
   };
 
@@ -74,6 +86,19 @@ class RestService {
     try {
       const r = await fetch(
         `${this.url}/${this.entity}/${entity.id}/stappen`,
+        this.getOptions(`put`, entity)
+      );
+      return await r.json();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  setLifetimeStappen = async (entity) => {
+    // await delay(REST_DELAY);
+    try {
+      const r = await fetch(
+        `${this.url}/${this.entity}/${entity.id}/lifetime`,
         this.getOptions(`put`, entity)
       );
       return await r.json();

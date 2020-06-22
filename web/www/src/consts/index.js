@@ -1,12 +1,13 @@
 const ROUTES = {
   home: "/",
 
-  onboarding: "/onboarding/1", 
-  onboarding2: "/onboarding/2", 
-  onboarding3: "/onboarding/3", 
-  onboarding4: "/onboarding/4", 
+  onboardingDownload: "/onboarding/download", 
+  onboardingHulp: "/onboarding/hulp", 
+  onboardingKnoppen: "/onboarding/knoppen", 
+  onboardingPlezier: "/onboarding/plezier",
 
   inloggen: "/inloggen", 
+  token: "/token", 
 
   wandelplezier: "/wandelplezier",
 

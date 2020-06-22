@@ -18,11 +18,11 @@
     justify-content: center;
 }
 
-.input_fontsize:checked {
-    background-color: black;
+input[type="radio"]::focus+label {
+    background-color: red;
     color: white;
+    border: solid .3rem #FFBD3A;
 }
-
 
 .title {
     font-size: 5rem;
@@ -65,7 +65,8 @@
 .button_wrapper{
     display: flex;
     flex-flow: row;
-    width: 70vw;
+    max-width: 76rem;
+    width: 80vw;
     justify-content: space-between;
     margin: 0 auto;
 }
@@ -91,3 +92,4 @@
     border-radius: 5rem;
     text-align: center;
 }
+

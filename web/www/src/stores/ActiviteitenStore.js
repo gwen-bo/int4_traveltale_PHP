@@ -42,7 +42,6 @@ class ActiviteitenStore {
 
     getActiviteitById(id){
       const number = Number(id);
-      console.log(number);
       return this.activiteiten.find(activiteit => activiteit.id === number);
     }
 

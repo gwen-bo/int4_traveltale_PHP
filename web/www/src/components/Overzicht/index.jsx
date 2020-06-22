@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import {ROUTES} from "../../consts";
 import {useStores} from "../../hooks";
 import { useObserver } from "mobx-react-lite";
@@ -13,91 +13,124 @@ import vlag from "../../assets/img/vlag.svg"
 import weer from "../../assets/img/weer.svg"
 import finish from "../../assets/img/finish.svg"
 import LottieOverzicht from "./LottieOverzicht";
+import Empty from "../Empty";
 
 const Overzicht = () => {
     const {uiStore, authStore} = useStores()
     // const currentProfile = uiStore.currentProfile; 
     const currentReis = uiStore.currentReis; 
-    console.log('dit is de currentReis', currentReis);
     const history = useHistory();
 
-    // const USER_FOUND = "user gevonden";
-    // const USER_NOT_FOUND = "Het ziet er naar uit dat we je niet vinden. Nog eens inloggen?";
+    const STATE_LOADING = "loading";
+    const STATE_FULLY_LOADED = "FullyLoaded";
+
+    const [state, setState] = useState(STATE_LOADING);
+    const [reis, setReis] = useState(uiStore.currentReis);
+    const [user, setUser] = useState(uiStore.currentUser);
 
     useEffect(() => {
-      console.log("use effect wordt opgestart")
-      if(authStore.accessToken === undefined){
-        console.log('access token ophalen')
-        let url = window.location.hash; 
-    
-        console.log(url);
-        const access_token = url.split("=")[1].split("&")[0]
-        console.log(access_token);
-        
-        sessionStorage.clear();
-        sessionStorage.setItem('access_token', access_token);
-        authStore.setAccessToken(sessionStorage.getItem('access_token'));
-        history.push('/overzicht');
-    }else {
-      authStore.fetchData();
-      history.push('/overzicht');
-    };
-  }, []);
+      const loadData = async () => {
+        if(uiStore.currentUser === undefined || uiStore.currentReis === undefined){
+        await authStore.fetchData();
+        setReis(uiStore.currentReis);
+        setUser(uiStore.currentUser);
+        setState(STATE_FULLY_LOADED);
+      }else {
+        setState(STATE_FULLY_LOADED);
+      }}
+      loadData();
+    }, []);
 
-  return useObserver(() => (
-   <>
-   <Navigatie />
-   <section className={styles.overzicht}>
-     <div className={styles.links_wrapper}>
-      <p className={styles.title}>Goeiemorgen Annet</p>
-      {(currentReis === undefined) ? 
-      <>
-          <p className={styles.uitleg}>Het ziet er naar uit dat je momenteel nog geen reis gaande hebt. </p>
+  return useObserver(() => {
 
-          <p className={styles.uitleg_nadruk}>Zullen we een reis starten?</p>
-          <Link className={styles.button} to={ROUTES.reisaanbod}>Toon reisaanbod</Link>
-      </>
-      : 
-      <>
-        <p className={styles.uitleg}>Welkom terug! </p>
-         <p className={styles.uitleg}>Momenteel ben je op reis in {currentReis.name}! Klaar om er weer in te vliegen?</p> 
-         <div className={styles.icons_wrapper}>
-           <div className={styles.info_wrapper}>
-            <div className={styles.info_icon}>
-                <img className={styles.icon_img} src={vlag} alt="Vietnam vlag (het land waar je momenteel aan het reizen bent)"/>
-            </div>
-            <p className={styles.icon_tekst}>Vietnam</p>
-           </div>
-           <div className={styles.info_wrapper}>
-              <div className={styles.info_icon}>
-                <img className={styles.icon_img} src={weer} alt="Zon/wolken (welk weer het momenteel is in Vietnam)"/>
-            </div>
-            <p className={styles.icon_tekst}>24°C</p>
-           </div>
-           <div className={styles.info_wrapper}>
-            <div className={styles.info_icon}>
-              <img className={styles.icon_img} src={finish} alt="Finish vlag (in hoeverre het land voltooid is)"/>
-            </div>
-            <p className={styles.icon_tekst}>80% voltooid</p>
-           </div>
-         </div>
-        <Link className={styles.button} to={`${ROUTES.reisoverzicht.to}${currentReis.id}`}>Ga verder met je reis</Link>
-        </>
-      }
+    if (state === STATE_LOADING) {
+      return <Empty message={"Even aan het laden.."} />;
+    }
+   return (
+    <>
+    <Navigatie />
+    <div className={styles.center}>
+      <div className={styles.wrapper}>
+        <section className={styles.overzicht}>
+          <div className={styles.links_wrapper}>
+            <p className={styles.title}>{uiStore.begroeting} {user.firstName}</p>
+            {currentReis === undefined ? (
+              <>
+                <p className={styles.uitleg}>
+                  Het ziet er naar uit dat je momenteel nog geen reis gaande
+                  hebt.{" "}
+                </p>
+
+                <p className={styles.uitleg_nadruk}>
+                  Zullen we een reis starten?
+                </p>
+                <Link className={styles.button} to={ROUTES.reisaanbod}>
+                  Toon reisaanbod
+                </Link>
+              </>
+            ) : (
+              <>
+                <p className={styles.uitleg}>Welkom terug! </p>
+                <p className={styles.uitleg}>
+                  Momenteel ben je op reis in <span className={styles.uitleg_nadruk}>{currentReis.naam}</span>! Klaar om
+                  er weer in te vliegen?
+                </p>
+                <div className={styles.icons_wrapper}>
+                  <div className={styles.info_wrapper}>
+                    <div className={styles.info_icon}>
+                      <img
+                        className={styles.icon_img}
+                        src={vlag}
+                        alt="Vietnam vlag (het land waar je momenteel aan het reizen bent)"
+                      />
+                    </div>
+                    <p className={styles.icon_tekst}>Vietnam</p>
+                  </div>
+                  <div className={styles.info_wrapper}>
+                    <div className={styles.info_icon}>
+                      <img
+                        className={styles.icon_img}
+                        src={weer}
+                        alt="Zon/wolken (welk weer het momenteel is in Vietnam)"
+                      />
+                    </div>
+                    <p className={styles.icon_tekst}>24°C</p>
+                  </div>
+                  <div className={styles.info_wrapper}>
+                    <div className={styles.info_icon}>
+                      <img
+                        className={styles.icon_img}
+                        src={finish}
+                        alt="Finish vlag (in hoeverre het land voltooid is)"
+                      />
+                    </div>
+                    <p className={styles.icon_tekst}>80% voltooid</p>
+                  </div>
+                </div>
+                <Link
+                  className={styles.button}
+                  to={`${ROUTES.reisoverzicht.to}${currentReis.id}`}
+                >
+                  Ga verder met je reis
+                </Link>
+              </>
+            )}
+          </div>
+          <div>
+            {currentReis === undefined ? (
+              <div className={styles.lottie}>
+                <LottieOverzicht props="kaartkijken" />
+              </div>
+            ) : (
+              <img className={styles.kaart} src={vietnam}></img>
+            )}
+          </div>
+        </section>
       </div>
-    <div>
-    {(currentReis === undefined) ? 
-    <div className={styles.lottie}>
-      <LottieOverzicht
-      props="kaartkijken"/>  
-      </div>    : 
-      <img className={styles.kaart} src={vietnam}></img>
-      }
     </div>
-    </section>
-  
-   </>
-  ));
+  </>
+  )
+  });
 };
 
 export default Overzicht;

@@ -1,0 +1,163 @@
+.center {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 102.4rem;
+    justify-content: space-between;
+}
+
+.img_bol {
+    margin-left: -7.6rem;
+    width: 50rem;
+}
+
+.right {
+    width: 56rem;
+    height: 54rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 4rem;
+}
+
+.uitleg {
+    font-size: 2.4rem;
+    max-width: 54rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+ol {
+    list-style-type: decimal;
+    margin-left: 2rem;
+}
+
+.iconDeel::before {
+    content: url("../../../assets/img/deel.svg");
+}
+.iconPlus::before {
+    content: url("../../../assets/img/plus.svg");
+}
+
+.bot {
+    
+}
+
+.bollen {
+    margin-bottom: 3rem;
+}
+
+.buttons {
+    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button{
+    background-color: black;
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 500;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    border: .3rem solid black;
+    padding: 1rem 5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.button_sec {
+    background-color: white;
+    color: black;
+    font-size: 2.4rem;
+    font-weight: 500;
+    border: .3rem solid black;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: 1rem 7.5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.button_uitleg {
+    background-color: #FFF1E3;
+    color: black;
+    font-size: 2.2rem;
+    border: .3rem solid black;
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    padding: .5rem 3.5rem;
+    border-radius: 5rem;
+    text-align: center;
+}
+
+.section_header {
+    display: flex;
+    flex-flow: column;
+    margin-left: 4rem;
+    height: 70vh;
+    justify-content: space-evenly;
+}
+
+.title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+
+
+.animatie_circle {
+    margin: 0 auto;
+    z-index: 1;
+    
+}
+
+.section {
+    display: flex;
+    margin-left: -6rem;
+    margin-right: 10rem;
+    padding-top: 2rem;
+    width: 97vw;
+    justify-content: space-between;
+    flex-flow: row;
+}
+
+.strong {
+    font-weight: 700;
+}
+
+.list {
+    display: flex;
+}
+
+.list_item {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: solid .2rem  #539882;
+    margin-right: 1.2rem;
+}
+
+.list_item_active {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    background-color: #539882;
+    text-align: center;
+    margin-right: 1.2rem;
+    padding: .6rem;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.icon::before {
+    content: url("../../../assets/img/Helpknopje.svg");
+}

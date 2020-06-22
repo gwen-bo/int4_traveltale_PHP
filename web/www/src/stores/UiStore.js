@@ -7,14 +7,11 @@ class UiStore {
     this.rootStore = rootStore;
     this.currentReis = undefined;
     this.currentSteps = 0
-    this.begroeting = 'goeiemorgen';
-    // this.currentUser = this.rootStore.authStore.users[0];
-    // console.log('huidige gebruiker', this.currentUser);
+    this.begroeting = 'Hallo';
     this.currentUser = undefined;
     // if(this.currentUser === undefined && this.rootStore.authStore.accessToken !== undefined){
     //   this.rootStore.authStore.fetchData();
     // }
-    console.log(this.currentUser);
     // feedbackcomponent 
     this.title = ""; 
     this.uitleg = ""; 
@@ -28,11 +25,6 @@ class UiStore {
   setCurrentUser(profile) {
     this.currentUser = profile;
   }
-
-  // useSteps(amount){
-  //   let currentSteps = this.currentSteps;
-  //   this.currentSteps = currentSteps - amount;
-  // }
 
   setFeedback(feedback){
     this.title = feedback.title; 
@@ -55,9 +47,17 @@ class UiStore {
     this.currentSteps = data; 
   }
 
-  setBegroeting(begroeting){
-    this.begroeting = begroeting; 
-  }
+  setBegroeting(){
+    const time = new Date();
+    const hours = time.getHours(); 
+    if (hours >= 0 && hours < 11) {
+      this.begroeting = "Goeiemorgen";
+    } else if (hours >= 11 && hours <= 16) {
+      this.begroeting = "Goeiemiddag";
+    } else {
+      this.begroeting = "Goeie avond";
+    };
+}
 
 }
 
@@ -67,6 +67,9 @@ decorate(UiStore, {
 
   currentReis: observable, 
   setCurrentReis: action, 
+
+  currentSteps: observable, 
+  setSteps: action,
 
   // steps: observable, 
   // addSteps: action,

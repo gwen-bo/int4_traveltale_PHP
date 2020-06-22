@@ -10,20 +10,20 @@ import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
 
 import styles from "./Einde.module.css";
-import oma from "../../../assets/img/oma_uitleg.svg"
 import { useObserver } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import LottieUitleg from "../LottieUitleg";
+import Empty from "../../../components/Empty";
+import LottieActiviteit from "../Intro/LottieActiviteit";
 
 const Einde = () => {
   const { id } = useParams();
-    const {uiStore , activiteitenStore} = useStores();
+  const {uiStore , activiteitenStore, stedenStore} = useStores();
   
-    const history = useHistory();
+  const history = useHistory();
   
   const STATE_LOADING = "aan het laden"; 
   const STATE_FULLY_LOADED = "volledig geladen"; 
-  const STATE_DOES_NOT_EXIST = "bestaat niet"; 
   
   const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
   const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
@@ -31,31 +31,51 @@ const Einde = () => {
   
   useEffect (() => {
     const loadActiviteit = async (id) => {
+
+      if(activiteit === undefined){
       try {
-      const activiteit = await activiteitenStore.getActiviteitById(id);
+      await stedenStore.loadAllSteden();
+      await activiteitenStore.loadAllActiviteiten(); 
+      const activiteit = activiteitenStore.getActiviteitById(id);
       if(!activiteit){
-        setState(STATE_DOES_NOT_EXIST)
+        uiStore.setFeedback({
+          title: 'Oeps!', 
+          uitleg: 'Er is iets misgelopen met de activiteit, probeer je nog eens?',
+          animation: 'verbaasd',
+          sec_path: '', 
+          sec_name: 'Vorige',
+          prim_path: ROUTES.reisoverzicht.to.sessionStorage.getItem('currentReis_id'),
+          prim_name: 'Terug naar reisoverzicht'
+        })
+        history.push('/feedback');
+        return;
       }
-      setActiviteit(activiteit)
-      setState(STATE_FULLY_LOADED)
-    } catch (error){
+      setActiviteit(activiteit);
+      setState(STATE_FULLY_LOADED);
+    }catch (error){
       if(error.response && error.response.status === 400){
-        setState(STATE_DOES_NOT_EXIST)
       }
-    }};
+    }}else {
+      setState(STATE_FULLY_LOADED);
+    }
+    };
     loadActiviteit(id);
+  }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
+
+  const handleEinde = (id) => {
+    const isChecked = uiStore.currentUser.checkifCheckedActiviteit(id); 
+    if(isChecked === undefined){
+    uiStore.currentUser.addCheckedActiviteit(id);
+  }}
   
-  }, [id, activiteitenStore, setActiviteit])
-
-  const handleEinde = (e, id) => {
-
+  return useObserver (() =>{
+  if (state === STATE_LOADING) {
+    return <Empty message={"Even aan het laden.."} />;
   }
-  
-
-  return useObserver (() =>
-   <>
+  return (
+<>
    <div className={styles.nav_wrapper}>
-   <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
+   <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}/>
    <Rugzak/>
    <div className={styles.midden}>
       <div className={styles.reis_title}>
@@ -66,25 +86,28 @@ const Einde = () => {
    <AantalStappen/>
    </div>
    <div className={styles.background_img}>
-      <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/einde.svg`)} alt="achtergrondfoto van de activiteit"/>
-  </div>
+
+   <div className={styles.img_activiteit}>
+    < LottieActiviteit 
+     name={activiteit.header_img} place="einde"
+     />
+    </div>
+    </div>
 
    <div className={styles.oma_ballon}>
    <div className={styles.oma_img}>
-      < LottieUitleg
-     props="uitleg"
-     />
+      < LottieUitleg props="foto" />
      </div>
      <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.einde.titel}</p>
         <p className={styles.oma_text}>{activiteit.einde.tekst}</p>
 
-        <Link onClick={e => handleEinde(e, activiteit.id)} className={styles.button} to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`}>
+        <Link onClick={e => handleEinde(activiteit.id)} className={styles.button} to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`}>
         {activiteit.einde.button}
         </Link>
       </div>
    </div>
-  </>
+  </>)}
   );
   
 };

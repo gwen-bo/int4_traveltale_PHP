@@ -8,6 +8,7 @@ const loadAllData = async () => {
     await store.landenStore.loadAllLanden();
     await store.stedenStore.loadAllSteden();
     store.activiteitenStore.loadAllActiviteiten();
+    store.uiStore.setBegroeting();
 };
   
 loadAllData();

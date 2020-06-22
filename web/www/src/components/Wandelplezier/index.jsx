@@ -36,7 +36,7 @@ const Wandelplezier = () => {
           <div className={styles.filmpjes}>
             <div className={styles.bol_ipad}><LottieFeedback props="ipad"/></div>
             <img className={styles.arrow_to} src={arrowTo} alt="uitleg over de fitbit"/>
-            <div className={styles.bol_oma}><LottieFeedback props="wandelt"/></div>
+            <div className={styles.bol_oma}><LottieFeedback props="wandelplezier"/></div>
 
           </div>
           <div className={styles.text}>

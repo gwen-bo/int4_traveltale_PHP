@@ -171,6 +171,16 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
              ->withStatus(200);
    });
 
+   $routeGroup->get('/{id}/load/stad', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $data = $userDAO->selectCheckedStad($args['id']);
+    $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+  });
+
    $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
     $userDAO = new UserDAO();
     $input = $request->getParsedBody();
@@ -216,6 +226,74 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withStatus(422);
     }
     $data = $userDAO->updateCurrentStappen($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->put('/{id}/lifetime', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsLifetimeStappen($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->updateLifetimeStappen($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->put('/{id}/checked/land', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsCheckedLand($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->insertCheckedLand($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->post('/{id}/checked/stad', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsCheckedStad($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->insertCheckedStad($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->post('/{id}/checked/activiteit', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsCheckedAct($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->insertCheckedActiviteit($input);
     $response->getBody()->write(json_encode($data));
     return $response
             ->withHeader('Content-Type', 'application/json')

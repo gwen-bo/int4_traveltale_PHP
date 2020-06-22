@@ -13,26 +13,20 @@ import AantalStappen from "../../../components/AantalStappen";
 
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import steps from "../../../assets/img/stappenIcon.svg"
-import oma from "../../../assets/img/oma_uitleg.svg"
 import LottieUitleg from "../LottieUitleg";
+import Empty from "../../../components/Empty";
+import LottieActiviteit from "../Intro/LottieActiviteit";
 
 
 
 const Split = () => {
     const { id } = useParams();
-    const {uiStore , activiteitenStore} = useStores();
-    const currentProfile = uiStore.currentProfile;
+    const {uiStore , activiteitenStore, stedenStore} = useStores();
   
     const history = useHistory();
   
-    const handleLink = (feedbackLink) => {
-      console.log(feedbackLink);
-      uiStore.setFeedback(feedbackLink);
-    }
-  
   const STATE_LOADING = "aan het laden"; 
   const STATE_FULLY_LOADED = "volledig geladen"; 
-  const STATE_DOES_NOT_EXIST = "bestaat niet"; 
   
   const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
   const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
@@ -41,26 +35,36 @@ const Split = () => {
   useEffect (() => {
     const loadActiviteit = async (id) => {
       try {
-      const activiteit = await activiteitenStore.getActiviteitById(id);
+      await stedenStore.loadAllSteden();
+      await activiteitenStore.loadAllActiviteiten(); 
+      const activiteit = activiteitenStore.getActiviteitById(id);
       if(!activiteit){
-        setState(STATE_DOES_NOT_EXIST)
+        uiStore.setFeedback({
+          title: 'Oeps!', 
+          uitleg: 'Er is iets misgelopen met de activiteit, probeer je nog eens?',
+          animation: 'verbaasd',
+          sec_path: '', 
+          sec_name: 'Vorige',
+          prim_path: ROUTES.reisoverzicht.to.sessionStorage.getItem('currentReis_id'),
+          prim_name: 'Terug naar reisoverzicht'
+        })
+        history.push('/feedback');
+        return;
       }
-      setActiviteit(activiteit)
-      setState(STATE_FULLY_LOADED)
+      setActiviteit(activiteit);
+      setState(STATE_FULLY_LOADED);
     }catch (error){
       if(error.response && error.response.status === 400){
-        setState(STATE_DOES_NOT_EXIST)
       }
     }
     };
     loadActiviteit(id);
-  
-  }, [id, activiteitenStore, setActiviteit])
+  }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
   
   const handleKeuze = (e, kost, optie) => {
-    // e.preventDefault();
     const stappen = uiStore.currentUser.stappen;
-    if(stappen > kost){
+    console.log('dit is de kost', kost);
+    if(stappen >= kost){
       const updateStappen = (stappen - kost);
       uiStore.currentUser.setCurrentStappen(updateStappen);
       if(optie === 'optie1'){
@@ -69,30 +73,37 @@ const Split = () => {
         return <Redirect to={`${ROUTES.optie2}${activiteit.id}`} />
       }
     }else {
+      console.log('niet genoeg stappen', stappen);
       return <Redirect to={`${ROUTES.teweinig}${activiteit.id}`} />
     }
   }
   
-
-  
-  return useObserver (() =>
-
+  return useObserver (() =>{
+  if (state === STATE_LOADING) {
+    return <Empty message={"Even aan het laden.."} />;
+  }
+  return (
    <>
     <div className={styles.nav_wrapper}>
-   <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
+   <Terug path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}/>
    <Rugzak/>
    <AantalStappen/>
    </div>
+
    <div className={styles.midden}>
       <div className={styles.reis_title}>
             <img src={hangers}></img>
             <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>
-  <section>
-    <div className={styles.background_img}>
-    <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
-    </div>
+
+  {/* <section> */}
+  <div className={styles.background_img}>
+
+  <div className={styles.img_activiteit}>
+    < LottieActiviteit name={activiteit.header_img} place="split" />
+  </div>
+  </div>
 
     <div className={styles.oma_ballon}>
     <div className={styles.oma_img}>
@@ -114,9 +125,9 @@ const Split = () => {
           </div>
         </div>
     </div>
-    </section>
+    {/* </section> */}
     </>
-  );
+)});
   
 };
 

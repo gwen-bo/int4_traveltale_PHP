@@ -39,7 +39,7 @@ class LandModel {
     this.id = (id !== undefined) ? id : this.id;
     this.stappen_niveau = (stappen_niveau !== undefined) ? stappen_niveau : this.stappen_niveau;
     if (steden !== undefined) {
-      this.steden.empty();
+      this.steden = [];
       steden.forEach(stad => {
         this.store.rootStore.stedenStore.updateStedenFromServer(stad).linkLand(this);
       });

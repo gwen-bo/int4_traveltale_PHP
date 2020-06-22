@@ -20,25 +20,20 @@ class AuthStore {
        this.accessToken= access_token;
        sessionStorage.clear();
        sessionStorage.setItem('access_token', access_token);
-       console.log(access_token);
        this.fetchData();
    }
 
    fetchData = async() => {
     await this.loadAllUsers();
-    this.fetchUserData().then(data => {
+    await this.fetchUserData().then(data => {
       // this.updateUserFromServer(data.user);
-      this.fitbit_user = data.user;
-      console.log('fitbit user data', this.fitbit_user);
-      
+      this.fitbit_user = data.user;      
       this.user_id = data.user.encodedId;
-      this.findUser();
     });
-    this.fetchActivityData().then(data => {
+    await this.fetchActivityData().then(data => {
       this.fitbit_steps = data.lifetime.tracker.steps;
-      console.log(this.fitbit_steps);
-      this.rootStore.uiStore.setSteps(data.lifetime.tracker.steps);
     })
+    this.findUser();
   }
 
   findUser(){
@@ -46,26 +41,23 @@ class AuthStore {
     if(currentUser === undefined){
       console.log('user bestaat nog niet in database')
       const user = this.updateUserFromServer(this.fitbit_user);
-      console.log(user)
-
       user.create();
       this.addUser(user);
       this.rootStore.uiStore.setCurrentUser(user);
-      this.rootStore.uiStore.currentUser.setCurrentStappen(this.fitbit_steps);
-      if (user.currentReis_id != undefined) {
-        console.log('reis id is aanwezig', user.currentReis_id);
-        this.rootStore.uiStore.setCurrentReis(user.currentReis_id);
-      }
+      user.setLifeTimeStappen(this.fitbit_steps);
     }else {
     console.log('user bestaat al, setting currentUser', currentUser)
-    console.log(currentUser)
     const user = this.updateUserFromServer(currentUser);
-    console.log('dit is de bestaande user', user);
     this.addUser(user);
     this.rootStore.uiStore.setCurrentUser(user);
-    this.rootStore.uiStore.currentUser.setCurrentStappen(this.fitbit_steps);
+    const newSteps = this.fitbit_steps - user.lifetime_stappen;
+    const stappen = currentUser.stappen += newSteps; 
+    user.setCurrentStappen(stappen);
+    user.setLifeTimeStappen(this.fitbit_steps);
+    this.loadCheckedForUser(user);
     if (user.currentReis_id != undefined) {
       console.log('reis id is aanwezig', user.currentReis_id);
+      sessionStorage.setItem('currentReis_id', user.currentReis_id);
       this.rootStore.uiStore.setCurrentReis(user.currentReis_id);
     }
   }
@@ -117,27 +109,8 @@ class AuthStore {
     console.log('user update', json);
     let user = this.users.find(user => user.id === json.encodedId);
     if (!user) {
-      console.log('nieuwe user aanmaken')
       user = new ProfileModel({
         id: json.encodedId,
-        store: this.rootStore.authStore
-      });
-    }
-    if (json.isDeleted) {
-      this.users.remove(user);
-    } else {
-      user.updateFromJson(json);
-    }
-    return user;
-  }
-
-  updateUserFromDatabase(json) {
-    console.log('user update', json);
-    let user = this.users.find(user => user.id === json.encodedId);
-    if (!user) {
-      console.log('nieuwe user aanmaken')
-      user = new ProfileModel({
-        id: json.id,
         store: this.rootStore.authStore
       });
     }
@@ -155,23 +128,45 @@ class AuthStore {
   };
 
   updateUser = async user => {  
-    console.log(user);  
     const json = await this.usersService.update(user);
     this.updateUserFromServer(json);
   };
 
   updateCurrentReis = async user => {
-    console.log(user);
     const json = await this.usersService.updateCurrentReis(user);
-    console.log(json);
     this.updateUserFromServer(json);
   }
 
+  insertCheckedStad = async json => {
+    console.log('json bij stad inserten', json);
+    const response = await this.usersService.insertChecked(json, "stad");
+    console.log('stad is geinsert', response);
+  }
+
+  insertCheckedActiviteit = async json => {
+    console.log('json bij activiteit inserten', json);
+    const response = await this.usersService.insertChecked(json, "activiteit");
+    console.log('activiteit is geinsert', response);
+  }
+
   updateCurrentStappen = async user => {
-    console.log(user);
     const json = await this.usersService.updateCurrentStappen(user);
-    console.log(json);
     this.updateUserFromServer(json);
+  }
+
+  setLifetimeStappen = async user => {
+    const json = await this.usersService.setLifetimeStappen(user);
+    this.updateUserFromServer(json);
+  }
+
+  loadCheckedForUser = (user) => {
+    this.loadCheckedStadForUser(user);
+    return
+  }
+
+  loadCheckedStadForUser = async user => {
+    const jsonCheckedStad = await this.usersService.loadChecked(user.id, 'stad');
+    jsonCheckedStad.forEach(stad => user.checkedSteden.push(stad))
   }
 
   addUser(user){

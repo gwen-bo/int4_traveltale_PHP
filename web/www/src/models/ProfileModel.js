@@ -10,25 +10,22 @@ class ProfileModel {
       throw new Error("voorzie een store");
     }
     this.store = store; 
-    // this.naam = json.firstName;
-    // this.fullName = json.fullName;
-    // this.age = json.age;
-    this.fontsize = "medium"
-    this.reisbegeleider = "oma"
+
+    this.fontsize = "medium";
+    this.reisbegeleider = "oma";
     this.currentReis_id = undefined;
-    if(this.currentReis_id !== 0){
-      console.log('er is een reis gaande');
-      // this.store.rootStore.uiStore.setCurrentReis(this.currentReis_id);
-    }
+    this.checkedSteden = [];
+    this.checkedLanden = [];
+    this.checkedActiviteiten = [];
     this.updateFromJson(json);
   }
 
-  resolveReis(id){
-    console.log('reis aan het zoeken', id);
-    // const land = this.store.rootStore.landenStore.landen.find(land => land.id === id);
-    // if(land != undefined){
-    //   this.store.rootStore.uiStore.setCurrentReis(land);
-    // }
+  checkifCheckedStad(id){
+    return this.checkedSteden.find(stad => stad.stad_id === id);
+  }
+
+  checkifCheckedActiviteit(id){
+    return this.checkedActiviteiten.find(activiteit => activiteit.activiteit_id === id);
   }
 
   updateFromJson = ({
@@ -38,6 +35,7 @@ class ProfileModel {
     leeftijd = undefined,
     encodedId = undefined, 
     id = undefined, 
+    lifetime_stappen = undefined, 
 
     fontsize = undefined,
     stappen = undefined,
@@ -50,7 +48,7 @@ class ProfileModel {
     this.age = (leeftijd !== undefined) ? leeftijd : this.age;
     this.id = (encodedId !== undefined) ? encodedId : this.id;
     this.id = (id !== undefined) ? id : this.id;
-
+    this.lifetime_stappen = (lifetime_stappen !== undefined) ? lifetime_stappen : this.lifetime_stappen;
     this.fontsize = (fontsize !== undefined) ? fontsize : this.fontsize;
     this.reisbegeleider = (reisbegeleider !== undefined) ? reisbegeleider : this.reisbegeleider;
     this.stappen = (stappen !== undefined) ? stappen : this.stappen;
@@ -67,12 +65,27 @@ class ProfileModel {
     this.store.updateUser(this.asJson)
   };
 
+  addCheckedStad(id){
+    this.checkedSteden.push(id);
+    this.store.insertCheckedStad({stad_id: id, user_id: this.id})
+  }
+
+  addCheckedActiviteit(id){
+    this.checkedActiviteiten.push(id);
+    this.store.insertCheckedActiviteit({activiteit_id: id, user_id: this.id})
+  }
+
   updateReis = async () => {
   this.store.updateCurrentReis(this.asJson)
   }
 
   updateCurrentStappen = async () => {
+    console.log('update json', this.asJson);
     this.store.updateCurrentStappen(this.asJson)
+  }
+
+  updateLifetimeStappen = async () => {
+    this.store.setLifetimeStappen(this.asJson)
   }
 
   setCurrentReis_id(id){
@@ -87,13 +100,14 @@ class ProfileModel {
 
   setCurrentStappen(steps){
     this.stappen = steps;
-    console.log((this.stappen));
+    console.log('set current stappen, nieuwe', steps);
     this.store.rootStore.uiStore.setSteps(steps);
     this.updateCurrentStappen();
   }
 
-  addSteps(stappen){
-    this.stappen = stappen; 
+  setLifeTimeStappen(steps){
+    this.lifetime_stappen = steps; 
+    this.updateLifetimeStappen();
   }
 
   get asJson() {
@@ -102,9 +116,10 @@ class ProfileModel {
       firstName: this.firstName,
       fullName: this.fullName,
       age: this.age, 
+      stappen: this.stappen, 
+      lifetime_stappen: this.lifetime_stappen, 
       fontSize: this.fontsize, 
       reisbegeleider: this.reisbegeleider, 
-      stappen: this.stappen, 
       currentReis_id: this.currentReis_id, 
     };
   }

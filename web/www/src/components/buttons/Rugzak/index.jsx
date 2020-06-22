@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Rugzak.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 
 const Rugzak = () => {
-
+  const history = useHistory();
 
   return (
     <NavLink

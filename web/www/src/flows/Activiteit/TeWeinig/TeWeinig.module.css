@@ -1,3 +1,13 @@
+@media screen and (min-width: 1024px) {
+    .nav_wrapper {
+        max-width: 10rem;
+    }
+
+    .oma_ballon {
+        margin-top: 5rem;
+    }
+}
+
 .nav_wrapper {
     display: flex;
     width: 30vw;
@@ -61,6 +71,8 @@
     align-items: center;
     margin-top: -7rem;
     margin-left: 4rem;
+    box-shadow: 12px 8px 6px rgba(0, 0, 0, 0.1);   
+
 }
 
 .oma_title {

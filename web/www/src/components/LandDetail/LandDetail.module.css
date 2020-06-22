@@ -81,10 +81,15 @@
 }
 
 .img_div{
-    z-index: 1;
     width: 45vw;
+    z-index: 1;
 }
 
 .img_div img {
     width: 50vw;
+    max-width: 75rem;
+}
+
+.nav_wrapper {
+    z-index: 2
 }

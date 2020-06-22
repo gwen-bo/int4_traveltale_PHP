@@ -4,11 +4,12 @@ import { Switch, Route } from "react-router-dom";
 import Overzicht from "./components/Overzicht"
 import Reisaanbod from "./components/Reisaanbod"
 import Inloggen from "./components/Inloggen"
-import Onboarding1 from './flows/Onboarding/Onboarding1';
-import Onboarding2 from './flows/Onboarding/Onboarding2';
-import Onboarding3 from './flows/Onboarding/Onboarding3';
-import Onboarding4 from './flows/Onboarding/Onboarding4';
-
+import AccessToken from './components/AccessToken';
+import OnboardingIntro from './flows/Onboarding/OnboardingIntro';
+import OnboardingHulp from './flows/Onboarding/OnboardingHulp';
+import OnboardingKnoppen from './flows/Onboarding/OnboardingKnoppen';
+import OnboardingPlezier from './flows/Onboarding/OnboardingPlezier';
+import OnboardingDownload from './flows/Onboarding/OnboardingDownload';
 import LandDetail from "./components/LandDetail"
 import ActiviteitDetail from "./components/ActiviteitDetail"
 import ReisOverzicht from "./components/ReisOverzicht"
@@ -38,6 +39,9 @@ function App() {
   return (
     <Switch>
 
+    <Route exact path={ROUTES.token}>
+        <AccessToken />
+      </Route>
 
       <Route path={ROUTES.aanmelden}>
           <Aanmelden />
@@ -99,6 +103,8 @@ function App() {
         <ActiviteitDetail />
       </Route>
 
+
+
 {/* Activiteiten flow */}
       <Route exact path={ROUTES.intro.path}>
           <Intro />
@@ -135,20 +141,24 @@ function App() {
           <Inloggen />
       </Route>
 
-      <Route exact path={ROUTES.onboarding4}>
-          <Onboarding4 />
-      </Route>
+      <Route exact path={ROUTES.onboardingDownload}>
+          <OnboardingDownload />
+      </Route>
 
-      <Route exact path={ROUTES.onboarding3}>
-          <Onboarding3 />
-      </Route>
+      <Route exact path={ROUTES.onboardingKnoppen}>
+          <OnboardingKnoppen />
+      </Route>
 
-      <Route exact path={ROUTES.onboarding2}>
-          <Onboarding2 />
-      </Route>
+      <Route exact path={ROUTES.onboardingPlezier}>
+          <OnboardingPlezier />
+      </Route>
+
+      <Route exact path={ROUTES.onboardingHulp}>
+          <OnboardingHulp />
+      </Route>
 
       <Route path="/" exact >
-        <Onboarding1 />
+        <OnboardingIntro />
       </Route>
   </Switch> 
   );

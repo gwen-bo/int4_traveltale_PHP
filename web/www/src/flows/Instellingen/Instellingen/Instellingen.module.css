@@ -1,3 +1,16 @@
+.center {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 119.4rem;
+    justify-content: space-between;
+}
+
 .title {
     font-size: 5rem;
     font-weight: 500;

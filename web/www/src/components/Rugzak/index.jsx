@@ -1,4 +1,4 @@
-import React  from "react";
+import React, { useState, useEffect }  from "react";
 import { useParams, useHistory } from "react-router";
 import { useStores } from "../../hooks";
 import styles from "./Rugzak.module.css";
@@ -6,18 +6,41 @@ import { ROUTES } from "../../consts";
 
 import kimono from "../../assets/img/rugzak/kimono.svg"
 import Terug from "../buttons/Terug";
+import { useObserver } from "mobx-react-lite";
+import Empty from "../Empty";
 
 const Rugzak = () => {
   const { id } = useParams();
   console.log(id);
+  const history = useHistory();
 
-  const {activiteitenStore, uiStore} = useStores();
-  const activiteit = activiteitenStore.getActiviteitById(id)
-  console.log(activiteit)
+  const {uiStore, authStore} = useStores();
 
-  const fontsize = uiStore.currentUser.fontsize;
+  const STATE_LOADING = "loading";
+  const STATE_FULLY_LOADED = "FullyLoaded";
 
-  return (
+  const [user, setUser] = useState(uiStore.currentUser);
+  const [state, setState] = useState(user ? STATE_FULLY_LOADED : STATE_LOADING);
+  const [fontsize, setFontSize] = useState("medium");
+
+  useEffect(() => {
+    const loadData = async () => {
+      if(uiStore.currentUser === undefined){
+      await authStore.fetchData();
+      setUser(uiStore.currentUser);
+      setFontSize(uiStore.currentUser.fontsize);
+      setState(STATE_FULLY_LOADED);
+    }else {
+      setState(STATE_FULLY_LOADED);
+    }}
+    loadData();
+  }, []);
+
+  return useObserver(() => {
+    if (state === STATE_LOADING) {
+      return <Empty message={"Even aan het laden.."} />;
+    }
+    return(
    <>
     {/* <Link
         className={styles.back}
@@ -37,7 +60,7 @@ const Rugzak = () => {
           </div>
           <div className={styles.rugzak_stappen}>
             <p className={styles.rugzak_totaal}>Totaal aantal gezette stappen</p>
-            <p className={styles.rugzak_totaal_stappen}>7.001 stappen</p>
+            <p className={styles.rugzak_totaal_stappen}>{user.stappen}</p>
           </div>
         </div>
         <div className={styles.rugzak_items_pos}>
@@ -73,8 +96,8 @@ const Rugzak = () => {
         
 
       </article>
-   </>
-  );
+   </>  
+   )});
 };
 
 export default Rugzak;

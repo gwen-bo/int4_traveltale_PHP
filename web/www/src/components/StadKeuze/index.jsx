@@ -13,20 +13,17 @@ const StadKeuze = () => {
   const { id } = useParams();
   const {uiStore, stedenStore } = useStores();
   const stad = stedenStore.getStadById(id)
-  console.log(stad)
 
-  const handleStart = (e) => {
-    // uiStore.setCurrentReis(bestemming.id);
-    // e.preventDefault();
+  const handleStart = () => {
+    const isChecked = uiStore.currentUser.checkifCheckedStad(id); 
+
+    if(isChecked === undefined){
+    uiStore.currentUser.addCheckedStad(stad.id);
     const stappen = uiStore.currentUser.stappen;
     const updateStappen = (stappen - stad.stappen);
     
     uiStore.currentUser.setCurrentStappen(updateStappen);
-    
-    console.log(updateStappen)
-    // user.updateReis();
-    // history.push('/feedback')
-    // return <Redirect to={`${ROUTES.stadDetail.to}${stad.id}`}/>
+    }
   }
 
   return useObserver(() => (
@@ -44,7 +41,7 @@ const StadKeuze = () => {
           props="verbaasd"
     />           
         <div className={styles.button_wrapper}>
-            <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
+            <Link className={styles.button_sec} to={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}>Terug naar overzicht</Link>
             <Link className={styles.button} to={ROUTES.wandelplezier}>Beginnen met stappen</Link>
         </div>
     </section>
@@ -59,8 +56,8 @@ const StadKeuze = () => {
           props="vertrekt"
     />          
     <div className={styles.button_wrapper}>
-            <Link className={styles.button_sec} to={ROUTES.reisaanbod}>Terug naar overzicht</Link>
-            <Link onClick={e => handleStart(e)} className={styles.button} to={`${ROUTES.stadDetail.to}${stad.id}`}>Stappen indienen</Link>
+            <Link className={styles.button_sec} to={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}>Terug naar overzicht</Link>
+            <Link onClick={e => handleStart()} className={styles.button} to={`${ROUTES.stadDetail.to}${stad.id}`}>Stappen indienen</Link>
 
         </div>
     </section>

@@ -1,4 +1,4 @@
-import {decorate, configure } from 'mobx';
+import {decorate, configure, action } from 'mobx';
 
 configure({enforceActions: 'observed'});
 
@@ -112,7 +112,8 @@ class ActiviteitModel {
 
 
 decorate(ActiviteitModel, {
-
+  resolveStad: action, 
+  linkStad: action, 
 });
 
 export default ActiviteitModel;

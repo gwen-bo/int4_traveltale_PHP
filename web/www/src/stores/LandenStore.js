@@ -15,13 +15,12 @@ class LandenStore {
 
   loadAllLanden = async () => {
     const jsonLanden = await this.landenService.getAll();
-    console.log(jsonLanden)
     jsonLanden.forEach(json => this.updateLandenFromServer(json));
   };
 
   loadLand = async (id) => {
     const jsonLand = await this.landenService.getById(id);
-    this.updateLandFromServer(jsonLand);
+    this.updateLandenFromServer(jsonLand);
     return this.getLandById(id);
   }
 
@@ -53,7 +52,6 @@ class LandenStore {
 
     getLandById(id){
         const number = Number(id);
-        console.log(number);
         return this.landen.find(land => land.id === number);
     }
 
@@ -68,7 +66,6 @@ decorate(LandenStore, {
     updateLandenFromServer: action, 
     
     addLand: action, 
-
 
     selectedBestemming: observable, 
     setSelectedBestemming: action, 

@@ -1,8 +1,36 @@
+@media screen and (min-width: 1024px) {
+    .nav_wrapper {
+        max-width: 10rem;
+    }
+
+    .stad_background {
+        max-width: 60vw;
+    }
+}
+
 .nav_wrapper {
     display: flex;
-    width: 30vw;
+    max-width: 20vw;
     justify-content: space-between;
     align-items: center;
+}
+
+.oma {
+    left: 10%;
+    position: absolute;
+    bottom: 16%;
+    z-index: 50;
+}
+
+.progressbar {
+    background-color: #ffedc6;
+    height: 1.5rem;
+    width: 320vw;
+    position: absolute;
+    bottom: 12rem;
+    border-radius: 2rem;
+    margin-left: 15rem;
+    margin-top: -5rem;
 }
 
 .reis_title {
@@ -19,7 +47,16 @@
     right: 49%;
     position: absolute;
     top: 25%;
+    opacity: 0;
     z-index: 50;
+    animation: weg 4s 1;
+}
+
+@keyframes weg {
+  0% {opacity: 0;}
+  1% {opacity: 1;}
+  80% {opacity: 1;}
+  100% {opacity: 0;}
 }
 
 .bestemming_naam {
@@ -62,6 +99,7 @@
 
 .width_stad {
     min-width: 90vw;
+    z-index: 1;
 }
 
 
@@ -91,14 +129,15 @@
 .finish {
     margin-right: 2rem;
     border-bottom: .1rem solid black;
+    padding-right: 6rem;
 }
 
-.progressbar {
+/* .progressbar {
     background-color: black;
     height: 2rem;
     position: absolute;
     bottom: 2rem;
-}
+} */
 
 .wrapper_bottom {
     display: flex; 
@@ -157,3 +196,6 @@
     font-weight: 500;
 }
 
+.steps {
+    font-size: 2.4rem;
+}

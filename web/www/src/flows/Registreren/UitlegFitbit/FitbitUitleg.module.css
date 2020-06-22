@@ -7,7 +7,7 @@
 .filmpjes {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 44rem;
     padding: 2rem;
     margin-right: 4rem;
 }
@@ -70,6 +70,7 @@
     display: flex; 
     flex-flow: column;
     align-items: center;
+    width: 100vw;
 }
 
 .title {
@@ -83,12 +84,13 @@
     font-size: 2.4rem;
     text-align: center;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .section {
     display: flex;
     flex-flow: column;
-    justify-content: space-evenly;
+    width: 100vw;
     align-items: center;
     margin: 0 auto;
     margin-top: -3rem;

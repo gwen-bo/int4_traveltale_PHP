@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Redirect } from "react-router";
+import { useParams, Redirect, useHistory } from "react-router";
 import { useStores } from "../../hooks";
 import Navigatie from "../Navigatie";
 import TerugOverzicht from "../buttons/TerugOverzicht";
@@ -12,14 +12,14 @@ import styles from "./LandDetail.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import { useObserver } from "mobx-react-lite";
+import Empty from "../Empty";
 
 const LandDetail = () => {
   const { id } = useParams();
-
+  const history = useHistory();
   const {landenStore, uiStore} = useStores();
 
   const STATE_LOADING = "aan het laden..";
-  const STATE_DOES_NOT_EXIST = "doesNotExist";
   const STATE_FULLY_LOADED = "fullyLoaded";
 
   const [bestemming, setBestemming] = useState(landenStore.getLandById(id));
@@ -30,19 +30,19 @@ const LandDetail = () => {
   useEffect(() => {
     const loadBestemming = async (id) => {
       try {
-        const bestemming = await landenStore.getLandById(id);
+        const bestemming = await landenStore.loadLand(id);
         console.log(bestemming)
         if (!bestemming) {
           uiStore.setFeedback({
             title: 'Oeps!', 
             uitleg: 'Het land dat je aan het zoeken bent, bestaat niet!',
-            animation: 'animatie',
+            animation: 'verbaasd',
             sec_path: '', 
             sec_name: 'Vorige',
             prim_path: ROUTES.reisaanbod,
             prim_name: 'Terug naar reisaanbod'
           })
-          // setState(STATE_DOES_NOT_EXIST);
+          history.push('/feedback');
           return;
         }
         setBestemming(bestemming);
@@ -58,16 +58,15 @@ const LandDetail = () => {
   }, [id, landenStore, setBestemming]);
   
   return useObserver(() => {
-  if (state === STATE_DOES_NOT_EXIST) {
-    return <Redirect to={ROUTES.feedback} />
-  }
   if (state === STATE_LOADING) {
-    return <p className={styles.title}>Aan het laden..</p>
+    return <Empty message={"Even aan het laden.."} />;
   }
   return (
    <>
+   <div className={styles.nav_wrapper}>
    <Navigatie />
    <TerugOverzicht />
+   </div>
    <section className={styles.detail}>
      <div className={styles.detail_info}>
    <img className={styles.bestemming_niveau} src={(bestemming.stappen_niveau === 1) ? niveau1 : (bestemming.stappen_niveau === 2) ? niveau2 : niveau3}></img>

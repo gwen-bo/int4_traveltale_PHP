@@ -14,6 +14,7 @@ import AantalStappen from "../../../components/AantalStappen";
 // import begin from "../../../assets/img/activiteiten/steden/Ninh Binh/tempel/begin.svg"
 import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import LottieUitleg from "../LottieUitleg";
+import LottieActiviteit from "../Intro/LottieActiviteit";
 // import omaUitleg from "../../../assets/img/oma_uitleg.svg"
 
 
@@ -62,14 +63,17 @@ const TeWeinig = () => {
   </div>
    <AantalStappen/>
    </div>
-   <div className={styles.background_img}>
-    <img className={styles.img_activiteit} src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
-    </div>
 
+   <div className={styles.img_activiteit}>
+   <div className={styles.img_activiteit}>
+    < LottieActiviteit name={activiteit.header_img} place="teweinig" />
+  </div>
+  </div>
+  
    <div className={styles.oma_ballon}>
    <div className={styles.oma_img}>
       < LottieUitleg 
-     props="teleurgesteld"
+     props="teleurstelling"
      />
      </div> 
      <div className={styles.oma_box}>

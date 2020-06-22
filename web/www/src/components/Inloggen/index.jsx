@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
 import logo from "../../assets/img/logo.svg"
-import UncontrolledLottie from "../../flows/Onboarding/Onboarding1/UncontrolledLottie"
+import UncontrolledLottie from "../../flows/Onboarding/OnboardingIntro/UncontrolledLottie"
 import styles from "./Inloggen.module.css";
 
 const Inloggen = () => {

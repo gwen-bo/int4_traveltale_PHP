@@ -32,19 +32,18 @@ const FontSize = () => {
   <p className={styles.title}>Selecteer de tekst die voor jou het beste leesbaar is</p>
 
       <form action="" className={styles.fontsize_position}>
-                <div className={styles.input_wrapper}>
-                  <input className={styles.input_fontsize} type="radio" checked={dataStore.sizes.font === 'small'} onChange={e => dataStore.setSize('small')} name='small' id="small"></input>
-                    <label className={styles.thema_radio} htmlFor="small">
-                   <div className={`${styles.fontsize_text} ${styles.small}`} key={'small'}>
+      <div className={styles.input_wrapper}>
+                  <label className={styles.thema_radio} htmlFor="smal">
+                    <input className={styles.input_fontsize} type="radio" checked={dataStore.sizes.font === 'smal'} onChange={e => dataStore.setSize('smal')} name='font' id="smal" ></input>
+                    <div className={`${styles.fontsize_text} ${styles.small}`} key={'smal'}>
                       <p>Welkom bij Travel Tale!</p>
-                      <p>Laten we samen verschillende landen ontdekken. 
-                      </p>
-                   </div>
+                      <p>Laten we samen verschillende landen ontdekken.</p>  
+                    </div>
                   </label>
                 </div>
                 <div className={styles.input_wrapper}>
-                  <input className={styles.input_fontsize} type="radio" checked={dataStore.sizes.font === 'medium'} onChange={e => dataStore.setSize('medium')} name='medium' id="medium"></input>
                   <label className={styles.thema_radio} htmlFor="medium">
+                    <input className={styles.input_fontsize} type="radio" checked={dataStore.sizes.font === 'medium'} onChange={e => dataStore.setSize('medium')} name='font' id="medium"></input>
                     <div className={`${styles.fontsize_text} ${styles.medium}`} key={'medium'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken.</p>  
@@ -53,8 +52,8 @@ const FontSize = () => {
                 </div>
                 
                 <div className={styles.input_wrapper}>
-                  <input className={styles.input_fontsize} type="radio" checked={dataStore.sizes.font === 'big'} onChange={e => dataStore.setSize('big')} name='medium' id="big"></input>
-                    <label className={styles.thema_radio} htmlFor="big">
+                  <label className={styles.thema_radio} htmlFor="big">
+                    <input className={styles.input_fontsize} type="radio" checked={dataStore.sizes.font === 'big'} onChange={e => dataStore.setSize('big')} name='font' id="big"></input>
                       <div className={`${styles.fontsize_text} ${styles.big}`} key={'big'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken. 

@@ -16,23 +16,19 @@ import oma from "../../../assets/img/oma_uitleg.svg"
 import { useEffect } from "react";
 import Empty from "../../../components/Empty";
 import LottieUitleg from "../LottieUitleg";
+import StedenStore from "../../../stores/StedenStore.";
+import LottieActiviteit from "./LottieActiviteit";
 
 
 
 const Intro = () => {
   const { id } = useParams();
-  const {uiStore , activiteitenStore} = useStores();
+  const {uiStore , activiteitenStore, stedenStore} = useStores();
 
   const history = useHistory();
 
-  const handleLink = (feedbackLink) => {
-    console.log(feedbackLink);
-    uiStore.setFeedback(feedbackLink);
-  }
-
-const STATE_LOADING = "aan het laden"; 
-const STATE_FULLY_LOADED = "volledig geladen"; 
-const STATE_DOES_NOT_EXIST = "bestaat niet"; 
+const STATE_LOADING = "loading"; 
+const STATE_FULLY_LOADED = "fullyLoaded"; 
 
 const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
 const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
@@ -41,36 +37,41 @@ const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADI
 useEffect (() => {
   const loadActiviteit = async (id) => {
     try {
-    const activiteit = await activiteitenStore.getActiviteitById(id);
-    console.log('dit is de activiteit', activiteit);
+    await stedenStore.loadAllSteden();
+    await activiteitenStore.loadAllActiviteiten(); 
+    const activiteit = activiteitenStore.getActiviteitById(id);
     if(!activiteit){
-      setState(STATE_DOES_NOT_EXIST)
+      uiStore.setFeedback({
+        title: 'Oeps!', 
+        uitleg: 'Er is iets misgelopen met de activiteit, probeer je nog eens?',
+        animation: 'verbaasd',
+        sec_path: '', 
+        sec_name: 'Vorige',
+        prim_path: ROUTES.reisoverzicht.to.sessionStorage.getItem('currentReis_id'),
+        prim_name: 'Terug naar reisoverzicht'
+      })
+      history.push('/feedback');
+      return;
     }
     setActiviteit(activiteit);
     setState(STATE_FULLY_LOADED);
   }catch (error){
     if(error.response && error.response.status === 400){
-      setState(STATE_DOES_NOT_EXIST)
     }
   }
   };
   loadActiviteit(id);
-
-}, [id, activiteitenStore, setActiviteit])
+}, [id, setState, stedenStore, activiteitenStore, setActiviteit])
 
 
 return useObserver (() => {
-
-  if (state === STATE_DOES_NOT_EXIST) {
-    return <Empty message={"Oeps! Deze activiteit hebben we niet gevonden."} />;
-  }
   if (state === STATE_LOADING) {
-    return <Empty message={"Even geduld.."} />;
+    return <Empty message={"Even aan het laden.."} />;
   }
   return (
    <>
 <div className={styles.nav_wrapper}>
-   <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`}/>
+   <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}/>
    <Rugzak/>
   </div>
    <AantalStappen />
@@ -83,7 +84,12 @@ return useObserver (() => {
 </div>
 
    <div className={styles.background_img}>
-     <img className={styles.img_activiteit}  src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/algemeen.svg`)} alt="achtergrondfoto van de activiteit"/>
+     {/* <img className={styles.img_activiteit}  src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/begin.svg`)} alt="achtergrondfoto van de activiteit"/> */}
+    <div className={styles.img_activiteit}>
+    < LottieActiviteit 
+     name={activiteit.header_img} place="begin"
+     />
+    </div>
    </div>
 
    <div className={styles.oma_ballon}>
