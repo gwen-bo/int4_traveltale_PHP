@@ -2,63 +2,69 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
-
 import styles from "./TeWeinig.module.css";
-import { Link } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
 import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
-
-/* images */
-// import begin from "../../../assets/img/activiteiten/steden/Ninh Binh/tempel/begin.svg"
-import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import LottieUitleg from "../LottieUitleg";
 import LottieActiviteit from "../Intro/LottieActiviteit";
-// import omaUitleg from "../../../assets/img/oma_uitleg.svg"
+import Empty from "../../../components/Empty";
 
 
-const TeWeinig = () => {
-    const { id } = useParams();
-    const { activiteitenStore, uiStore} = useStores();
+const TeWeinig = () => {  
+   const { id } = useParams();
+    const { activiteitenStore, uiStore, stedenStore} = useStores();
+    const history = useHistory();
+    const STATE_LOADING = "loading"; 
+    const STATE_FULLY_LOADED = "fullyLoaded"; 
   
-  const STATE_LOADING = "aan het laden"; 
-  const STATE_FULLY_LOADED = "volledig geladen"; 
-  const STATE_DOES_NOT_EXIST = "bestaat niet"; 
-  
-  const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
-  const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
+    const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
+    const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
   
   
   useEffect (() => {
     const loadActiviteit = async (id) => {
       try {
-      const activiteit = await activiteitenStore.getActiviteitById(id);
+      await stedenStore.loadAllSteden();
+      await activiteitenStore.loadAllActiviteiten(); 
+      const activiteit = activiteitenStore.getActiviteitById(id);
       if(!activiteit){
-        setState(STATE_DOES_NOT_EXIST)
+        uiStore.setFeedback({
+          title: 'Oeps!', 
+          uitleg: 'Er is iets misgelopen met de activiteit, probeer je nog eens?',
+          animation: 'verbaasd',
+          sec_path: '', 
+          sec_name: 'Vorige',
+          prim_path: ROUTES.reisoverzicht.to.sessionStorage.getItem('currentReis_id'),
+          prim_name: 'Terug naar reisoverzicht'
+        })
+        history.push('/feedback');
+        return;
       }
-      setActiviteit(activiteit)
-      setState(STATE_FULLY_LOADED)
+      setActiviteit(activiteit);
+      setState(STATE_FULLY_LOADED);
     }catch (error){
       if(error.response && error.response.status === 400){
-        setState(STATE_DOES_NOT_EXIST)
       }
     }
     };
     loadActiviteit(id);
-  
-  }, [id, activiteitenStore, setActiviteit])
+  }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
   
-  return useObserver (() =>
-
+  return useObserver (() => {
+  if (state === STATE_LOADING) {
+    return <Empty message={"Even aan het laden.."} />;
+  }
+  return (
    <>
     <div className={styles.nav_wrapper}>
    <Terug path={ROUTES.overzicht}/>
    <Rugzak/>
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-            <img src={hangers}></img>
-            <p className={styles.bestemming_naam}> Tempelbezoek</p>
+            <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+            <p className={styles.bestemming_naam}>{activiteit.naam}</p>
       </div>
   </div>
    <AantalStappen/>
@@ -78,16 +84,16 @@ const TeWeinig = () => {
      </div> 
      <div className={styles.oma_box}>
         <p className={styles.oma_title}>Ai, je hebt nog niet genoeg stappen gezet.</p>
-        <p className={styles.oma_text}>Je komt nog <span className={styles.bold}>x stappen</span> tekort. Tijd om een wandeling te maken?</p>
+        <p className={styles.oma_text}>Je komt nog een aantal stappen tekort. Tijd om een wandeling te maken?</p>
         <div className={styles.btton_pos}>
-            <button className={styles.button}>Terug naar Sa Pa</button>
+            <button className={styles.button}>{activiteit.einde.button}</button>
             <button className={styles.button}>Ik ga wandelen</button>
           </div>
       </div>
    </div>
 
   </>
-  );
+)});
   
 };
 

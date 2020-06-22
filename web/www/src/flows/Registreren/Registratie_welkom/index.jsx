@@ -2,10 +2,8 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import {ROUTES} from "../../../consts";
 import { useStores } from "../../../hooks";
-import logo from "../../../assets/img/logo.svg"
 
 import styles from "./Registratie_welkom.module.css";
-import { useState } from "react";
 
 const Welkom = () => {
   const {uiStore} = useStores();
@@ -20,7 +18,7 @@ const Welkom = () => {
 
   return (
     <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     <section className={styles.section}>
         <div className={styles.section_header}>

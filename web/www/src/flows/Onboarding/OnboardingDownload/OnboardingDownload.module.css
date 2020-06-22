@@ -38,10 +38,10 @@ ol {
 }
 
 .iconDeel::before {
-    content: url("../../../assets/img/deel.svg");
+    content: url("/assets/img/deel.svg");
 }
 .iconPlus::before {
-    content: url("../../../assets/img/plus.svg");
+    content: url("/assets/img/plus.svg");
 }
 
 .bot {

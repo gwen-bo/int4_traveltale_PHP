@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import {ROUTES} from "../../consts";
 import {useStores} from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import Navigatie from "../Navigatie";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { ROUTES } from "../../consts";
-
 import styles from "./Overzicht.module.css";
-import geenReis from "../../assets/img/geenReis.png"
-import vietnam from "../../assets/img/vietnamKaart.png"
-import vlag from "../../assets/img/vlag.svg"
-import weer from "../../assets/img/weer.svg"
-import finish from "../../assets/img/finish.svg"
 import LottieOverzicht from "./LottieOverzicht";
 import Empty from "../Empty";
 
@@ -19,7 +12,6 @@ const Overzicht = () => {
     const {uiStore, authStore} = useStores()
     // const currentProfile = uiStore.currentProfile; 
     const currentReis = uiStore.currentReis; 
-    const history = useHistory();
 
     const STATE_LOADING = "loading";
     const STATE_FULLY_LOADED = "FullyLoaded";
@@ -80,7 +72,7 @@ const Overzicht = () => {
                     <div className={styles.info_icon}>
                       <img
                         className={styles.icon_img}
-                        src={vlag}
+                        src={'/assets/img/vlag.svg'}
                         alt="Vietnam vlag (het land waar je momenteel aan het reizen bent)"
                       />
                     </div>
@@ -90,7 +82,7 @@ const Overzicht = () => {
                     <div className={styles.info_icon}>
                       <img
                         className={styles.icon_img}
-                        src={weer}
+                        src={'/assets/img/weer.svg'}
                         alt="Zon/wolken (welk weer het momenteel is in Vietnam)"
                       />
                     </div>
@@ -100,7 +92,7 @@ const Overzicht = () => {
                     <div className={styles.info_icon}>
                       <img
                         className={styles.icon_img}
-                        src={finish}
+                        src={'/assets/img/weer.svg'}
                         alt="Finish vlag (in hoeverre het land voltooid is)"
                       />
                     </div>
@@ -122,7 +114,7 @@ const Overzicht = () => {
                 <LottieOverzicht props="kaartkijken" />
               </div>
             ) : (
-              <img className={styles.kaart} src={vietnam}></img>
+              <img className={styles.kaart} src={'assets/img/vietnamKaart.png'}></img>
             )}
           </div>
         </section>

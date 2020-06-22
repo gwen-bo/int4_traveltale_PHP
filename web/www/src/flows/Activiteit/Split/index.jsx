@@ -3,16 +3,12 @@ import { useParams, useHistory, Redirect } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import { useEffect } from "react";
-
 import styles from "./Split.module.css";
 import { Link } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
 import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
-
-import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
-import steps from "../../../assets/img/stappenIcon.svg"
 import LottieUitleg from "../LottieUitleg";
 import Empty from "../../../components/Empty";
 import LottieActiviteit from "../Intro/LottieActiviteit";
@@ -55,9 +51,7 @@ const Split = () => {
       setState(STATE_FULLY_LOADED);
     }catch (error){
       if(error.response && error.response.status === 400){
-      }
-    }
-    };
+      }}};
     loadActiviteit(id);
   }, [id, setState, stedenStore, activiteitenStore, setActiviteit])
   
@@ -92,7 +86,7 @@ const Split = () => {
 
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-            <img src={hangers}></img>
+      <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
             <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>
@@ -113,7 +107,7 @@ const Split = () => {
      </div>
         <div className={styles.oma_box}>
           <p className={styles.oma_title}>{activiteit.split.titel}</p>
-          <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={steps} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={steps} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
+          <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
           
           <div className={styles.btton_pos}>
           <Link onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button} to={`${ROUTES.optie1.to}${activiteit.id}`}>

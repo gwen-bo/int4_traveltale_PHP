@@ -43,7 +43,7 @@ const ROUTES = {
 
 
   aanbodDetail: { path: "/reisaanbod/aanboddetail/:id", to: "/reisaanbod/aanboddetail/" },
-  activiteitDetail: { path: "/activiteit/:id", to: "/activiteit/" },
+  // activiteitDetail: { path: "/activiteit/:id", to: "/activiteit/" },
   stadDetail: { path: "/stad/:id", to: "/stad/" }
 
 };

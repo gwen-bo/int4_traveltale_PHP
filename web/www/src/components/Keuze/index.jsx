@@ -3,8 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
-import logo from "../../assets/img/logo.svg"
-
 import styles from "./Keuze.module.css";
 import LottieFeedback from "../Feedback/LottieFeedback";
 
@@ -22,7 +20,7 @@ const Keuze = () => {
 
   return useObserver(() => (
     <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     {(uiStore.currentReis === undefined) ?
     <section className={styles.section}>

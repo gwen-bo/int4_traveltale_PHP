@@ -18,10 +18,9 @@
     justify-content: center;
 }
 
-input[type="radio"]::focus+label {
-    background-color: red;
-    color: white;
+input[type="radio"]:checked +label {
     border: solid .3rem #FFBD3A;
+    border-radius: 20%;
 }
 
 .title {

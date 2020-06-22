@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../../../assets/img/logo.svg"
-
 import styles from "./Bevestigen.module.css";
 import LottieFeedback from "../../../components/Feedback/LottieFeedback";
 
@@ -8,7 +6,7 @@ const Bevestigen = () => {
 
   return (
     <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     <section className={styles.section}>
         <div className={styles.section_header}>

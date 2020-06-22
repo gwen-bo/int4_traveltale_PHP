@@ -1,19 +1,14 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
-import { useStores } from "../../../hooks";
-import logo from "../../../assets/img/logo.svg";
 import UncontrolledLottie from "../OnboardingIntro/UncontrolledLottie";
 
 import styles from "./OnboardingPlezier.module.css";
 
 const OnboardingPlezier = () => {
-  const history = useHistory();
-  const { uiStore } = useStores();
-
   return (
     <>
-      <img src={logo} alt="logo Travel Tale"></img>
+      <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
       <div className={styles.center}>
         <div className={styles.wrapper}>
           <div className={styles.img_bol}>

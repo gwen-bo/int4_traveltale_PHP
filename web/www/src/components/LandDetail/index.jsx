@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Redirect, useHistory } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { useStores } from "../../hooks";
 import Navigatie from "../Navigatie";
 import TerugOverzicht from "../buttons/TerugOverzicht";
-
-import niveau1 from "../../assets/img/reisaanbod/niveau1.svg"
-import niveau2 from "../../assets/img/reisaanbod/niveau2.svg"
-import niveau3 from "../../assets/img/reisaanbod/niveau3.svg"
-
 import styles from "./LandDetail.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
@@ -69,7 +64,7 @@ const LandDetail = () => {
    </div>
    <section className={styles.detail}>
      <div className={styles.detail_info}>
-   <img className={styles.bestemming_niveau} src={(bestemming.stappen_niveau === 1) ? niveau1 : (bestemming.stappen_niveau === 2) ? niveau2 : niveau3}></img>
+   <img className={styles.bestemming_niveau} src={(bestemming.stappen_niveau === 1) ? '/assets/img/reisaanbod/niveau1.svg' : (bestemming.stappen_niveau === 2) ? '/assets/img/reisaanbod/niveau2.svg' : '/assets/img/reisaanbod/niveau3.svg'}></img>
    <div className={styles.info_wrapper}>
     <p className={styles.title}>Reis door {bestemming.naam}</p>
     <div className={styles.tags_wrapper}>
@@ -82,7 +77,7 @@ const LandDetail = () => {
     </div>
     </div>
    <div className={styles.img_div}>
-   <img src={require(`../../assets/img/reisaanbod/detail/${bestemming.naam}.svg`)}></img>
+   <img src={`/assets/img/reisaanbod/detail/${bestemming.naam}.svg`}></img>
    </div>
 
 </section>

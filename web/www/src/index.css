@@ -34,7 +34,7 @@ code {
   font-family: "Geomanist"; 
   src: url("/assets/fonts/book/Geomanist-Book.woff2") format("woff2"),
        url("/assets/fonts/book/Geomanist-Book.woff") format("woff");
-  font-weight: 600; 
+  font-weight: 500; 
   font-style: normal;
 }
 

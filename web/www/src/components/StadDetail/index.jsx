@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
 import { useStores } from "../../hooks";
 import styles from "./StadDetail.module.css";
-import step from "../../assets/img/reisaanbod/niveau1.svg"
 import Terug from "../buttons/Terug";
 import AantalStappen from "../AantalStappen";
 import Empty from "../Empty"
-import hangers from "../../assets/img/reisoverzicht/hangers.svg"
-import kaart from "../../assets/img/kaart.svg"
 import { ROUTES } from "../../consts";
 import { Link } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
@@ -70,7 +67,7 @@ const StadDetail = () => {
     return (
       <>
       <section>
-        <img className={styles.kaart} src={kaart} alt="" />
+        <img className={styles.kaart} src={'/assets/img/kaart.svg'} alt="" />
 
         <div className={styles.nav_wrapper}>
           <Terug
@@ -79,7 +76,7 @@ const StadDetail = () => {
           />
           <div className={styles.midden}>
             <div className={styles.reis_title}>
-              <img src={hangers}></img>
+              <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
               <p className={styles.bestemming_naam}>{stad.naam}</p>
             </div>
           </div>
@@ -92,7 +89,7 @@ const StadDetail = () => {
               <div key={activiteit.id} className={styles.activiteit}>
                 <img
                   className={styles.img_act}
-                  src={require(`../../assets/img/steden/${stad.naam}/${activiteit.header_img}.svg`)}
+                  src={`/assets/img/steden/${stad.naam}/${activiteit.header_img}.svg`}
                   alt={`hoofdafbeelding van de activiteit ${activiteit.naam}`}
                 />
                 <p className={styles.activiteit_title}>{activiteit.naam}</p>
@@ -103,7 +100,7 @@ const StadDetail = () => {
                   <div className={styles.pos}>
                     <div className={styles.steps}>
                       <img
-                        src={step}
+                        src={'assets/img/reisaanbod/niveau1.svg'}
                         alt="voetstappen icoontje, maximum hoeveelheid stappen tijdens deze activiteit"
                       />
                       <p className={styles.steps_aantal}>

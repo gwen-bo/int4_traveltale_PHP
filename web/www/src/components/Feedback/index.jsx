@@ -1,11 +1,8 @@
 import React from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
-import logo from "../../assets/img/logo.svg"
-
 import styles from "./Feedback.module.css";
-import UiStore from "../../stores/UiStore";
 import LottieFeedback from "./LottieFeedback";
 
 const Feedback = () => {
@@ -15,7 +12,7 @@ const Feedback = () => {
 
   return (
     <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     <section className={styles.section}>
         <div className={styles.section_header}>

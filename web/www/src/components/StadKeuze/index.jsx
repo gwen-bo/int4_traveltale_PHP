@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useParams, Redirect } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
-import logo from "../../assets/img/logo.svg"
 
 import styles from "./StadKeuze.module.css";
 import LottieFeedback from "../Feedback/LottieFeedback";
@@ -28,7 +27,7 @@ const StadKeuze = () => {
 
   return useObserver(() => (
     <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     {(uiStore.currentSteps < stad.stappen) ?
     <section className={styles.section}>

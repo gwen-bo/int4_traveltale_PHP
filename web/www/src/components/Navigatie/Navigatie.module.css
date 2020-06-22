@@ -52,27 +52,27 @@
     }
     
     .mijn_reis {
-        background-image: url("../../assets/img/mijn_reis_icon.svg");
+        background-image: url("/assets/img/mijn_reis_icon.svg");
     }
     
     .reisaanbod {
-        background-image: url("../../assets/img/reisaanbod_icon.svg");
+        background-image: url("/assets/img/reisaanbod_icon.svg");
     }
     
     .instellingen {
-        background-image: url("../../assets/img/instellingen_icon.svg");
+        background-image: url("/assets/img/instellingen_icon.svg");
     }
     
      .active .mijn_reis {
-        background-image: url("../../assets/img/mijn_reis_G_icon.svg");
+        background-image: url("/assets/img/mijn_reis_G_icon.svg");
     } 
     
      .active .reisaanbod {
-        background-image: url("../../assets/img/reisaanbod_G_icon.svg");
+        background-image: url("/assets/img/reisaanbod_G_icon.svg");
     }
     
     .active .instellingen {
-        background-image: url("../../assets/img/instellingen_G_icon.svg");
+        background-image: url("/assets/img/instellingen_G_icon.svg");
     }  
 
     

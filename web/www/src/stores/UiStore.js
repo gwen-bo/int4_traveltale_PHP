@@ -7,11 +7,7 @@ class UiStore {
     this.rootStore = rootStore;
     this.currentReis = undefined;
     this.currentSteps = 0
-    this.begroeting = 'Hallo';
     this.currentUser = undefined;
-    // if(this.currentUser === undefined && this.rootStore.authStore.accessToken !== undefined){
-    //   this.rootStore.authStore.fetchData();
-    // }
     // feedbackcomponent 
     this.title = ""; 
     this.uitleg = ""; 
@@ -20,11 +16,35 @@ class UiStore {
     this.sec_name = ""; 
     this.prim_path = ""; 
     this.prim_name = ""; 
+
+    // customization voor user
+    this.fontSize = "medium";
+    this.begroeting = 'Hallo';
+    this.reisBegeleider = "oma";
+    this.beweegNiveau = "skate";
   }
 
   setCurrentUser(profile) {
     this.currentUser = profile;
   }
+
+  setBewegen(niveau) {
+    this.beweegNiveau = niveau;
+  }
+
+  setSize(value) {
+        console.log(value);
+        this.fontSize = value;
+  }
+
+  setBegeleider(begeleider){
+    this.reisBegeleider = begeleider;
+  }
+    
+  setBewegen(value) {
+    console.log(value);
+    this.bewegen.beweeg = value;
+  }
 
   setFeedback(feedback){
     this.title = feedback.title; 

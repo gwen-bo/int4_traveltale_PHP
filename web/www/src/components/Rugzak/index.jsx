@@ -3,8 +3,6 @@ import { useParams, useHistory } from "react-router";
 import { useStores } from "../../hooks";
 import styles from "./Rugzak.module.css";
 import { ROUTES } from "../../consts";
-
-import kimono from "../../assets/img/rugzak/kimono.svg"
 import Terug from "../buttons/Terug";
 import { useObserver } from "mobx-react-lite";
 import Empty from "../Empty";
@@ -67,28 +65,28 @@ const Rugzak = () => {
           <div className={styles.rugzak_items}>
             <p className={styles.rugzak_plaats}>Hanoi</p>
             <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={kimono} alt=""/>
+              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
             </div>
             <p className={styles.rugzak_item_naam}>Zijden kimono</p>
           </div>
           <div className={styles.rugzak_items}>
             <p className={styles.rugzak_plaats}>Hanoi</p>
             <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={kimono} alt=""/>
+              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
             </div>
             <p className={styles.rugzak_item_naam}>Zijden kimono</p>
           </div>
           <div className={styles.rugzak_items}>
             <p className={styles.rugzak_plaats}>Hanoi</p>
             <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={kimono} alt=""/>
+              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
             </div>
             <p className={styles.rugzak_item_naam}>Zijden kimono</p>
           </div>
           <div className={styles.rugzak_items}>
             <p className={styles.rugzak_plaats}>Hanoi</p>
             <div className={styles.rugzak_item_bol}>
-              <img className={styles.rugzak_item} src={kimono} alt=""/>
+              <img className={styles.rugzak_item} src={'/assets/img/rugzak/kimono.svg'} alt=""/>
             </div>
             <p className={styles.rugzak_item_naam}>Zijden kimono</p>
           </div>

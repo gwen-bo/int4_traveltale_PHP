@@ -11,7 +11,6 @@ import OnboardingKnoppen from './flows/Onboarding/OnboardingKnoppen';
 import OnboardingPlezier from './flows/Onboarding/OnboardingPlezier';
 import OnboardingDownload from './flows/Onboarding/OnboardingDownload';
 import LandDetail from "./components/LandDetail"
-import ActiviteitDetail from "./components/ActiviteitDetail"
 import ReisOverzicht from "./components/ReisOverzicht"
 import Instellingen from "./flows/Instellingen/Instellingen"
 import StadDetail from './components/StadDetail';
@@ -98,12 +97,6 @@ function App() {
       <Route exact path={ROUTES.stadDetail.path}>
         <StadDetail />
       </Route>
-
-      <Route exact path={ROUTES.activiteitDetail.path}>
-        <ActiviteitDetail />
-      </Route>
-
-
 
 {/* Activiteiten flow */}
       <Route exact path={ROUTES.intro.path}>

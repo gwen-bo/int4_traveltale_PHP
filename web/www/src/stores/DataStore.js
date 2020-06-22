@@ -1,4 +1,4 @@
-import {decorate, configure} from 'mobx';
+import {decorate, configure, observable, action} from 'mobx';
 import Profile from '../models/ProfileModel';
 
 configure({enforceActions: 'observed'});
@@ -34,19 +34,13 @@ class DataStore {
     }
   }
 
-  setSize(value) {
-        console.log(value);
-        this.sizes.font = value;
-      }
-    
-  setBewegen(value) {
-    console.log(value);
-    this.bewegen.beweeg = value;
-  }
-
 }
 
 decorate(DataStore, {
+  sizes: observable, 
+  bewegen: observable, 
+  setBewegen: action, 
+  setSize: action, 
 });
 
 export default DataStore;

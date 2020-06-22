@@ -3,12 +3,9 @@ import { useParams, useHistory } from "react-router";
 import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import { useEffect } from "react";
-
-import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
 import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
-
 import styles from "./Einde.module.css";
 import { useObserver } from "mobx-react-lite";
 import { Link } from "react-router-dom";
@@ -79,7 +76,7 @@ const Einde = () => {
    <Rugzak/>
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-            <img src={hangers}></img>
+            <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
             <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>

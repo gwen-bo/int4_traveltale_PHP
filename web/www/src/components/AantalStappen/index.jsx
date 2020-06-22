@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useStores } from "../../hooks";
-import stappenIcon from "../../assets/img/stappenIcon.svg"
-
 import styles from "./AantalStappen.module.css";
 import { useObserver } from "mobx-react-lite";
-import Empty from "../Empty";
 import Loading from "./Loading";
 
 const AantalStappen = () => {
@@ -43,7 +40,7 @@ const AantalStappen = () => {
         <p className={styles.text}>Stappen:</p>
         <div className={styles.bol}>
             <p className={styles.stappen}>{stappen}</p>
-            <img className={styles.img} src={stappenIcon} alt="zwarte voetstappen"></img>
+            <img className={styles.img} src={'/assets/img/stappenIcon.svg'} alt="zwarte voetstappen"></img>
 
         </div>
     </div>

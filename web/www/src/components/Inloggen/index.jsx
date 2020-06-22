@@ -2,7 +2,6 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
-import logo from "../../assets/img/logo.svg"
 import UncontrolledLottie from "../../flows/Onboarding/OnboardingIntro/UncontrolledLottie"
 import styles from "./Inloggen.module.css";
 

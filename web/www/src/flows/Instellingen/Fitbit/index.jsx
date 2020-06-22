@@ -2,9 +2,6 @@ import React from "react";
 import { useObserver } from "mobx-react-lite";
 import styles from "./Fitbit.module.css";
 
-import logo_fitbit from "../../../assets/img/logo_fitbit.svg"
-
-
 
 
 const Fitbit = () => {
@@ -17,7 +14,7 @@ const Fitbit = () => {
       Om wijzigingen aan te brengen in jouw Fitbit account, verwijzen we je door naar de site van Fitbit. Klik op het logo om doorverwezen te worden.
       </p>
       <button className={styles.button_fitbit}>
-            <a href="https://www.fitbit.com/" ><img className={styles.fitbit_logo} src={logo_fitbit} alt=""/></a>
+            <a href="https://www.fitbit.com/" ><img className={styles.fitbit_logo} src={'/assets/img/logo_fitbit.svg'} alt="logo van fitbit"/></a>
       </button>
       </div>
 

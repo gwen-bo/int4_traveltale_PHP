@@ -75,6 +75,6 @@
 }
 
 .icon::before {
-    content: url("../../assets/img/stappenIcon.svg");
+    content: url("/assets/img/stappenIcon.svg");
 }
 

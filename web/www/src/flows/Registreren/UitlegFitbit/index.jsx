@@ -1,10 +1,4 @@
 import React from "react";
-import logo from "../../../assets/img/logo.svg"
-import love from "../../../assets/img/love.svg";
-import fitbit from "../../../assets/img/logo_fitbit.svg";
-import arrowW from "../../../assets/img/arrow_W.svg";
-import test from "../../../assets/img/Fitbit_uitleg.svg";
-
 import styles from "./FitbitUitleg.module.css";
 import LottieFitbit from "./LottieFitbit";
 import { useHistory } from "react-router";
@@ -14,11 +8,11 @@ const UitlegFitbit = () => {
 
   return (
    <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
 <section className={styles.section}>
     <div className={styles.section_header}>
-    <h1 className={styles.title}>Travel Tale <img src={love} alt=""/> Fitbit
+    <h1 className={styles.title}>Travel Tale <img src={'assets/img/love.svg'} alt=""/> Fitbit
     </h1>
     <div className={styles.uitleg}>
           <div className={styles.filmpjes}>
@@ -29,7 +23,7 @@ const UitlegFitbit = () => {
               <LottieFitbit
                   props="fitness"
                 />
-              <img className={styles.filmpje_down} src={test} alt="uitleg over de fitbit"/>
+              <img className={styles.filmpje_down} src={'Fitbit_uitleg.svg'} alt="uitleg over de fitbit"/>
               </div>
           </div>
           <div className={styles.text}>
@@ -39,8 +33,8 @@ const UitlegFitbit = () => {
               <button onClick={() => {history.goBack();}}  className={styles.button}>Terug</button>
               <a href="https://www.fitbit.com/">
                 <button className={styles.button_fitbit}>
-                      <img src={fitbit} alt=""/>
-                      <img className={styles.arrow} src={arrowW} alt=""/>
+                      <img src={'img/logo_fitbit.svg'} alt=""/>
+                      <img className={styles.arrow} src={'img/arrow_W.svg'} alt=""/>
                 </button>
               </a>
               

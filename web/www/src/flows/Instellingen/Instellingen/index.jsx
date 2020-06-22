@@ -2,18 +2,9 @@ import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import Navigatie from "../../../components/Navigatie";
 import styles from "./Instellingen.module.css";
-
 import Profiel from "../Profiel";
 import Weergave from "../Weergave";
 import Fitbit from "../Fitbit";
-
-import profiel from "../../../assets/img/instellingen/profiel.svg";
-import weergave from "../../../assets/img/instellingen/weergave.svg";
-import fitbit from "../../../assets/img/instellingen/fitbit.svg";
-
-import profiel_active from "../../../assets/img/instellingen/profiel_actief.svg";
-import weergave_active from "../../../assets/img/instellingen/weergave_actief.svg";
-import fitbit_active from "../../../assets/img/instellingen/fitbit_actief.svg";
 
 const Instellingen = () => {
   const [view, setView] = useState("profiel");
@@ -36,9 +27,9 @@ const Instellingen = () => {
                   onClick={(e) => setView("profiel")}
                 >
                   {view === "profiel" ? (
-                    <img src={profiel_active} alt="profiel icon" />
+                    <img src={'/assets/img/instellingen/profiel_actief.svg'} alt="profiel icon" />
                   ) : (
-                    <img src={profiel} alt="profiel icon" />
+                    <img src={'/assets/img/instellingen/profiel.svg'} alt="profiel icon" />
                   )}
                   <p className={styles.button_text}>Profiel</p>
                 </button>
@@ -51,9 +42,9 @@ const Instellingen = () => {
                   onClick={(e) => setView("weergave")}
                 >
                   {view === "weergave" ? (
-                    <img src={weergave_active} alt="weergave icon" />
+                    <img src={'/assets/img/instellingen/weergave_actief.svg'} alt="weergave icon" />
                   ) : (
-                    <img src={weergave} alt="weergave icon" />
+                    <img src={'/assets/img/instellingen/weergave.svg'} alt="weergave icon" />
                   )}
                   <p className={styles.button_text}>Weergave</p>
                 </button>
@@ -66,9 +57,9 @@ const Instellingen = () => {
                   onClick={(e) => setView("fitbit")}
                 >
                   {view === "fitbit" ? (
-                    <img src={fitbit_active} alt="fitbit icon" />
+                    <img src={'/assets/img/instellingen/fitbit_actief.svg'} alt="fitbit icon" />
                   ) : (
-                    <img src={fitbit} alt="fitbit icon" />
+                    <img src={'/assets/img/instellingen/fitbit.svg'} alt="fitbit icon" />
                   )}
                   <p className={styles.button_text}>Fitbit</p>
                 </button>

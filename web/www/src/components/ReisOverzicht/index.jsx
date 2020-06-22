@@ -4,11 +4,6 @@ import { useObserver } from "mobx-react-lite";
 import { ROUTES } from "../../consts";
 import Terug from "../buttons/Terug";
 import Rugzak from "../buttons/Rugzak";
-import hangers from "../../assets/img/reisoverzicht/hangers.svg"
-import open from "../../assets/img/reisoverzicht/open.svg"
-import locked from "../../assets/img/reisoverzicht/locked.svg"
-import lijn from "../../assets/img/reisoverzicht/lineDown.svg"
-import steps from "../../assets/img/stappenIcon.svg"
 import styles from "./ReisOverzicht.module.css";
 import AantalStappen from "../AantalStappen";
 import Empty from "../Empty";
@@ -16,7 +11,6 @@ import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import ScrollLottie from "../buttons/Scroll/ScrollLottie";
 import OmaWalkLottie from "../buttons/Scroll/OmaWalkLottie";
-
 
 const ReisOverzicht = () => {
   const { id } = useParams();
@@ -107,7 +101,7 @@ const ReisOverzicht = () => {
       </div>
       <section>
         <div className={styles.reis_title}>
-          <img src={hangers} alt="hangers voor het naamplaatje"></img>
+          <img src={'/assets/img/reisoverzicht/hangers.svg'} alt="hangers voor het naamplaatje"></img>
           <p className={styles.bestemming_naam}> {bestemming.naam}</p>
         </div>
         <div className={styles.wrapper_steden}>
@@ -115,7 +109,7 @@ const ReisOverzicht = () => {
             <div className={styles.start}>
               <img
                 className={styles.start_background}
-                src={require(`../../assets/img/reisoverzicht/Start.svg`)}
+                src={`/assets/img/reisoverzicht/Start.svg`}
                 alt="Start van het reisoverzicht"
               ></img>
             </div>
@@ -127,7 +121,7 @@ const ReisOverzicht = () => {
                     <div className={styles.steps_wrapper}>
                       <img
                         className={styles.steps_icon}
-                        src={steps}
+                        src={'/assets/img/stappenIcon.svg'}
                         alt="icoontje voetstappen"
                       ></img>
                       <p className={styles.steps}>{stad.stappen}</p>
@@ -135,13 +129,13 @@ const ReisOverzicht = () => {
                     <p className={styles.stadName}>{stad.naam}</p>
                     <img
                       className={styles.lijn}
-                      src={lijn}
+                      src={'/assets/img/reisoverzicht/lineDown.svg'}
                       alt="lijn naar beneden"
                     ></img>
                   </div>
                   <img
                     className={styles.stad_background}
-                    src={require(`../../assets/img/reisoverzicht/${bestemming.naam}/${stad.naam}.svg`)}
+                    src={`/assets/img/reisoverzicht/${bestemming.naam}/${stad.naam}.svg`}
                     alt={`illustratie van skyline ${stad.naam}`}
                   ></img>
                 </div>
@@ -150,7 +144,7 @@ const ReisOverzicht = () => {
             <div className={styles.finish}>
               <img
                 className={styles.start_background}
-                src={require(`../../assets/img/reisoverzicht/Finish.svg`)}
+                src={`/assets/img/reisoverzicht/Finish.svg`}
                 alt="Einde van het reisoverzicht"
               ></img>
             </div>
@@ -166,9 +160,9 @@ const ReisOverzicht = () => {
                 <div key={stad.id} className={styles.width_stad}>
                 <div className={styles.progess_wrapper}>
                   {uiStore.currentSteps >= stad.stappen ? (
-                    <img alt={`${stad} kan je nu ontdekken!`} src={open}></img>
+                    <img alt={`${stad} kan je nu ontdekken!`} src={'/assets/img/reisoverzicht/open.svg'}></img>
                   ) : (
-                    <img alt={`${stad} is nog niet beschikbaar`} src={locked} ></img>
+                    <img alt={`${stad} is nog niet beschikbaar`} src={'/assets/img/reisoverzicht/locked.svg'} ></img>
                   )}
                   <Link to={`${ROUTES.stadkeuze.to}${stad.id}`} className={`${styles.button} ${styles.button_stad}`}>
                     {stad.naam} ontdekken </Link>
@@ -177,7 +171,7 @@ const ReisOverzicht = () => {
               : 
               <div key={stad.id} className={styles.width_stad}>
                 <div className={styles.progess_wrapper}>
-                <img alt={`${stad.naam} kan je nu ontdekken!`} src={open}></img>
+                <img alt={`${stad.naam} kan je nu ontdekken!`} src={'/assets/img/reisoverzicht/open.svg'}></img>
                   <Link
                     to={`${ROUTES.stadDetail.to}${stad.id}`} className={`${styles.button} ${styles.button_stad}`} >
                     {stad.naam} ontdekken

@@ -10,13 +10,9 @@ import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
 import AantalStappen from "../../../components/AantalStappen";
 
-import hangers from "../../../assets/img/reisoverzicht/hangers.svg"
-import oma from "../../../assets/img/oma_uitleg.svg"
-
 import { useEffect } from "react";
 import Empty from "../../../components/Empty";
 import LottieUitleg from "../LottieUitleg";
-import StedenStore from "../../../stores/StedenStore.";
 import LottieActiviteit from "./LottieActiviteit";
 
 
@@ -78,13 +74,12 @@ return useObserver (() => {
 
 <div className={styles.midden}>
 <div className={styles.reis_title}>
-      <img src={hangers}></img>
+      <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
       <p className={styles.bestemming_naam}>{activiteit.naam}</p>
 </div>
 </div>
 
    <div className={styles.background_img}>
-     {/* <img className={styles.img_activiteit}  src={require(`../../../assets/img/activiteiten/${activiteit.header_img}/begin.svg`)} alt="achtergrondfoto van de activiteit"/> */}
     <div className={styles.img_activiteit}>
     < LottieActiviteit 
      name={activiteit.header_img} place="begin"
@@ -93,7 +88,6 @@ return useObserver (() => {
    </div>
 
    <div className={styles.oma_ballon}>
-      {/* <img  src={oma} alt="jouw reisbegeleider die uitleg geeft"/> */}
       <div className={styles.oma_img}>
       < LottieUitleg 
      props="uitleg"

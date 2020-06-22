@@ -1,8 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import {ROUTES} from "../../../consts";
-import logo from "../../../assets/img/logo.svg"
-
 import styles from "./Aanmelden.module.css";
 import LottieFeedback from "../../../components/Feedback/LottieFeedback";
 
@@ -11,7 +9,7 @@ const Aanmelden = () => {
 
   return (
     <>
-    <img src={logo} alt="logo Travel Tale"></img>
+    <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
 
     <section className={styles.section}>
         <div>

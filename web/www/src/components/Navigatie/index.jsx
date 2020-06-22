@@ -2,12 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navigatie.module.css";
 import { ROUTES } from "../../consts";
-import logo from "../../assets/img/logo.svg"
 
 const Navigatie = () => {
   return (
     <nav className={styles.navigatie_wrapper}>
-        <NavLink to={ROUTES.home}><img className={styles.nav_logo} src={logo} alt="logo Travel Tale"></img></NavLink>
+        <NavLink to={ROUTES.home}><img className={styles.nav_logo} src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img></NavLink>
       <div className={styles.nav}>
           <NavLink
             className={styles.nav_li}
