@@ -34,7 +34,7 @@ class AuthStore {
 
    fetchData = async() => {
      if(sessionStorage.getItem('access_token') === null){
-        window.location.replace('http://localhost:3001/');
+        window.location.replace('https://thawing-plains-60681.herokuapp.com/');
      }else {
     await this.loadAllUsers();
     await this.fetchUserData().then(data => {
