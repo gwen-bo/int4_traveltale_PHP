@@ -50,7 +50,7 @@ const Rugzak = () => {
           </div>
           <div className={styles.rugzak_stappen}>
             <p className={styles.rugzak_totaal}>Totaal aantal gezette stappen</p>
-            <p className={styles.rugzak_totaal_stappen}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {user.stappen}</p>
+            <p className={styles.rugzak_totaal_stappen}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="stappen icoontje"/> {user.stappen}</p>
           </div>
         </div>
 

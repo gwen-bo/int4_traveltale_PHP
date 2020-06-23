@@ -35,7 +35,7 @@
 
 .fontsize_text {
     background-color: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 2rem;
     width: 25rem;
     height: 28rem;
@@ -47,7 +47,7 @@
 }
 
 .input_fontsize:checked + .fontsize_text {
-    border: solid .3rem #FFBD3A;
+    border: solid .5rem #FFBD3A;    
 }
 
 .button_sec:active{

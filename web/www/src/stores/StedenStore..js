@@ -58,7 +58,6 @@ class StedenStore {
 
 decorate(StedenStore, {
     steden: observable, 
-    seedStedenStore: action, 
 
     addStad: action, 
     updateStedenFromServer: action, 

@@ -15,6 +15,8 @@ const Inloggen = () => {
    {(currentProfile === undefined)? 
     
     <section className={styles.wrapper}>
+     <img className={styles.nav_logo} src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>
+
       <div className={styles.inloggen}>
         <div className={styles.section_header}>
           <h1 className={styles.title}>Welkom bij Travel Tale</h1>

@@ -53,7 +53,7 @@ const Instellingen = () => {
                   onClick={(e) => setView("profiel")}
                 >
                   {view === "profiel" ? (
-                    <img src={'/assets/img/instellingen/profiel_actief.svg'} alt="profiel icon" />
+                    <img src={'/assets/img/instellingen/profiel_actief.svg'} alt="actief profiel icon" />
                   ) : (
                     <img src={'/assets/img/instellingen/profiel.svg'} alt="profiel icon" />
                   )}
@@ -68,7 +68,7 @@ const Instellingen = () => {
                   onClick={(e) => setView("weergave")}
                 >
                   {view === "weergave" ? (
-                    <img src={'/assets/img/instellingen/weergave_actief.svg'} alt="weergave icon" />
+                    <img src={'/assets/img/instellingen/weergave_actief.svg'} alt="actief weergave icon" />
                   ) : (
                     <img src={'/assets/img/instellingen/weergave.svg'} alt="weergave icon" />
                   )}
@@ -83,7 +83,7 @@ const Instellingen = () => {
                   onClick={(e) => setView("fitbit")}
                 >
                   {view === "fitbit" ? (
-                    <img src={'/assets/img/instellingen/fitbit_actief.svg'} alt="fitbit icon" />
+                    <img src={'/assets/img/instellingen/fitbit_actief.svg'} alt="actief fitbit icon" />
                   ) : (
                     <img src={'/assets/img/instellingen/fitbit.svg'} alt="fitbit icon" />
                   )}

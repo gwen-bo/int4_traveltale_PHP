@@ -126,7 +126,7 @@ const Split = () => {
      </div>
         <div className={styles.oma_box}>
           <p className={styles.oma_title}>{activiteit.split.titel}</p>
-          <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
+          <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="Een icoontje van de voetstappen"/> {activiteit.split.span2}</span>?</p>
           
           <div className={styles.btton_pos}>
           <button onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button}>

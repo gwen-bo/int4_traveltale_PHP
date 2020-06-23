@@ -166,15 +166,15 @@ decorate(ProfileModel, {
   firstName: observable, 
   age: observable, 
   fullName: observable, 
-
+  fontsize: observable, 
+  beweeg_niveau: observable, 
+  setFontSize: action, 
+  setBeweegNiveau: action, 
   currentReis_id: observable, 
   setCurrentReis_id: action, 
-  
   updateFromJson: action, 
-
   asJson: computed, 
-
-  setUser: action, 
+  setUser: action,
 });
 
 export default ProfileModel;

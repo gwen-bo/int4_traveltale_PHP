@@ -22,7 +22,7 @@ return useObserver(() =>
                 <label className={styles.thema_radio} htmlFor={'kroes'}>
                 <input className={styles.input_bewegen} type="radio" checked={authStore.registratieBeweeg === 'kroes'} onChange={e => authStore.setBewegenRegistratie('kroes')} name='bewegen' id={'kroes'}></input>
                       <div className={`${styles.bewegen_text} ${styles.box}`}>
-                            <img className={styles.bewegen_img} src={'/assets/img/scooter_bomma.svg'} alt=""/>
+                            <img className={styles.bewegen_img} src={'/assets/img/scooter_bomma.svg'} alt="Ouder vrouwtje in een scooter, je bent niet zo heel goed meer te been, maar wil gerust wel wandelen."/>
                         <p className={styles.bewegen_label}>Ik voel kwaaltjes als ik wandel</p>
                         </div>
                   </label>
@@ -30,7 +30,7 @@ return useObserver(() =>
         <label className={styles.thema_radio} htmlFor={'skate'}>
         <input className={styles.input_bewegen} type="radio" checked={authStore.registratieBeweeg === 'skate'} onChange={e => authStore.setBewegenRegistratie('skate')} name='bewegen' id={'skate'}></input>
               <div className={`${styles.bewegen_text} ${styles.box}`}>
-                    <img className={styles.bewegen_img} src={'/assets/img/skate_bomma.svg'} alt=""/>
+                    <img className={styles.bewegen_img} src={'/assets/img/skate_bomma.svg'} alt="Ouder vrouwtje op een skateboard, je bent redelijk vlot te been."/>
                     <p className={styles.bewegen_label}>Na een tijdje krijg ik het lastig</p>
                     </div>
                     </label>
@@ -38,7 +38,7 @@ return useObserver(() =>
         <label className={styles.thema_radio} htmlFor={'fly'}>
         <input className={styles.input_bewegen} type="radio" checked={authStore.registratieBeweeg === 'fly'} onChange={e => authStore.setBewegenRegistratie('fly')} name='bewegen' id={'fly'}></input>
               <div className={`${styles.bewegen_text} ${styles.big}`}>
-                    <img className={styles.bewegen_img} src={'/assets/img/fly_bomma.svg'} alt=""/>
+                    <img className={styles.bewegen_img} src={'/assets/img/fly_bomma.svg'} alt="Ouder vrouwtje die vliegt, je bent zeer vlot te been en hebt geen enkel probleem met stapepn."/>
                     <p className={styles.bewegen_label}>Ik ben nog heel goed te been </p>
                     </div>
                     </label>

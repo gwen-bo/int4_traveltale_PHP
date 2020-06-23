@@ -18,7 +18,7 @@ const Profiel = () => {
           <label className={styles.thema_radio} htmlFor={'oma'}>
           <input className={styles.reisbegeleider_input} type="radio" checked={uiStore.reisBegeleider === 'oma'} onChange={e => uiStore.setBegeleider('oma')} name='reisbegeleider' id={'oma'}></input>
                 <div className={`${styles.bewegen_text} ${styles.box}`}>
-                  <img className={styles.bewegen_img} src={'/assets/img/instellingen/oma.svg'} alt=""/>
+                  <img className={styles.bewegen_img} src={'/assets/img/instellingen/oma.svg'} alt="Voorstelling van jouw reisbegeleider. Dit is Annet."/>
                 <p className={styles.bewegen_label}>Annet</p>
                 </div>
             </label>
@@ -26,7 +26,7 @@ const Profiel = () => {
             <label className={styles.thema_radio} htmlFor={'opa'}>
             <input className={styles.reisbegeleider_input} type="radio" checked={uiStore.reisBegeleider === 'opa'} onChange={e => uiStore.setBegeleider('opa')} name='reisbegeleider' id={'opa'}></input>
                   <div className={`${styles.bewegen_text} ${styles.box}`}>
-                  <img className={styles.bewegen_img} src={'/assets/img/instellingen/opa.svg'} alt=""/>
+                  <img className={styles.bewegen_img} src={'/assets/img/instellingen/opa.svg'} alt="Voorstelling van jouw reisbegeleider. Dit is Fons."/>
                   <p className={styles.bewegen_label}>Fons</p>
                   </div>
             </label>

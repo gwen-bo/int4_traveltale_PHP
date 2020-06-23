@@ -22,7 +22,7 @@
     }
 
 .input_bewegen:checked + .bewegen_text {
-    border: solid .3rem #FFBD3A;    
+    border: solid .5rem #FFBD3A;    
 }
 
 .input_bewegen{

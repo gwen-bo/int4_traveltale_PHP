@@ -71,11 +71,11 @@ class LandenStore {
 
 decorate(LandenStore, {
     landen: observable, 
+    selectedLand: observable, 
     updateLandenFromServer: action, 
     
     addLand: action, 
 
-    selectedBestemming: observable, 
     setSelectedBestemming: action, 
 });
 

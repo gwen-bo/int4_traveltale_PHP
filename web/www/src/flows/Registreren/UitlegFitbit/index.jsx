@@ -33,8 +33,8 @@ const UitlegFitbit = () => {
               <button onClick={() => {history.goBack();}}  className={styles.button}>Terug</button>
               <a href="https://www.fitbit.com/">
                 <button className={styles.button_fitbit}>
-                      <img src={'/assets/img/logo_fitbit.svg'} alt=""/>
-                      <img className={styles.arrow} src={'/assets/img/arrow_W.svg'} alt=""/>
+                      <img src={'/assets/img/logo_fitbit.svg'} alt="Het logo van fitbit (de activity tracker waarmee wij samenwerken)"/>
+                      <img className={styles.arrow} src={'/assets/img/arrow_W.svg'} alt="een pijl die naar rechts wijst"/>
                 </button>
               </a>
               

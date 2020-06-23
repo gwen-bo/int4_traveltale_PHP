@@ -1,4 +1,4 @@
-import {decorate, observable, configure, action} from 'mobx';
+import {decorate, observable, configure} from 'mobx';
 import ActiviteitModel from '../models/ActiviteitModel';
 import RestService from "../services/RestService";
 
@@ -47,7 +47,6 @@ class ActiviteitenStore {
 
 decorate(ActiviteitenStore, {
   activiteiten: observable,
-  seedActiviteitenStore: action,
 });
 
 export default ActiviteitenStore;
