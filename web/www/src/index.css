@@ -83,13 +83,12 @@ header {
 #root {
   height: 100vh;
   background-image: linear-gradient(#FFFFFF, #FFEFDF);
-  display: block;
 }
 
 .mobile {
   display: none;
   }
-  
+
   .mobile_image {
   display: none;
   z-index: 3;
@@ -102,7 +101,7 @@ header {
   }
 
     body {
-  background-color: red;
+  background-color: #FFEFDF;
   }
   
     .mobile {
