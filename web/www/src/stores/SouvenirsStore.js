@@ -13,14 +13,12 @@ class SouvenirsStore {
 
   loadAllSouvenirs = async () => {
     const jsonSouvenirs = await this.souvenirsService.getAll();
-    console.log('souvenirs store', jsonSouvenirs)
     this.souvenirs = [];
     jsonSouvenirs.forEach(souvenir => this.souvenirs.push(souvenir));
   };
 
   loadSouvenir = async (id) => {
-    const jsonSouvenir = await this.souvenirsService.getById(id);
-    console.log('één souvenir', jsonSouvenir)
+    return await this.souvenirsService.getById(id);
     // return this.getLandById(id);
   }
 

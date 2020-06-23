@@ -81,7 +81,6 @@ class AuthStore {
     this.loadCheckedForUser(user);
     this.rootStore.uiStore.setSize(user.fontsize)
     if (user.currentReis_id !== undefined) {
-      console.log('reis id is aanwezig', user.currentReis_id);
       sessionStorage.setItem('currentReis_id', user.currentReis_id);
       this.rootStore.uiStore.setCurrentReis(user.currentReis_id);
     }
@@ -116,7 +115,6 @@ class AuthStore {
           method: 'GET'
       });
       let data = await response.json()
-      console.log('dit is de activity', data);
       return data;
         }catch(err){
       console.log(err);
@@ -150,7 +148,6 @@ class AuthStore {
   };
 
   updateUser = async user => {  
-    console.log('updating user', user)
     const json = await this.usersService.update(user);
     this.updateUserFromServer(json);
   };

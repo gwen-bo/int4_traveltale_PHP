@@ -20,7 +20,7 @@ const Reisaanbod = () => {
     const loadBestemmingen = async () => {
       if (landenStore.landen.length === 0) {
       try {
-        // await landenStore.loadAllLanden();
+        await landenStore.loadAllLanden();
         setState(STATE_FULLY_LOADED);
       } catch (error) {
         if (error.response && error.response.status === 404) {

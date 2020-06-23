@@ -14,7 +14,6 @@ class ActiviteitenStore {
 
   loadAllActiviteiten = async () => {
     const jsonActiviteiten = await this.activiteitenService.getAll();
-    console.log('activiteiten store', jsonActiviteiten)
     jsonActiviteiten.forEach(json => this.updateActiviteitenFromServer(json));
   };
 

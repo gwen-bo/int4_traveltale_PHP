@@ -47,7 +47,6 @@ class LandModel {
     }
     if(souvenirs !== undefined){
       this.souvenirs = [];
-      console.log('souvenirs aan het pushen', this)
       souvenirs.forEach(souvenir => {
         this.addSouvenir(souvenir)
       })

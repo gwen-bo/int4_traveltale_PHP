@@ -65,7 +65,6 @@ class ProfileModel {
 
   create = async () => {
     const json = this.asJson
-    console.log(json);
     this.store.createUser(json)
   };
 
@@ -93,21 +92,12 @@ class ProfileModel {
   }
 
   updateCurrentStappen = async () => {
-    console.log('update json', this.asJson);
     this.store.updateCurrentStappen(this.asJson)
   }
 
   updateLifetimeStappen = async () => {
     this.store.setLifetimeStappen(this.asJson)
   }
-
-  // updateFontSize = async () => {
-  //   this.store.updateFontSize(this.asJson)
-  // }
-
-  // updateFontSize = async () => {
-  //   this.store.updateFontSize(this.asJson)
-  // }
 
   setCurrentReis_id(id){
     this.currentReis_id = id;
@@ -132,7 +122,6 @@ class ProfileModel {
 
   setCurrentStappen(steps){
     this.stappen = steps;
-    console.log('set current stappen, nieuwe', steps);
     this.store.rootStore.uiStore.setSteps(steps);
     this.updateCurrentStappen();
   }

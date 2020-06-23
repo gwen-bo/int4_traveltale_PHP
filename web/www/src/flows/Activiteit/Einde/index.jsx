@@ -93,11 +93,15 @@ const Einde = () => {
      />
     </div>
     </div>
+    
+    <div className={styles.foto}>
+      <img className={styles.eind_img} src={`/assets/img/activiteiten/${activiteit.header_img}/eindFoto.png`} alt="foto van het einde je activiteit"/>
+      </div>
 
    <div className={styles.oma_ballon}>
    <div className={styles.oma_img}>
       < LottieUitleg props="foto" />
-     </div>
+    </div>
      <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.einde.titel}</p>
         <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.einde.tekst}</p>

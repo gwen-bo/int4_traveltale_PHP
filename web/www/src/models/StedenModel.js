@@ -52,9 +52,7 @@ class StedenModel {
     }
     this.stappen = (stappen !== undefined) ? stappen : this.stappen;
     if (activiteiten !== undefined) {
-      console.log('activiteiten zijn niet undefined');
       activiteiten.forEach(activiteit => {
-        console.log('activiteit update from server');
         this.store.rootStore.activiteitenStore.updateActiviteitenFromServer(activiteit)
       });
     }

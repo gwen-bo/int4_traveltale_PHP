@@ -26,14 +26,12 @@ class LandenStore {
 
   loadStedenVanLand = async (id) => {
     const jsonSouvenirs = await this.landenService.getById(id, 'steden');
-    console.log(jsonSouvenirs)
     this.updateLandenFromServer({ id, steden: jsonSouvenirs });
     return this.getLandById(id);
   };
 
   loadSouvenirs = async (id) => {
     const jsonSouvenirs = await this.landenService.getById(id, 'souvenirs');
-    console.log(jsonSouvenirs)
     this.updateLandenFromServer({ id, souvenirs: jsonSouvenirs });
     return this.getLandById(id);
   };
@@ -62,7 +60,6 @@ class LandenStore {
         const number = Number(id);
         return this.landen.find(land => land.id === number);
     }
-
 
     setSelectedBestemming(land){
         this.selectedLand = land;

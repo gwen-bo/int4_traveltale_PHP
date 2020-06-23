@@ -132,3 +132,15 @@
     position: absolute;
     bottom: 0;
 }
+
+.foto {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    z-index: 5;
+}
+
+.eind_img {
+    width: 30vw; 
+    max-width: 40rem;
+}

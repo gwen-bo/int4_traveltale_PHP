@@ -68,7 +68,6 @@ class UiStore {
   setCurrentReis(id) {
     const bestemming = this.rootStore.landenStore.landen.find(land => land.id === id);
     this.currentReis = bestemming;
-    console.log(this.currentUser);
     this.currentUser.setCurrentReis_id(id)
   }
 

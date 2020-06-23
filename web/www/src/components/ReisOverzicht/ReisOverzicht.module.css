@@ -6,6 +6,7 @@
     .stad_background {
         max-width: 60vw;
     }
+
 }
 
 .nav_wrapper {
@@ -27,7 +28,7 @@
     height: 1.5rem;
     width: 320vw;
     position: absolute;
-    bottom: 12rem;
+    bottom: 18%;
     border-radius: 2rem;
     margin-left: 15rem;
     margin-top: -5rem;

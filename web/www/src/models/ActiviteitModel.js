@@ -38,8 +38,7 @@ class ActiviteitModel {
   }
 
   resolveSouvenir(id){
-    const souvenir = this.store.rootStore.souvenirsStore.getSouvenirById(id);
-    console.log(souvenir);
+    return this.store.rootStore.souvenirsStore.getSouvenirById(id);
   }
 
   updateFromJson = ({
