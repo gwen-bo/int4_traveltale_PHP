@@ -25,62 +25,72 @@
     border: solid .3rem #FFBD3A;    
 }
 
-    .input_bewegen{
-        opacity: 0;
-    }
+.input_bewegen{
+    opacity: 0;
+}
 
-    .title {
-        font-size: 5rem;
-        width: 90vw;
-        text-align: center;
-        font-weight: 500;
-    }
-    
-    .bewegen_position {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 90vw; 
-    }
-    
-    .bewegen_label {
-        line-height: 1.2;
-        font-size: 2rem;
+.title {
+    font-size: 5rem;
+    width: 90vw;
+    text-align: center;
+    font-weight: 500;
+}
 
-    }
-    
-    .bewegen_img {
-        margin-top: -7rem;
-        margin-bottom: 1rem;
-    }
-    
-    .button_wrapper{
+.bewegen_position {
     display: flex;
-    flex-flow: row;
-    max-width: 76rem;
-    width: 80vw;
-    justify-content: space-between;
-    margin: 0 auto;
-    }
-    
-    .button{
-    background-color: black;
-    color: white;
-    font-size: 2.4rem;
-    padding: 1rem 7rem;
-    border-radius: 5rem;
-    text-align: center;
-    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
-    }
-    
-    .button_sec {
-    padding: 1rem 7.5rem;
-    background-color: #FFF1E3;
-    color: black;
-    font-size: 2.4rem;
-    border: .3rem solid black;
-    border-radius: 5rem;
-    text-align: center;
-    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25)
-    }
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90vw; 
+}
+
+.bewegen_label {
+    line-height: 1.2;
+    font-size: 2rem;
+
+}
+
+.bewegen_img {
+    margin-top: -7rem;
+    margin-bottom: 1rem;
+}
+
+.button_wrapper{
+display: flex;
+flex-flow: row;
+max-width: 76rem;
+width: 80vw;
+justify-content: space-between;
+margin: 0 auto;
+}
+
+.button{
+background-color: black;
+color: white;
+font-size: 2.4rem;
+padding: 1rem 7rem;
+border-radius: 5rem;
+text-align: center;
+box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
+}
+
+.button_sec {
+padding: 1rem 7.5rem;
+background-color: #FFF1E3;
+color: black;
+font-size: 2.4rem;
+border: .3rem solid black;
+border-radius: 5rem;
+text-align: center;
+box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25)
+}               
+
+.button_sec:active{
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
+}
+
+.button:active {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
+}

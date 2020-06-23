@@ -14,10 +14,14 @@
 }
 
 .profiel_name_input {
-    border: solid .3rem #FFBD3A;
     border-radius: 1rem;
     padding: .5rem 1rem;
     font-size: 3rem;
+    border: solid .3rem white;
+}
+
+.profiel_name_input:focus{
+    border: solid .3rem #FFBD3A;
 }
 
 .bewegen_position {
@@ -31,6 +35,10 @@
 .bewegen_position input {
     opacity: 0;
 } 
+
+.input_bewegen:checked + .bewegen_text {
+    border: solid .3rem #FFBD3A;    
+}
 
 .bewegen_text {
     background-color: white;

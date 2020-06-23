@@ -102,9 +102,16 @@ const Einde = () => {
         <p className={styles.oma_title}>{activiteit.einde.titel}</p>
         <p className={styles.oma_text}>{activiteit.einde.tekst}</p>
 
-        <Link onClick={e => handleEinde(activiteit.id)} className={styles.button} to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`}>
-        {activiteit.einde.button}
-        </Link>
+      {activiteit.souvenir_id === null ? 
+      <Link onClick={e => handleEinde(activiteit.id)} className={styles.button} to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`}>
+      {activiteit.einde.button}
+      </Link>
+      : 
+      <Link onClick={e => handleEinde(activiteit.id)} className={styles.button} to={`${ROUTES.souvenir.to}${activiteit.souvenir_id}`}>
+      {activiteit.einde.button}
+      </Link>
+      }
+        
       </div>
    </div>
   </>)}

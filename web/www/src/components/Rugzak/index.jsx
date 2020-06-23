@@ -7,9 +7,10 @@ import Terug from "../buttons/Terug";
 import { useObserver } from "mobx-react-lite";
 import Empty from "../Empty";
 import Help from "../buttons/Help";
+import HelpRugzak from "../../flows/HelpScreens/HelpRugzak";
 
 const Rugzak = () => {
-  const {uiStore, authStore, landenStore} = useStores();
+  const {uiStore, authStore } = useStores();
   const STATE_LOADING = "loading";
   const STATE_FULLY_LOADED = "FullyLoaded";
   const [user, setUser] = useState(uiStore.currentUser);
@@ -20,14 +21,16 @@ const Rugzak = () => {
     const loadData = async () => {
       if(uiStore.currentUser === undefined){
       await authStore.fetchData();
+      authStore.loadCheckedForUser(uiStore.currentUser)
       setUser(uiStore.currentUser);
       setFontSize(uiStore.currentUser.fontsize);
       setState(STATE_FULLY_LOADED);
     }else {
+      await authStore.loadCheckedForUser(uiStore.currentUser)
       setState(STATE_FULLY_LOADED);
     }}
     loadData();
-  }, []);
+  }, [setState, setUser, authStore]);
 
   return useObserver(() => {
     if (state === STATE_LOADING) {
@@ -35,6 +38,8 @@ const Rugzak = () => {
     }
     return(
    <>
+      {uiStore.help === true ? <HelpRugzak /> : "" }
+
       <Terug path={`${ROUTES.reisoverzicht.to}${uiStore.currentReis.id}`} />
       <Help />
       <article className={styles.rugzak_pos}>
@@ -52,17 +57,32 @@ const Rugzak = () => {
 
         
         <div className={styles.rugzak_items_pos}>
-              {uiStore.currentReis.souvenirs.map(souvenir => {
-                return (
-                    <div key={souvenir.stad_naam} className={styles.rugzak_items}>
+              {uiStore.currentReis.souvenirs.map(souvenir => 
+                {const isChecked = uiStore.currentUser.checkifCheckedSouvenir(souvenir.souvenir_id); 
+
+                  if(isChecked === undefined){
+                    return(
+                  <div key={souvenir.stad_naam} className={styles.rugzak_items}>
                     <p className={styles.rugzak_plaats}>{souvenir.stad_naam}</p>
                     <div className={styles.rugzak_item_bol}>
-                      <img className={styles.rugzak_item} src={`/assets/img/steden/${souvenir.stad_naam}/${souvenir.souvenir_img}.svg`} alt={`Dit is de ${souvenir.souvenir_naam}, dit heb je verdient in ${souvenir.stad_naam}`}/>
+                      <img className={styles.rugzak_item} src={`/assets/img/souvenirs/unlocked.svg`} alt={`Dit is de ${souvenir.souvenir_naam}, dit heb je verdient in ${souvenir.stad_naam}`}/>
                     </div>
-                    <p className={styles.rugzak_item_naam}>{souvenir.souvenir_naam}</p>
+                    <p className={styles.rugzak_item_naam}>???</p>
                   </div>
-                    )
-              })}
+                )
+                  }else {
+                    return(
+                    <div key={souvenir.stad_naam} className={styles.rugzak_items}>
+                      <p className={styles.rugzak_plaats}>{souvenir.stad_naam}</p>
+                      <div className={styles.rugzak_item_bol}>
+                        <img className={styles.rugzak_item} src={`/assets/img/steden/${souvenir.stad_naam}/${souvenir.souvenir_img}.svg`} alt={`Dit is de ${souvenir.souvenir_naam}, dit heb je verdient in ${souvenir.stad_naam}`}/>
+                      </div>
+                      <p className={styles.rugzak_item_naam}>{souvenir.souvenir_naam}</p>
+                    </div>
+                  )
+                  }
+                }
+              )}
         </div>
       </article>
    </>  

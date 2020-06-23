@@ -13,6 +13,7 @@ class ProfileModel {
 
     this.fontsize = "medium";
     this.reisbegeleider = "oma";
+    this.beweeg_niveau = "fly"
     this.currentReis_id = undefined;
     this.checkedSteden = [];
     this.checkedLanden = [];
@@ -45,7 +46,8 @@ class ProfileModel {
     fontsize = undefined,
     stappen = undefined,
     reisbegeleider = undefined, 
-    currentReis_id = undefined
+    currentReis_id = undefined,
+    beweeg_niveau = undefined, 
   }) => {
     this.firstName = (firstName !== undefined) ? firstName : this.firstName;
     this.fullName = (fullName !== undefined) ? fullName : this.fullName;
@@ -56,6 +58,7 @@ class ProfileModel {
     this.lifetime_stappen = (lifetime_stappen !== undefined) ? lifetime_stappen : this.lifetime_stappen;
     this.fontsize = (fontsize !== undefined) ? fontsize : this.fontsize;
     this.reisbegeleider = (reisbegeleider !== undefined) ? reisbegeleider : this.reisbegeleider;
+    this.beweeg_niveau = (beweeg_niveau !== undefined) ? beweeg_niveau : this.beweeg_niveau;
     this.stappen = (stappen !== undefined) ? stappen : this.stappen;
     this.currentReis_id = (currentReis_id !== undefined) ? currentReis_id : this.currentReis_id;
   };
@@ -98,6 +101,14 @@ class ProfileModel {
     this.store.setLifetimeStappen(this.asJson)
   }
 
+  // updateFontSize = async () => {
+  //   this.store.updateFontSize(this.asJson)
+  // }
+
+  // updateFontSize = async () => {
+  //   this.store.updateFontSize(this.asJson)
+  // }
+
   setCurrentReis_id(id){
     this.currentReis_id = id;
     this.updateReis();
@@ -105,7 +116,18 @@ class ProfileModel {
 
   setFontSize(fontsize){
     this.fontsize = fontsize;
-    // this.updateFontsize();
+    this.update();
+  }
+
+  setBeweegNiveau(niveau){
+    this.beweeg_niveau = niveau;
+    this.update();
+  }
+
+  setRegistratie({fontsize, niveau}){
+    this.beweeg_niveau = niveau;
+    this.fontsize = fontsize;
+    this.update();
   }
 
   setCurrentStappen(steps){
@@ -131,6 +153,8 @@ class ProfileModel {
       fontSize: this.fontsize, 
       reisbegeleider: this.reisbegeleider, 
       currentReis_id: this.currentReis_id, 
+      beweeg_niveau: this.beweeg_niveau, 
+
     };
   }
 

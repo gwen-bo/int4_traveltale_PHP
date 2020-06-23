@@ -13,7 +13,7 @@ const Wandelplezier = () => {
     <>
 
     <div className={styles.nav_wrapper}>
-      <button onClick={history.goBack()} className={styles.nav_li}>
+      <button onClick={() => history.goBack()} className={styles.nav_li}>
           <div className={`${styles.nav_button} ${styles.terug_button}`}>
           </div>
           <p className={styles.nav_tekst}>Terug</p>
@@ -35,7 +35,7 @@ const Wandelplezier = () => {
               <p>Wanneer je terug komt, zullen wij jouw nieuw stappen aantal ophalen zodat je direct weer verder kan gaan! </p>
               <div className={styles.button_wrapper}>
 
-              <button onClick={() => {history.goBack();}} className={styles.butotn_terug}>Terug</button>
+              <button onClick={() => {history.goBack();}} className={styles.button_terug}>Terug</button>
               <button className={styles.button_stappen}>Stappen inzetten <img className={styles.button_stappen_icon} src={'/assets/img/stappenIcon.svg'} alt="stappen icon"/> </button>
              
               

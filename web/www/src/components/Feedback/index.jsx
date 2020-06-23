@@ -19,7 +19,7 @@ const Feedback = () => {
         <div className={styles.section_header}>
         <h1 className={styles.title}>{uiStore.title}</h1>
         <p className={styles.uitleg}>{uiStore.uitleg}</p>
-    </div>
+        </div>
     <LottieFeedback
           props={uiStore.animation}
         />

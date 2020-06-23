@@ -8,7 +8,7 @@ import Help from "../../../components/buttons/Help";
 import { useObserver } from "mobx-react-lite";
 
 const Bewegen = () => {
-  const {uiStore} = useStores();
+  const {authStore} = useStores();
   const history = useHistory();
   
 return useObserver(() =>
@@ -20,7 +20,7 @@ return useObserver(() =>
           <p className={styles.title}>Selecteer wat voor jou van toepassing is</p>
           <form action="" className={styles.bewegen_position}>
                 <label className={styles.thema_radio} htmlFor={'kroes'}>
-                <input className={styles.input_bewegen} type="radio" checked={uiStore.beweegNiveau === 'kroes'} onChange={e => uiStore.setBewegen('kroes')} name='bewegen' id={'kroes'}></input>
+                <input className={styles.input_bewegen} type="radio" checked={authStore.registratieBeweeg === 'kroes'} onChange={e => authStore.setBewegenRegistratie('kroes')} name='bewegen' id={'kroes'}></input>
                       <div className={`${styles.bewegen_text} ${styles.box}`}>
                             <img className={styles.bewegen_img} src={'/assets/img/scooter_bomma.svg'} alt=""/>
                         <p className={styles.bewegen_label}>Ik voel kwaaltjes als ik wandel</p>
@@ -28,7 +28,7 @@ return useObserver(() =>
                   </label>
 
         <label className={styles.thema_radio} htmlFor={'skate'}>
-        <input className={styles.input_bewegen} type="radio" checked={uiStore.beweegNiveau === 'skate'} onChange={e => uiStore.setBewegen('skate')} name='bewegen' id={'skate'}></input>
+        <input className={styles.input_bewegen} type="radio" checked={authStore.registratieBeweeg === 'skate'} onChange={e => authStore.setBewegenRegistratie('skate')} name='bewegen' id={'skate'}></input>
               <div className={`${styles.bewegen_text} ${styles.box}`}>
                     <img className={styles.bewegen_img} src={'/assets/img/skate_bomma.svg'} alt=""/>
                     <p className={styles.bewegen_label}>Na een tijdje krijg ik het lastig</p>
@@ -36,7 +36,7 @@ return useObserver(() =>
                     </label>
 
         <label className={styles.thema_radio} htmlFor={'fly'}>
-        <input className={styles.input_bewegen} type="radio" checked={uiStore.beweegNiveau === 'fly'} onChange={e => uiStore.setBewegen('fly')} name='bewegen' id={'fly'}></input>
+        <input className={styles.input_bewegen} type="radio" checked={authStore.registratieBeweeg === 'fly'} onChange={e => authStore.setBewegenRegistratie('fly')} name='bewegen' id={'fly'}></input>
               <div className={`${styles.bewegen_text} ${styles.big}`}>
                     <img className={styles.bewegen_img} src={'/assets/img/fly_bomma.svg'} alt=""/>
                     <p className={styles.bewegen_label}>Ik ben nog heel goed te been </p>

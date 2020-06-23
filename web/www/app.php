@@ -17,6 +17,8 @@ require __DIR__ . '/dao/LandenDAO.php';
 require __DIR__ . '/dao/StedenDAO.php';
 require __DIR__ . '/dao/ActiviteitenDAO.php';
 require __DIR__ . '/dao/UserDAO.php';
+require __DIR__ . '/dao/SouvenirsDAO.php';
+
 
 /**
  * Instantiate App
@@ -87,6 +89,33 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
     $routeGroup->get('/{id}/souvenirs', function (Request $request, Response $response, $args) {
       $landenDAO = new LandenDAO();
       $data = $landenDAO->selectSouvenirsForLand($args['id']);
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+    });
+  });
+
+  // SOUVENIRS OPHALEN
+  $routeGroup->group('/souvenirs', function (RouteCollectorProxy $routeGroup) {
+    $routeGroup->get('', function (Request $request, Response $response) {
+      $souvenirsDAO = new SouvenirsDAO();
+      $data = $souvenirsDAO->selectAll();
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(201);
+    });
+    
+    $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+      $souvenirsDAO = new SouvenirsDAO();
+      $data = $souvenirsDAO->selectById($args['id']);
+      if (empty($data)) {
+        return $response
+              ->withStatus(404);
+      }
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
@@ -184,6 +213,36 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
    $routeGroup->get('/{id}/load/stad', function (Request $request, Response $response, $args) {
     $userDAO = new UserDAO();
     $data = $userDAO->selectCheckedStad($args['id']);
+    $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+  });
+
+  $routeGroup->get('/{id}/load/steden', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $data = $userDAO->getCheckedSteden($args['id']);
+    $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+  });
+
+  $routeGroup->get('/{id}/load/activiteiten', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $data = $userDAO->getCheckedActiviteiten($args['id']);
+    $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withHeader('Access-Control-Allow-Origin', '*')
+              ->withStatus(200);
+  });
+
+  $routeGroup->get('/{id}/load/souvenirs', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $data = $userDAO->getCheckedSouvenirs($args['id']);
     $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
@@ -304,6 +363,23 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withStatus(422);
     }
     $data = $userDAO->insertCheckedActiviteit($input);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+  $routeGroup->post('/{id}/checked/souvenirs', function (Request $request, Response $response, $args) {
+    $userDAO = new UserDAO();
+    $input = $request->getParsedBody();
+    $errors = $userDAO->getValidationErrorsCheckedSouvenir($input);
+    if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+    }
+    $data = $userDAO->insertCheckedSouvenir($input);
     $response->getBody()->write(json_encode($data));
     return $response
             ->withHeader('Content-Type', 'application/json')

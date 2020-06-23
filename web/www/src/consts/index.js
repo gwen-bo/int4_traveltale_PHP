@@ -40,10 +40,9 @@ const ROUTES = {
   optie1: { path: "/activiteit/optie1/:id", to: "/activiteit/optie1/" },
   optie2: { path: "/activiteit/optie2/:id", to: "/activiteit/optie2/" },
   einde: { path: "/activiteit/einde/:id", to: "/activiteit/einde/" },
-
+  souvenir: { path: "/activiteit/souvenir/:id", to: "/activiteit/souvenir/" },
 
   aanbodDetail: { path: "/reisaanbod/aanboddetail/:id", to: "/reisaanbod/aanboddetail/" },
-  // activiteitDetail: { path: "/activiteit/:id", to: "/activiteit/" },
   stadDetail: { path: "/stad/:id", to: "/stad/" }
 
 };

@@ -6,16 +6,17 @@ import AuthStore from "./AuthStore"
 
 import { decorate  } from "mobx";
 import StedenStore from "./StedenStore.";
+import SouvenirsStore from "./SouvenirsStore";
 
 class RootStore {
   constructor() {
-    this.dataStore = new DataStore(this);
+    // this.dataStore = new DataStore(this);
     this.activiteitenStore = new ActiviteitenStore(this);
     this.landenStore = new LandenStore(this);
     this.stedenStore = new StedenStore(this);
-
+    this.souvenirsStore = new SouvenirsStore(this);
+    
     this.authStore = new AuthStore(this);
-
     this.uiStore = new UiStore(this);
   }
 

@@ -8,7 +8,7 @@ import Help from "../../../components/buttons/Help";
 import { useObserver } from "mobx-react-lite";
 
 const FontSize = () => {
-  const {uiStore} = useStores();
+  const {authStore, uiStore} = useStores();
 
   const history = useHistory();
 
@@ -29,7 +29,7 @@ const FontSize = () => {
       <form action="" className={styles.fontsize_position}>
       <div className={styles.input_wrapper}>
                   <label className={styles.thema_radio} htmlFor="smal">
-                    <input className={styles.input_fontsize} type="radio" checked={uiStore.fontSize === 'smal'} onChange={e => uiStore.setSize('smal')} name='font' id="smal" ></input>
+                    <input className={styles.input_fontsize} type="radio" checked={authStore.registratieFontSize === 'smal'} onChange={e => authStore.setFontsizeRegistratie('smal')} name='font' id="smal" ></input>
                     <div className={`${styles.fontsize_text} ${styles.small}`} key={'smal'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken.</p>  
@@ -38,7 +38,7 @@ const FontSize = () => {
                 </div>
                 <div className={styles.input_wrapper}>
                   <label className={styles.thema_radio} htmlFor="medium">
-                    <input className={styles.input_fontsize} type="radio" checked={uiStore.fontSize === 'medium'} onChange={e => uiStore.setSize('medium')} name='font' id="medium"></input>
+                    <input className={styles.input_fontsize} type="radio" checked={authStore.registratieFontSize === 'medium'} onChange={e => authStore.setFontsizeRegistratie('medium')} name='font' id="medium"></input>
                     <div className={`${styles.fontsize_text} ${styles.medium}`} key={'medium'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken.</p>  
@@ -47,9 +47,9 @@ const FontSize = () => {
                 </div>
                 
                 <div className={styles.input_wrapper}>
-                  <label className={styles.thema_radio} htmlFor="big">
-                    <input className={styles.input_fontsize} type="radio" checked={uiStore.fontSize === 'big'} onChange={e => uiStore.setSize('big')} name='font' id="big"></input>
-                      <div className={`${styles.fontsize_text} ${styles.big}`} key={'big'}>
+                  <label className={styles.thema_radio} htmlFor="large">
+                    <input className={styles.input_fontsize} type="radio" checked={authStore.registratieFontSize === 'large'} onChange={e => authStore.setFontsizeRegistratie('large')} name='font' id="large"></input>
+                      <div className={`${styles.fontsize_text} ${styles.big}`} key={'large'}>
                       <p>Welkom bij Travel Tale!</p>
                       <p>Laten we samen verschillende landen ontdekken. 
                       </p>    

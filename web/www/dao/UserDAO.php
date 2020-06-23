@@ -10,9 +10,27 @@ class UserDAO extends DAO {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function selectCheckedStad($id) {
+  public function getCheckedSteden($id) {
     $sql = "SELECT * FROM `users_steden`
     WHERE `users_steden`.`user_id` = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getCheckedActiviteiten($id) {
+    $sql = "SELECT * FROM `users_activiteiten`
+    WHERE `users_activiteiten`.`user_id` = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getCheckedSouvenirs($id) {
+    $sql = "SELECT * FROM `users_souvenirs`
+    WHERE `users_souvenirs`.`user_id` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();
@@ -29,7 +47,7 @@ class UserDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `users` (`id`, `firstName`, `leeftijd`, `fullName`, `fontsize`,`reisbegeleider`) VALUES (:id, :firstName, :age, :fullName, :fontSize, :reisbegeleider)";
+      $sql = "INSERT INTO `users` (`id`, `firstName`, `leeftijd`, `fullName`, `fontsize`,`reisbegeleider`, `beweeg_niveau`) VALUES (:id, :firstName, :age, :fullName, :fontSize, :reisbegeleider, :beweeg_niveau)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':firstName', $data['firstName']);
@@ -37,6 +55,7 @@ class UserDAO extends DAO {
       $stmt->bindValue(':fullName', $data['fullName']);
       $stmt->bindValue(':fontSize', $data['fontSize']);
       $stmt->bindValue(':reisbegeleider', $data['reisbegeleider']);
+      $stmt->bindValue(':beweeg_niveau', $data['beweeg_niveau']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -84,6 +103,20 @@ class UserDAO extends DAO {
       }
     }
     return $false;
+  }
+
+  public function insertCheckedSouvenir($data) {
+    $errors = $this->getValidationErrorsCheckedSouvenir($data);
+    if(empty($errors)) {
+      $sql = "INSERT INTO `users_souvenirs` (`user_id`, `souvenir_id`) VALUES (:user_id, :souvenir_id)";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindValue(':user_id', $data['user_id']);
+      $stmt->bindValue(':souvenir_id', $data['souvenir_id']);
+      if($stmt->execute()) {
+        return $this->selectById($data['user_id']);
+      }
+    }
+    return false;
   }
 
   public function updateCurrentReis($data) {
@@ -145,15 +178,18 @@ class UserDAO extends DAO {
   public function update($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "UPDATE `users` SET `firstName` = :firstName, `fullName`, =:fullName, `stappen` = :stappen, `leeftijd`=:leeftijd, `fontsize` =:fontsize, `reisbegeleider` =:reisbegeleider, `currentReis_id` =:currentReis_id WHERE `id` = :id";      
+      $sql = "UPDATE `users` 
+      SET `firstName` = :firstName, `fullName` =:fullName, `stappen` = :stappen, `leeftijd`=:age, `fontsize` =:fontsize, `reisbegeleider` =:reisbegeleider, `currentReis_id` =:currentReis_id, `beweeg_niveau` =:beweeg_niveau WHERE `id` = :id";      
+      $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':firstName', $data['firstName']);
       $stmt->bindValue(':fullName', $data['fullName']);
       $stmt->bindValue(':stappen', $data['stappen']);
       $stmt->bindValue(':fontsize', $data['fontSize']);
-      $stmt->bindValue(':leeftijd', $data['leeftijd']);
+      $stmt->bindValue(':age', $data['age']);
       $stmt->bindValue(':reisbegeleider', $data['reisbegeleider']);
       $stmt->bindValue(':currentReis_id', $data['currentReis_id']);
+      $stmt->bindValue(':beweeg_niveau', $data['beweeg_niveau']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -175,9 +211,12 @@ class UserDAO extends DAO {
     if(!isset($data['age'])) {
       $errors['age'] = "Please fill in age";
     }
-    // if(!isset($data['currentReis_id'])) {
-    //   $errors['currentReis_id'] = "Please fill in currentReis_id";
-    // }
+    if(!isset($data['beweeg_niveau'])) {
+      $errors['beweeg_niveau'] = "Please fill in het beweeg niveau";
+    }
+    if(!isset($data['fontSize'])) {
+      $errors['fontSize'] = "Please fill in de fontsize";
+    }
     return $errors;
   }
 
@@ -234,6 +273,17 @@ class UserDAO extends DAO {
     }
     if(!isset($data['activiteit_id'])) {
       $errors['activiteit_id'] = "Please fill in a activiteit_id";
+    }
+    return $errors;
+  }
+
+  public function getValidationErrorsCheckedSouvenir($data) {
+    $errors = array();
+    if(!isset($data['user_id'])) {
+      $errors['user_id'] = "Please fill in a user_id";
+    }
+    if(!isset($data['souvenir_id'])) {
+      $errors['souvenir_id'] = "Please fill in a souvenir_id";
     }
     return $errors;
   }

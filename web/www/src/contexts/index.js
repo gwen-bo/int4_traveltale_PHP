@@ -7,13 +7,13 @@ const loadAllData = async () => {
     console.log('alle loads worden gestart');
     await store.landenStore.loadAllLanden();
     await store.stedenStore.loadAllSteden();
-    store.activiteitenStore.loadAllActiviteiten();
+    await store.activiteitenStore.loadAllActiviteiten();
+    store.souvenirsStore.loadAllSouvenirs();
     store.uiStore.setBegroeting();
 };
   
 loadAllData();
 
 window.store = store;
-
 
 export const storesContext = createContext(store);

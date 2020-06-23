@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react-lite";
 import Navigatie from "../../../components/Navigatie";
 import styles from "./Instellingen.module.css";
@@ -6,11 +6,36 @@ import Profiel from "../Profiel";
 import Weergave from "../Weergave";
 import Fitbit from "../Fitbit";
 import Help from "../../../components/buttons/Help";
+import { useStores } from "../../../hooks";
+import Empty from "../../../components/Empty";
 
 const Instellingen = () => {
   const [view, setView] = useState("profiel");
+  const {uiStore, landenStore, authStore} = useStores();
 
-  return useObserver(() => (
+  const STATE_LOADING = "loading";
+  const STATE_FULLY_LOADED = "fullyLoaded";
+
+  const [user, setUser] = useState(undefined);
+  const [state, setState] = useState(user ? STATE_FULLY_LOADED : STATE_LOADING);
+  
+  useEffect(() => {
+    const loadUser = async () => {
+      if(uiStore.currentUser === undefined){
+        await authStore.fetchData();
+        setState(STATE_FULLY_LOADED)
+      }else {
+        setState(STATE_FULLY_LOADED)
+      }
+    };
+    loadUser();
+  }, [ uiStore, setState]); 
+
+
+  return useObserver(() => {
+  if (state === STATE_LOADING) {
+    return <Empty message={"Even aan het laden.."} />;
+  }return (
     <>
       <Navigatie />
       <Help />
@@ -81,7 +106,7 @@ const Instellingen = () => {
         </div>
       </div>
     </>
-  ));
+  )});
 };
 
 export default Instellingen;

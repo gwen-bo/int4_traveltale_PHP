@@ -9,7 +9,7 @@ const HelpOverzicht = () => {
         <img className={styles.verder} src="/assets/img/help_overzicht/verder.svg" alt=""/>
         <img className={styles.stappen} src="/assets/img/help_overzicht/stappen.svg" alt=""/>
 
-        <img className={styles.info} src="/assets/img/help_overzicht/info.svg" alt=""/>
+        {/* <img className={styles.info} src="/assets/img/help_overzicht/info.svg" alt=""/> */}
         <img className={styles.help} src="/assets/img/help_overzicht/help.svg" alt=""/>
 
     </section>

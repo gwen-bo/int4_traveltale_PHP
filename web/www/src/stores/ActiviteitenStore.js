@@ -10,7 +10,6 @@ class ActiviteitenStore {
     this.activiteiten = [];
     this.rootStore = rootStore;
     this.activiteitenService = new RestService("activiteiten");
-
   }
 
   loadAllActiviteiten = async () => {
@@ -18,7 +17,6 @@ class ActiviteitenStore {
     console.log('activiteiten store', jsonActiviteiten)
     jsonActiviteiten.forEach(json => this.updateActiviteitenFromServer(json));
   };
-
 
   updateActiviteitenFromServer(json) {
     let activiteit = this.activiteiten.find(activiteit => activiteit.id === json.id);

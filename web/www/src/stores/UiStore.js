@@ -41,10 +41,12 @@ class UiStore {
 
   setBewegen(niveau) {
     this.beweegNiveau = niveau;
+    this.currentUser.setBeweegNiveau(niveau);
   }
 
   setSize(value) {
     this.fontSize = value;
+    this.currentUser.setFontSize(value);
   }
 
   setBegeleider(begeleider){

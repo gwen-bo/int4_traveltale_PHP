@@ -1,16 +1,12 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {ROUTES} from "../../consts";
-import { useStores } from "../../hooks";
 import styles from "./NotFound.module.css";
 import LottieFeedback from "../Feedback/LottieFeedback";
 import Help from "../buttons/Help";
 
 const NotFound = () => {
  
-  const history = useHistory();
-  const {uiStore} = useStores();
-
   return (
     <>
     <img src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img>

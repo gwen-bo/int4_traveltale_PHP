@@ -1,44 +1,42 @@
-import {decorate, configure, observable, action} from 'mobx';
-import Profile from '../models/ProfileModel';
+// import {decorate, configure } from 'mobx';
+// import Profile from '../models/ProfileModel';
 
-configure({enforceActions: 'observed'});
+// configure({enforceActions: 'observed'});
 
-class DataStore {
+// class DataStore {
 
-  constructor(rootStore) {
-    this.rootStore = rootStore;
-    this.sizes = {font: "small"};
-    this.bewegen = {beweeg: ''};   
-    this.profiles = []
-  }
+//   constructor(rootStore) {
+//     this.rootStore = rootStore;
+//     this.profiles = []
+//   }
 
-  addProfile(profile){
-    this.profiles.push(profile);
-  }
+//   addProfile(profile){
+//     this.profiles.push(profile);
+//   }
 
-  updateProfileFromServer(json) {
-    let profile = this.profiles.find(profile => profile.id === json.encodedId);
-    if (!profile) {
-      profile = new Profile({
-        name: json.firstName, 
-        fullName: json.fullName, 
-        age: json.age, 
-        id: json.encodedId,
-        store: this
-      });
-    }
-    if (json.isDeleted) {
-      this.profiles.remove(profile);
-    } else {
-      profile.updateFromJson(json, this.rootStore);
-    }
-  }
+//   updateProfileFromServer(json) {
+//     let profile = this.profiles.find(profile => profile.id === json.encodedId);
+//     if (!profile) {
+//       profile = new Profile({
+//         name: json.firstName, 
+//         fullName: json.fullName, 
+//         age: json.age, 
+//         id: json.encodedId,
+//         store: this
+//       });
+//     }
+//     if (json.isDeleted) {
+//       this.profiles.remove(profile);
+//     } else {
+//       profile.updateFromJson(json, this.rootStore);
+//     }
+//   }
 
-}
+// }
 
-decorate(DataStore, {
-});
+// decorate(DataStore, {
+// });
 
-export default DataStore;
+// export default DataStore;
 
 

@@ -132,13 +132,6 @@
     padding-right: 6rem;
 }
 
-/* .progressbar {
-    background-color: black;
-    height: 2rem;
-    position: absolute;
-    bottom: 2rem;
-} */
-
 .wrapper_bottom {
     display: flex; 
     justify-content: flex-start;
@@ -157,11 +150,17 @@
     background-color: black;
     color: white;
     font-size: 2.4rem;
-    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);    
+    box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25); 
+    border: .3rem solid black; 
     padding: 1rem 3rem;
     border-radius: 5rem;
     text-align: center;
     width: 30rem;
+}
+
+.button:active {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
 }
 
 .wrapper_buttons {

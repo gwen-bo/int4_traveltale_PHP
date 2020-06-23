@@ -64,8 +64,12 @@ ol {
     border: .3rem solid black;
     padding: 1rem 3rem;
     border-radius: 5rem;
-    text-align: center;
-    
+    text-align: center;  
+}
+
+.button:active {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
 }
 
 .button_sec {
@@ -80,6 +84,11 @@ ol {
     text-align: center;
     display: flex;
     align-items: center;
+}
+
+.button_sec:active{
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
 }
 
 .button_uitleg {

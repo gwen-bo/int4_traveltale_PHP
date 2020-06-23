@@ -12,7 +12,9 @@ class AuthStore {
     this.users_database = [];
     this.users = [];
     this.fitbit_user = undefined;
-    this.fitbit_steps = undefined
+    this.fitbit_steps = undefined;
+    this.registratieBeweeg = "fly";
+    this.registratieFontSize = "medium"
     this.usersService = new RestService("users");
   }
   
@@ -36,6 +38,16 @@ class AuthStore {
     this.findUser();
   }
 
+  setBewegenRegistratie(beweegniveau){
+    this.registratieBeweeg = beweegniveau
+    sessionStorage.setItem('beweegniveau', beweegniveau);
+  }
+
+  setFontsizeRegistratie(size){
+    this.registratieFontSize = size
+    sessionStorage.setItem('fontsize', size);
+  }
+
   findUser(){
     const currentUser = this.users_database.find(user => user.id === this.user_id);
     if(currentUser === undefined){
@@ -44,6 +56,7 @@ class AuthStore {
       user.create();
       this.addUser(user);
       this.rootStore.uiStore.setCurrentUser(user);
+      user.setRegistratie({fontsize: sessionStorage.getItem('fontsize'), niveau: sessionStorage.getItem('beweegniveau')});
       user.setLifeTimeStappen(this.fitbit_steps);
     }else {
     console.log('user bestaat al, setting currentUser', currentUser)
@@ -106,7 +119,6 @@ class AuthStore {
   };
 
    updateUserFromServer(json) {
-    console.log('user update', json);
     let user = this.users.find(user => user.id === json.encodedId);
     if (!user) {
       user = new ProfileModel({
@@ -128,6 +140,7 @@ class AuthStore {
   };
 
   updateUser = async user => {  
+    console.log('updating user', user)
     const json = await this.usersService.update(user);
     this.updateUserFromServer(json);
   };
@@ -138,15 +151,15 @@ class AuthStore {
   }
 
   insertCheckedStad = async json => {
-    console.log('json bij stad inserten', json);
     const response = await this.usersService.insertChecked(json, "stad");
-    console.log('stad is geinsert', response);
   }
 
   insertCheckedActiviteit = async json => {
-    console.log('json bij activiteit inserten', json);
     const response = await this.usersService.insertChecked(json, "activiteit");
-    console.log('activiteit is geinsert', response);
+  }
+
+  insertCheckedSouvenir = async json => {
+    const response = await this.usersService.insertChecked(json, "souvenirs");
   }
 
   updateCurrentStappen = async user => {
@@ -160,13 +173,28 @@ class AuthStore {
   }
 
   loadCheckedForUser = (user) => {
-    this.loadCheckedStadForUser(user);
+    this.loadCheckedStedenForUser(user);
+    this.loadCheckedActiviteitenForUser(user);
+    this.loadCheckedSouvenirsForUser(user);
     return
   }
 
-  loadCheckedStadForUser = async user => {
-    const jsonCheckedStad = await this.usersService.loadChecked(user.id, 'stad');
+  loadCheckedStedenForUser = async user => {
+    const jsonCheckedStad = await this.usersService.loadChecked(user.id, 'steden');
+    user.checkedSteden = [];
     jsonCheckedStad.forEach(stad => user.checkedSteden.push(stad))
+  }
+
+  loadCheckedActiviteitenForUser = async user => {
+    const jsonCheckedActiviteiten = await this.usersService.loadChecked(user.id, 'activiteiten');
+    user.checkedActiviteiten = [];
+    jsonCheckedActiviteiten.forEach(activiteit => user.checkedActiviteiten.push(activiteit))
+  }
+
+  loadCheckedSouvenirsForUser = async user => {
+    const jsonCheckedSouvenirs = await this.usersService.loadChecked(user.id, 'souvenirs');
+    user.checkedSouvenirs = [];
+    jsonCheckedSouvenirs.forEach(souvenir => user.checkedSouvenirs.push(souvenir))
   }
 
   addUser(user){
@@ -182,6 +210,11 @@ decorate(AuthStore, {
 
   updateUserFromServer: action, 
   addUser: action,
+
+  registratieBeweeg: observable, 
+  setBewegenRegistratie: action, 
+  registratieFontSize: observable, 
+  setFontsizeRegistratie: action, 
 });
 
 export default AuthStore;

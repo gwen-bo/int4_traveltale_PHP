@@ -33,7 +33,7 @@ import Optie2 from './flows/Activiteit/Optie2';
 import Einde from './flows/Activiteit/Einde';
 import Wandelplezier from './components/Wandelplezier';
 import NotFound from './components/NotFound';
-
+import Souvenir from './flows/Activiteit/Souvenir'
 function App() {
 
   return (
@@ -119,6 +119,9 @@ function App() {
       </Route>
       <Route exact path={ROUTES.einde.path}>
           <Einde />
+      </Route>
+      <Route exact path={ROUTES.souvenir.path}>
+          <Souvenir />
       </Route>
 
       <Route path={ROUTES.instellingen}>

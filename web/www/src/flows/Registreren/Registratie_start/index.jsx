@@ -19,7 +19,7 @@ const Registratie = () => {
         <Link className={styles.button_uitleg} to={ROUTES.uitlegFitbit}>Ik heb geen Fitbit</Link>
     </div>
     <LottieFeedback
-          props="zwaaien"
+          props="welkom"
     />
         <div className={styles.button_wrapper}>
             <button onClick={() => {history.goBack();}} className={styles.button_sec} to={ROUTES.home}>Vorige</button>

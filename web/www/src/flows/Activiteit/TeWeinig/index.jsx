@@ -11,6 +11,7 @@ import LottieUitleg from "../LottieUitleg";
 import LottieActiviteit from "../Intro/LottieActiviteit";
 import Empty from "../../../components/Empty";
 import Help from "../../../components/buttons/Help";
+import { Link } from "react-router-dom";
 
 
 const TeWeinig = () => {  
@@ -26,6 +27,7 @@ const TeWeinig = () => {
   
   useEffect (() => {
     const loadActiviteit = async (id) => {
+      if(activiteit === undefined){
       try {
       await stedenStore.loadAllSteden();
       await activiteitenStore.loadAllActiviteiten(); 
@@ -48,10 +50,11 @@ const TeWeinig = () => {
     }catch (error){
       if(error.response && error.response.status === 400){
       }
-    }
-    };
+    }}else {
+      setState(STATE_FULLY_LOADED);
+    }};
     loadActiviteit(id);
-  }, [id, setState, stedenStore, activiteitenStore, setActiviteit, history, uiStore])
+  }, [id, setState, setActiviteit])
   
   return useObserver (() => {
   if (state === STATE_LOADING) {
@@ -88,8 +91,8 @@ const TeWeinig = () => {
         <p className={styles.oma_title}>Ai, je hebt nog niet genoeg stappen gezet.</p>
         <p className={styles.oma_text}>Je komt nog een aantal stappen tekort. Tijd om een wandeling te maken?</p>
         <div className={styles.btton_pos}>
-            <button className={styles.button}>{activiteit.einde.button}</button>
-            <button className={styles.button}>Ik ga wandelen</button>
+            <Link to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`} className={styles.button}>{activiteit.einde.button}</Link>
+            <Link to={ROUTES.wandelplezier} className={styles.button}>Ik ga wandelen</Link>
           </div>
       </div>
    </div>

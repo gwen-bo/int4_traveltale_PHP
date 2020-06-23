@@ -33,6 +33,11 @@
     border: none;
 }
 
+.nav_button:active{
+    font-weight: 600;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .terug_button{
     background-image: url("/assets/img/terug.svg");
 }
@@ -92,7 +97,7 @@
     margin-top: 4rem;
 }
 
-.butotn_terug {
+.button_terug {
     margin-right: 4rem;
     background-color: black;
     color: white;
@@ -102,6 +107,16 @@
     padding: 1rem 3rem;
     border-radius: 5rem;
     text-align: center;
+}
+
+.button_terug:active{
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
+}
+
+.button_stappen:active {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: .3rem solid #FFBD3A;
 }
 
 .button_stappen {

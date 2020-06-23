@@ -8,7 +8,6 @@
 .text {
     font-size: 1.8rem;
     width: 60rem;
-    margin-bottom: 3rem;
 }
 
 .name_input {
@@ -23,6 +22,14 @@
     flex-flow: column-reverse;
 }
 
+.input_fontsize:checked + .fontsize_text{
+    border: solid .3rem #FFBD3A;
+}
+
+.tekstgrootte {
+    margin-top: 2rem;
+}
+
 .form_wrapper {
     display: flex;
     flex-flow: column;
@@ -30,6 +37,9 @@
     align-items: flex-start;
 }
 
+.reisbegeleider_input:checked + .bewegen_text{
+    border: solid .3rem #FFBD3A;
+}
 
 .bewegen_position {
     display: flex;
@@ -45,7 +55,7 @@
 
 .bewegen_text {
     background-color: white;
-    padding: 2rem;
+    padding-left: 2rem;
     border-radius: 2rem;
     width: 19rem;
     height: 15rem;

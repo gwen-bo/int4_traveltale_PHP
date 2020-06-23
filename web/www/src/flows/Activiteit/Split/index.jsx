@@ -68,16 +68,15 @@ const Split = () => {
       if(optie === 'optie1'){
         setRedirect("opties")
         setOptie("optie1")
-        return <Redirect to={`${ROUTES.optie1}${activiteit.id}`} />
+        console.log(ROUTES.optie1.to, activiteit.actitviteit_id)
       }else {
         setRedirect("opties")
-        setOptie("optie1")
-        return <Redirect to={`${ROUTES.optie2}${activiteit.id}`} />
+        setOptie("optie2")
+        console.log(ROUTES.optie2.to, activiteit.actitviteit_id)
       }
     }else {
       setRedirect("teweinig")
       console.log('niet genoeg stappen', stappen);
-      return <Redirect to={`${ROUTES.teweinig}${activiteit.id}`} />
     }
   }
   
@@ -87,13 +86,13 @@ const Split = () => {
   }
   if (redirect === "opties") {
     if(optie === "optie1"){
-    return <Redirect to={`${ROUTES.optie1}${activiteit.id}`} />
+    return <Redirect to={`${ROUTES.optie1.to}${activiteit.id}`} />
     }else {
-     return <Redirect to={`${ROUTES.optie2}${activiteit.id}`} />
+     return <Redirect to={`${ROUTES.optie2.to}${activiteit.id}`} />
     }
   }
   if (redirect === "teweinig") {
-    return <Redirect to={`${ROUTES.teweinig}${activiteit.id}`} />
+    return <Redirect to={`${ROUTES.teweinig.to}${activiteit.id}`} />
   }
   return (
    <>
@@ -106,7 +105,7 @@ const Split = () => {
 
    <div className={styles.midden}>
       <div className={styles.reis_title}>
-      <img alt="de touwtjes waaraan het naambordje hangt" src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+      <img alt="de touwtjes waaraan het naambordje van de activiteit hangt" src={'/assets/img/reisoverzicht/hangers.svg'}></img>
             <p className={styles.bestemming_naam}> {activiteit.naam}</p>
       </div>
   </div>
@@ -130,12 +129,12 @@ const Split = () => {
           <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
           
           <div className={styles.btton_pos}>
-          <Link onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button} to={`${ROUTES.optie1.to}${activiteit.id}`}>
+          <button onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button}>
           {activiteit.split.button1_tekst}
-          </Link>
-          <Link onClick={e=> handleKeuze(e, activiteit.split.button2_kost, 'optie2')} className={styles.button} to={`${ROUTES.optie2.to}${activiteit.id}`}>
+          </button>
+          <button onClick={e=> handleKeuze(e, activiteit.split.button2_kost, 'optie2')} className={styles.button}>
           {activiteit.split.button2_tekst}
-          </Link>
+          </button>
           </div>
         </div>
     </div>

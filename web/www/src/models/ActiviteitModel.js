@@ -12,6 +12,7 @@ class ActiviteitModel {
     this.optie1 = {};
     this.optie2 = {};
     this.einde = {};
+    this.souvenir_id = undefined;
     this.store = store; 
     this.store.addActiviteit(this);
     this.updateFromJson(json)
@@ -34,6 +35,11 @@ class ActiviteitModel {
       stad.activiteiten.splice(index, 1);
     }
     stad.addActivity(this);
+  }
+
+  resolveSouvenir(id){
+    const souvenir = this.store.rootStore.souvenirsStore.getSouvenirById(id);
+    console.log(souvenir);
   }
 
   updateFromJson = ({
@@ -63,6 +69,7 @@ class ActiviteitModel {
   einde_titel = undefined, 
   einde_tekst = undefined, 
   einde_button = undefined, 
+  souvenir_id = undefined, 
 
   }) => {
     this.naam = (naam !== undefined) ? naam : this.naam;
@@ -94,18 +101,9 @@ class ActiviteitModel {
     this.einde.titel = (einde_titel !== undefined) ? einde_titel : this.einde.titel;
     this.einde.tekst = (einde_tekst !== undefined) ? einde_tekst : this.einde.tekst;
     this.einde.button = (einde_button !== undefined) ? einde_button : this.einde.button;
+    this.souvenir_id = (souvenir_id !== undefined) ? souvenir_id : this.souvenir_id;
+
   };
-
-  // get asJson() {
-  //   return {
-  //     naam: this.naam,
-  //     stappen_niveau: this.stappen_niveau,
-  //     intro: this.intro, 
-  //     uitleg: this.uitleg, 
-  //     tag: this.tag, 
-
-  //   };
-  // }
 
 }
 
