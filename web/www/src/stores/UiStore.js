@@ -41,11 +41,13 @@ class UiStore {
 
   setBewegen(niveau) {
     this.beweegNiveau = niveau;
+    sessionStorage.setItem('beweegniveau', niveau);
     this.currentUser.setBeweegNiveau(niveau);
   }
 
   setSize(value) {
     this.fontSize = value;
+    sessionStorage.setItem('fontsize', value);
     this.currentUser.setFontSize(value);
   }
 
@@ -90,7 +92,7 @@ class UiStore {
 
 decorate(UiStore, {
   currentUser: observable,
-  setcurrentUser: action, 
+  setCurrentUser: action, 
 
   currentReis: observable, 
   setCurrentReis: action, 

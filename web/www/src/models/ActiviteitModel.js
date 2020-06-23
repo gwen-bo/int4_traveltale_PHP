@@ -51,6 +51,7 @@ class ActiviteitModel {
   activiteit_uitleg = undefined, 
   intro_tekst = undefined, 
   intro_titel = undefined,
+  intro_loop = undefined, 
   split_titel = undefined, 
   split_tekst1 = undefined, 
   split_span1 = undefined, 
@@ -60,15 +61,19 @@ class ActiviteitModel {
   split_button1_kost = undefined, 
   split_button2_tekst = undefined, 
   split_button2_kost = undefined, 
+  split_loop = undefined, 
   optie1_titel = undefined, 
   optie1_tekst = undefined, 
   optie1_button = undefined, 
+  optie1_loop = undefined, 
   optie2_titel = undefined, 
   optie2_tekst = undefined, 
   optie2_button = undefined, 
+  optie2_loop = undefined, 
   einde_titel = undefined, 
   einde_tekst = undefined, 
   einde_button = undefined, 
+  einde_loop = undefined, 
   souvenir_id = undefined, 
 
   }) => {
@@ -83,6 +88,7 @@ class ActiviteitModel {
     this.activiteit_uitleg = (activiteit_uitleg !== undefined) ? activiteit_uitleg : this.activiteit_uitleg;
     this.intro.tekst = (intro_tekst !== undefined) ? intro_tekst : this.intro.tekst;
     this.intro.titel = (intro_titel !== undefined) ? intro_titel : this.intro.titel;
+    this.intro.loop = (intro_loop !== undefined) ? intro_loop : this.intro.loop;
     this.split.titel = (split_titel !== undefined) ? split_titel : this.split.titel;
     this.split.tekst1 = (split_tekst1 !== undefined) ? split_tekst1 : this.split.tekst1;
     this.split.span1 = (split_span1 !== undefined) ? split_span1 : this.split.span1;
@@ -92,15 +98,20 @@ class ActiviteitModel {
     this.split.button1_kost = (split_button1_kost !== undefined) ? split_button1_kost : this.split.button1_kost;
     this.split.button2_tekst = (split_button2_tekst !== undefined) ? split_button2_tekst : this.split.button2_tekst;
     this.split.button2_kost = (split_button2_kost !== undefined) ? split_button2_kost : this.split.button2_kost;
+    this.split.loop = (split_loop !== undefined) ? split_loop : this.split.loop;
     this.optie1.titel = (optie1_titel !== undefined) ? optie1_titel : this.optie1.titel;
     this.optie1.tekst = (optie1_tekst !== undefined) ? optie1_tekst : this.optie1.tekst;
     this.optie1.button = (optie1_button !== undefined) ? optie1_button : this.optie1.button;
+    this.optie1.loop = (optie1_loop !== undefined) ? optie1_loop : this.optie1.loop;
     this.optie2.titel = (optie2_titel !== undefined) ? optie2_titel : this.optie2.titel;
     this.optie2.tekst = (optie2_tekst !== undefined) ? optie2_tekst : this.optie2.tekst;
     this.optie2.button = (optie2_button !== undefined) ? optie2_button : this.optie2.button;
+    this.optie2.loop = (optie2_loop !== undefined) ? optie2_loop : this.optie2.loop;
     this.einde.titel = (einde_titel !== undefined) ? einde_titel : this.einde.titel;
     this.einde.tekst = (einde_tekst !== undefined) ? einde_tekst : this.einde.tekst;
     this.einde.button = (einde_button !== undefined) ? einde_button : this.einde.button;
+    this.einde.loop = (einde_loop !== undefined) ? einde_loop : this.einde.loop;
+
     this.souvenir_id = (souvenir_id !== undefined) ? souvenir_id : this.souvenir_id;
 
   };

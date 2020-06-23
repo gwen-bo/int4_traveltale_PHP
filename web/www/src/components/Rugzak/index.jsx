@@ -1,5 +1,4 @@
 import React, { useState, useEffect }  from "react";
-import { useParams } from "react-router";
 import { useStores } from "../../hooks";
 import styles from "./Rugzak.module.css";
 import { ROUTES } from "../../consts";
@@ -30,7 +29,7 @@ const Rugzak = () => {
       setState(STATE_FULLY_LOADED);
     }}
     loadData();
-  }, [setState, setUser, authStore]);
+  }, [setState, setUser, authStore, uiStore.currentUser]);
 
   return useObserver(() => {
     if (state === STATE_LOADING) {

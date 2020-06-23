@@ -22,9 +22,11 @@ const StadDetail = () => {
 
   const [stad, setStad] = useState(stedenStore.getStadById(id));
   const [state, setState] = useState(stad ? STATE_FULLY_LOADED : STATE_LOADING);
+  const fontsize = sessionStorage.getItem('fontsize');
 
   useEffect(() => {
     const loadStad = async (id) => {
+      if(stad === undefined){
       try {
         await stedenStore.loadAllSteden(); 
         stedenStore.loadActiviteitenVanStad(id);
@@ -56,10 +58,12 @@ const StadDetail = () => {
             prim_name: 'Terug naar reisoverzicht'
           })
           history.push('/feedback');        }
+      }}else {
+        setState(STATE_FULLY_LOADED);
       }
     };
     loadStad(id);
-  }, [id, setState, setStad]);
+  }, [id, setState, setStad, history, stedenStore, uiStore, stad]);
 
   return useObserver(() => {
     if (state === STATE_LOADING) {
@@ -67,23 +71,18 @@ const StadDetail = () => {
     }
     return (
       <>
+      <AantalStappen className={styles.stappen} />
       <section>
-        <img className={styles.kaart} src={'/assets/img/kaart.svg'} alt="" />
-
+        <img className={styles.kaart} src={'/assets/img/kaart.svg'} alt="de kaart van de stad waar je je nu bevindt" />
         <div className={styles.nav_wrapper}>
-          <Terug
-            className={styles.order}
-            path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`}
-          />
           <div className={styles.midden}>
             <div className={styles.reis_title}>
-              <img src={'/assets/img/reisoverzicht/hangers.svg'}></img>
+              <img src={'/assets/img/reisoverzicht/hangers.svg'} alt="hangers waar het naamplaatje van de activiteit aan hangt"></img>
               <p className={styles.bestemming_naam}>{stad.naam}</p>
             </div>
           </div>
-          <AantalStappen />
           <Help />
-
+          <Terug className={styles.order} path={`${ROUTES.reisoverzicht.to}${sessionStorage.getItem('currentReis_id')}`} />
         </div>
         <div className={styles.center}>
           <div className={styles.activiteiten}>
@@ -96,7 +95,8 @@ const StadDetail = () => {
                 />
                 <p className={styles.activiteit_title}>{activiteit.naam}</p>
                 <div className={styles.text_but_pos}>
-                  <p className={`${styles.activiteit_text}`}>
+                  <p className={`${styles.activiteit_text} ${
+              (fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>
                     {activiteit.activiteit_uitleg}
                   </p>
                   <div className={styles.pos}>

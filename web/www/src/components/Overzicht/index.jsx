@@ -21,7 +21,7 @@ const Overzicht = () => {
 
     useEffect(() => {
       const loadData = async () => {
-        if(uiStore.currentUser === undefined || uiStore.currentReis === undefined){
+        if(user === undefined || uiStore.currentReis === undefined){
         await authStore.fetchData();
         setUser(uiStore.currentUser);
         setState(STATE_FULLY_LOADED);
@@ -29,12 +29,11 @@ const Overzicht = () => {
         setState(STATE_FULLY_LOADED);
       }}
       loadData();
-    }, [authStore, setState, uiStore.currentUser, uiStore.currentReis]);
+    }, [authStore, setState, uiStore.currentUser, uiStore.currentReis, user]);
 
   return useObserver(() => {
-
     if (state === STATE_LOADING) {
-      return <Empty message={"Even aan het laden.."} />;
+      return <Empty message={"Even aan het laden.."} />
     }
    return (
     <>

@@ -65,14 +65,14 @@
 }
 
 .button_text {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     margin-left: 1rem;
 }
 
 .inhoud {
     width: 86rem;
     height: 57rem;
-    padding: 3rem;
+    padding: .01rem 3rem ;
     margin-left: 3rem;
     border-left: solid .3rem black;
 }
@@ -92,3 +92,15 @@
     /* justify-content: space-between; */
     margin-bottom: 4rem;
 }
+
+.small {
+    font-size: 1.6rem;
+  }
+  
+  .medium {
+    font-size: 1.8rem;
+  }
+  
+  .large {
+    font-size: 2rem;
+  }

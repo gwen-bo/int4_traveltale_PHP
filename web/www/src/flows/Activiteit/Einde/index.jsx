@@ -25,8 +25,8 @@ const Einde = () => {
   
   const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
   const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
-  
-  
+  const fontsize = sessionStorage.getItem('fontsize');
+
   useEffect (() => {
     const loadActiviteit = async (id) => {
 
@@ -89,7 +89,7 @@ const Einde = () => {
 
    <div className={styles.img_activiteit}>
     < LottieActiviteit 
-     name={activiteit.header_img} place="einde"
+     name={activiteit.header_img} place="einde" loop={activiteit.einde.loop}
      />
     </div>
     </div>
@@ -100,9 +100,9 @@ const Einde = () => {
      </div>
      <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.einde.titel}</p>
-        <p className={styles.oma_text}>{activiteit.einde.tekst}</p>
+        <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.einde.tekst}</p>
 
-      {activiteit.souvenir_id === null ? 
+      {activiteit.souvenir_id === null || activiteit.souvenir_id === 0 ? 
       <Link onClick={e => handleEinde(activiteit.id)} className={styles.button} to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`}>
       {activiteit.einde.button}
       </Link>

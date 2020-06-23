@@ -15,7 +15,7 @@ class LottieActiviteit extends Component {
 
   render() {
     const defaultOptions = {
-      loop: false,
+      loop: this.state.loop,
       autoplay: true,
       animationData: require(`../../../assets/lottie/activiteiten/${this.state.name}/${this.state.place}.json`),
       rendererSettings: {

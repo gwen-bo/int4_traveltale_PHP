@@ -26,7 +26,8 @@ const Optie1 = () => {
   
     const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
     const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
-  
+    const fontsize = sessionStorage.getItem('fontsize');
+
   
   useEffect (() => {
     const loadActiviteit = async (id) => {
@@ -75,12 +76,14 @@ const Optie1 = () => {
   </div>
    <AantalStappen/>
    </div>
+   <div className={styles.background_img}>
+
    <div className={styles.img_activiteit}>
     < LottieActiviteit 
-     name={activiteit.header_img} place="optie1"
+     name={activiteit.header_img} place="optie1" loop={activiteit.optie1.loop}
      />
     </div>
-
+  </div>
    <div className={styles.oma_ballon}>
    <div className={styles.oma_img}>
       < LottieUitleg 
@@ -89,7 +92,7 @@ const Optie1 = () => {
      </div>      
      <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.optie1.titel}</p>
-        <p className={styles.oma_text}>{activiteit.optie1.tekst}</p>
+        <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.optie1.tekst}</p>
         <Link className={styles.button} to={`${ROUTES.einde.to}${activiteit.id}`}>
           {activiteit.optie1.button}
         </Link>

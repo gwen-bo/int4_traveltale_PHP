@@ -49,7 +49,7 @@ const Souvenir = () => {
       setState(STATE_FULLY_LOADED);
     }};
     loadSouvenir(id);
-  }, [id, setState, setSouvenir, souvenirsStore, uiStore, history])
+  }, [id, setState, setSouvenir, souvenirsStore, uiStore, history, souvenir])
 
   const handleSouvenir = () => {
     const isChecked = uiStore.currentUser.checkifCheckedSouvenir(id); 

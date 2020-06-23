@@ -24,7 +24,8 @@ const TeWeinig = () => {
     const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
     const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
   
-  
+    const fontsize = sessionStorage.getItem('fontsize');
+
   useEffect (() => {
     const loadActiviteit = async (id) => {
       if(activiteit === undefined){
@@ -54,7 +55,7 @@ const TeWeinig = () => {
       setState(STATE_FULLY_LOADED);
     }};
     loadActiviteit(id);
-  }, [id, setState, setActiviteit])
+  }, [id, setState, setActiviteit, activiteit, activiteitenStore, history, uiStore, stedenStore])
   
   return useObserver (() => {
   if (state === STATE_LOADING) {
@@ -75,9 +76,9 @@ const TeWeinig = () => {
    <AantalStappen/>
    </div>
 
+   <div className={styles.background_img}>
    <div className={styles.img_activiteit}>
-   <div className={styles.img_activiteit}>
-    < LottieActiviteit name={activiteit.header_img} place="teweinig" />
+    < LottieActiviteit name={activiteit.header_img} place="teweinig" loop="true" />
   </div>
   </div>
   
@@ -89,7 +90,7 @@ const TeWeinig = () => {
      </div> 
      <div className={styles.oma_box}>
         <p className={styles.oma_title}>Ai, je hebt nog niet genoeg stappen gezet.</p>
-        <p className={styles.oma_text}>Je komt nog een aantal stappen tekort. Tijd om een wandeling te maken?</p>
+        <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>Je komt nog een aantal stappen tekort. Tijd om een wandeling te maken?</p>
         <div className={styles.btton_pos}>
             <Link to={`${ROUTES.stadDetail.to}${activiteit.stad_id}`} className={styles.button}>{activiteit.einde.button}</Link>
             <Link to={ROUTES.wandelplezier} className={styles.button}>Ik ga wandelen</Link>

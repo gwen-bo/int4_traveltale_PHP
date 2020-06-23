@@ -11,13 +11,12 @@ import Empty from "../../../components/Empty";
 
 const Instellingen = () => {
   const [view, setView] = useState("profiel");
-  const {uiStore, landenStore, authStore} = useStores();
+  const {uiStore, authStore} = useStores();
 
   const STATE_LOADING = "loading";
   const STATE_FULLY_LOADED = "fullyLoaded";
 
-  const [user, setUser] = useState(undefined);
-  const [state, setState] = useState(user ? STATE_FULLY_LOADED : STATE_LOADING);
+  const [state, setState] = useState(STATE_LOADING);
   
   useEffect(() => {
     const loadUser = async () => {
@@ -29,8 +28,8 @@ const Instellingen = () => {
       }
     };
     loadUser();
-  }, [ uiStore, setState]); 
-
+  }, [ uiStore, setState, authStore]); 
+  const fontsize = sessionStorage.getItem('fontsize');
 
   return useObserver(() => {
   if (state === STATE_LOADING) {
@@ -91,7 +90,13 @@ const Instellingen = () => {
                   <p className={styles.button_text}>Fitbit</p>
                 </button>
               </div>
-              <div className={styles.inhoud}>
+              <div className={`${styles.inhoud} ${
+                (fontsize === "small" ) 
+                ? styles.small 
+                : (fontsize === "medium" ) 
+                ? styles.medium 
+                : styles.large}`}>
+                  
                 <h1 className={styles.title}>Instellingen</h1>
                 {view === "profiel" ? (
                   <Profiel />

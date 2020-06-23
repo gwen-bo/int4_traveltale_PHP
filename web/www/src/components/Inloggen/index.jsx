@@ -4,7 +4,6 @@ import {ROUTES} from "../../consts";
 import { useStores } from "../../hooks";
 import styles from "./Inloggen.module.css";
 import Help from "../buttons/Help";
-import LottieFeedback from "../Feedback/LottieFeedback";
 
 const Inloggen = () => {
   const {uiStore} = useStores();

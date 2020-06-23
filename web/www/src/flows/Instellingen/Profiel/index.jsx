@@ -2,12 +2,10 @@ import React from "react";
 import { useObserver } from "mobx-react-lite";
 import styles from "./Profiel.module.css";
 import { useStores } from "../../../hooks";
-import { useState } from "react";
-import { useEffect } from "react";
-import Empty from "../../../components/Empty"
+
 const Profiel = () => {
 
-const {uiStore, landenStore, authStore} = useStores()
+const {uiStore} = useStores()
 
 
   return useObserver(() => {

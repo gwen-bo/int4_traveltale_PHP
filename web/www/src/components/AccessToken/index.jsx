@@ -19,6 +19,7 @@ const AccessToken = () => {
         sessionStorage.clear();
         sessionStorage.setItem('access_token', access_token);
         authStore.setAccessToken(sessionStorage.getItem('access_token'));
+        sessionStorage.setItem('accesstoken', "true");
         history.push('/overzicht');
   }, [authStore, history]);
 

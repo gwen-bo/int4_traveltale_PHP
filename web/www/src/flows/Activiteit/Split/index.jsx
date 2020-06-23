@@ -4,7 +4,6 @@ import { useStores } from "../../../hooks";
 import {ROUTES} from "../../../consts";
 import { useEffect } from "react";
 import styles from "./Split.module.css";
-import { Link } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
 import Terug from "../../../components/buttons/Terug";
 import Rugzak from "../../../components/buttons/Rugzak";
@@ -28,7 +27,8 @@ const Split = () => {
   const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
   const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
   
-  
+  const fontsize = sessionStorage.getItem('fontsize');
+
   useEffect (() => {
     const loadActiviteit = async (id) => {
       try {
@@ -114,7 +114,7 @@ const Split = () => {
   <div className={styles.background_img}>
 
   <div className={styles.img_activiteit}>
-    < LottieActiviteit name={activiteit.header_img} place="split" />
+    < LottieActiviteit name={activiteit.header_img} place="split" loop={activiteit.split.loop} />
   </div>
   </div>
 
@@ -126,7 +126,7 @@ const Split = () => {
      </div>
         <div className={styles.oma_box}>
           <p className={styles.oma_title}>{activiteit.split.titel}</p>
-          <p className={styles.oma_text}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
+          <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.split.tekst1} <img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> <span className={styles.bold}> {activiteit.split.span1} </span>{activiteit.split.tekst2} <span className={styles.bold}><img className={styles.steps_inlext} src={'/assets/img/stappenIcon.svg'} alt="spannen icon"/> {activiteit.split.span2}</span>?</p>
           
           <div className={styles.btton_pos}>
           <button onClick={e => handleKeuze(e, activiteit.split.button1_kost, 'optie1')} className={styles.button}>

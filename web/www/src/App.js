@@ -34,9 +34,10 @@ import Einde from './flows/Activiteit/Einde';
 import Wandelplezier from './components/Wandelplezier';
 import NotFound from './components/NotFound';
 import Souvenir from './flows/Activiteit/Souvenir'
-function App() {
 
+function App() { 
   return (
+
     <Switch>
 
     <Route exact path={ROUTES.token}>
@@ -48,7 +49,6 @@ function App() {
       </Route>
 
       
-
       {/* registratieproces */}
       <Route exact path={ROUTES.registratie}>
           <Registratie />
@@ -74,66 +74,73 @@ function App() {
       </Route>
 
       <Route path={ROUTES.overzicht}>
-          <Overzicht />
+        <Overzicht />
       </Route>
+
       <Route path={ROUTES.reisoverzicht.path}>
-          <ReisOverzicht />
+             <ReisOverzicht />
+
       </Route>
 
       <Route path={ROUTES.rugzak}>
-          <Rugzak />
+            <Rugzak />
       </Route>
 
       <Route path={ROUTES.keuze.path}>
-          <Keuze />
+            <Keuze />
       </Route>
 
       <Route exact path={ROUTES.reisaanbod}>
-          <Reisaanbod />
+            <Reisaanbod />
+ 
       </Route>
+
+      <Route path={ROUTES.stadDetail.path}>
+            <StadDetail />
+      </Route>
+
       <Route exact path={ROUTES.stadkeuze.path}>
-          <StadKeuze />
+                <StadKeuze />
       </Route>
       <Route path={ROUTES.aanbodDetail.path}>
-        <LandDetail />
+                <LandDetail />
       </Route>
-      <Route exact path={ROUTES.stadDetail.path}>
-        <StadDetail />
-      </Route>
+      
 
 {/* Activiteiten flow */}
       <Route exact path={ROUTES.intro.path}>
-          <Intro />
+        <Intro />
       </Route>
+
       <Route exact path={ROUTES.split.path}>
-          <Split />
+        <Split />
       </Route>
       <Route exact path={ROUTES.teweinig.path}>
-          <TeWeinig />
+        <TeWeinig />
       </Route>
       <Route exact path={ROUTES.optie1.path}>
-          <Optie1 />
+        <Optie1 />
       </Route>
       <Route exact path={ROUTES.optie2.path}>
-          <Optie2 />
+        <Optie2 />
       </Route>
       <Route exact path={ROUTES.einde.path}>
-          <Einde />
+        <Einde />
       </Route>
       <Route exact path={ROUTES.souvenir.path}>
-          <Souvenir />
+        <Souvenir />
       </Route>
 
       <Route path={ROUTES.instellingen}>
-          <Instellingen />
+                <Instellingen />
       </Route>
 
       <Route path={ROUTES.wandelplezier}>
-          <Wandelplezier />
+                <Wandelplezier />
       </Route>
 
       <Route path={ROUTES.instellingen}>
-          <Instellingen />
+                <Instellingen />
       </Route>
 
       <Route exact path={ROUTES.inloggen}>
@@ -162,8 +169,8 @@ function App() {
       </Route>
 
       <Route path="*" >
-            <NotFound />
-        </Route>
+          <NotFound />
+    </Route>
   </Switch> 
   );
 }

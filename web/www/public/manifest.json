@@ -3,21 +3,43 @@
   "name": "Travel Tale",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "/assets/icons/custom_icon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/assets/icons/custom_icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
+  "splashes": [
+    {
+        "src": "/assets/splash/splash_1024x768.png",
+        "sizes": "2048x1536",
+        "type": "image/png"
+    },
+    {
+        "src": "/assets/splash/splash_1080x810.png",
+        "sizes": "2160x1620",
+        "type": "image/png"
+    },
+    {
+        "src": "/assets/splash/splash_1112x834.png",
+        "sizes": "2224x1668",
+        "type": "image/png"
+    },
+    {
+        "src": "/assets/splash/splash_1194x834.png",
+        "sizes": "2388x1668",
+        "type": "image/png"
+    },
+    {
+        "src": "/assets/splash/splash_1366x1024.png",
+        "sizes": "2732x2048",
+        "type": "image/png"
+    }
+], 
   "start_url": ".",
   "orientation": "landscape", 
   "display": "fullscreen",

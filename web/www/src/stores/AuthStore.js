@@ -14,18 +14,28 @@ class AuthStore {
     this.fitbit_user = undefined;
     this.fitbit_steps = undefined;
     this.registratieBeweeg = "fly";
-    this.registratieFontSize = "medium"
+    this.registratieFontSize = "medium";
     this.usersService = new RestService("users");
+    this.ingelogd = sessionStorage.getItem('user'); 
   }
   
    setAccessToken(access_token){
-       this.accessToken= access_token;
+     this.setIngelogd();
+       this.accessToken = access_token;
        sessionStorage.clear();
        sessionStorage.setItem('access_token', access_token);
        this.fetchData();
    }
 
+   setIngelogd(){
+    sessionStorage.setItem('user', "true");
+    this.ingelogd = sessionStorage.getItem('user'); 
+   }
+
    fetchData = async() => {
+     if(sessionStorage.getItem('access_token') === null){
+        window.location.replace('http://localhost:3001/');
+     }else {
     await this.loadAllUsers();
     await this.fetchUserData().then(data => {
       // this.updateUserFromServer(data.user);
@@ -36,6 +46,7 @@ class AuthStore {
       this.fitbit_steps = data.lifetime.tracker.steps;
     })
     this.findUser();
+  }
   }
 
   setBewegenRegistratie(beweegniveau){
@@ -68,6 +79,7 @@ class AuthStore {
     user.setCurrentStappen(stappen);
     user.setLifeTimeStappen(this.fitbit_steps);
     this.loadCheckedForUser(user);
+    this.rootStore.uiStore.setSize(user.fontsize)
     if (user.currentReis_id !== undefined) {
       console.log('reis id is aanwezig', user.currentReis_id);
       sessionStorage.setItem('currentReis_id', user.currentReis_id);
@@ -87,11 +99,9 @@ class AuthStore {
         method: 'GET'
     });
     let data = await response.json()
-    console.log('dit is de data', data);
-    
     return data;
       }catch(err){
-    console.log(err);
+        console.log(err);
       }
    }
 
@@ -151,15 +161,15 @@ class AuthStore {
   }
 
   insertCheckedStad = async json => {
-    const response = await this.usersService.insertChecked(json, "stad");
+    return await this.usersService.insertChecked(json, "stad");
   }
 
   insertCheckedActiviteit = async json => {
-    const response = await this.usersService.insertChecked(json, "activiteit");
+    return await this.usersService.insertChecked(json, "activiteit");
   }
 
   insertCheckedSouvenir = async json => {
-    const response = await this.usersService.insertChecked(json, "souvenirs");
+    return await this.usersService.insertChecked(json, "souvenirs");
   }
 
   updateCurrentStappen = async user => {
@@ -210,6 +220,9 @@ decorate(AuthStore, {
 
   updateUserFromServer: action, 
   addUser: action,
+
+  setIngelogd: action, 
+  ingelogd: observable, 
 
   registratieBeweeg: observable, 
   setBewegenRegistratie: action, 

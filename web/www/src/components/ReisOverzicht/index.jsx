@@ -26,6 +26,8 @@ const ReisOverzicht = () => {
   const [bestemming, setBestemming] = useState(landenStore.getLandById(id));
   const [state, setState] = useState(bestemming ? STATE_FULLY_LOADED : STATE_LOADING);
   const [progress, setProgress] = useState("");
+
+  
   
   useEffect(() => {
     const loadLand = async (id) => {
@@ -48,6 +50,21 @@ const ReisOverzicht = () => {
           history.push('/feedback');
         }
         setBestemming(bestemming);
+        const progressLength = () => {
+          const checked = [];
+          landenStore.getLandById(id).steden.forEach(stad => {
+            const check = uiStore.currentUser.checkifCheckedStad(stad.id);
+            if(check !== undefined){
+              checked.push(stad);
+            }})
+            const lengte = checked.length; 
+            const percent = (lengte/4)*100;
+            if(percent === 0){
+              return 20
+            }
+            console.log(percent);
+            return percent
+          }
         setProgress(progressLength()-5);
         console.log(bestemming)
         await landenStore.loadStedenVanLand(id);
@@ -59,23 +76,8 @@ const ReisOverzicht = () => {
       }
     };
     loadLand(id);
-  }, [ id, landenStore, setState]); 
+  }, [authStore, history, id, landenStore, uiStore]); 
 
-    const progressLength = () => {
-    const checked = [];
-    landenStore.getLandById(id).steden.forEach(stad => {
-      const check = uiStore.currentUser.checkifCheckedStad(stad.id);
-      if(check !== undefined){
-        checked.push(stad);
-      }})
-      const lengte = checked.length; 
-      const percent = (lengte/4)*100;
-      if(percent === 0){
-        return 20
-      }
-      console.log(percent);
-      return percent
-    }
 
     const testColor = {
     width: `${progress}%`,

@@ -115,3 +115,20 @@
     justify-content: space-between;
     width: 50rem;
 }
+
+.small {
+    font-size: 1.6rem;
+  }
+  
+.medium {
+    font-size: 1.8rem;
+  }
+  
+.large {
+    font-size: 2rem;
+  }
+
+.background_img{
+    position: absolute;
+    bottom: 0;
+}

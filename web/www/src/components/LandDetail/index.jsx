@@ -52,6 +52,7 @@ const LandDetail = () => {
     };
     loadBestemming(id);
   }, [id, landenStore, setBestemming, history, uiStore]);
+  const fontsize = sessionStorage.getItem('fontsize');
   
   return useObserver(() => {
   if (state === STATE_LOADING) {
@@ -73,8 +74,8 @@ const LandDetail = () => {
       <p className={styles.tag}>{bestemming.tag}</p>
       
     </div>
-    <p className={styles.intro}>{bestemming.intro}</p>
-    <p className={styles.uitleg}>{bestemming.uitleg}</p>
+    <p className={`${styles.intro} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{bestemming.intro}</p>
+    <p className={`${styles.uitleg} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{bestemming.uitleg}</p>
     <Link className={styles.button} to={`${ROUTES.keuze.to}${bestemming.id}`} >Start deze reis</Link>
     </div>
     </div>

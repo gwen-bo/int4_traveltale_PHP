@@ -28,6 +28,7 @@ code {
        url("/assets/fonts/regular/Geomanist-Regular.woff") format("woff");
   font-weight: 400; 
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face{
@@ -36,6 +37,7 @@ code {
        url("/assets/fonts/book/Geomanist-Book.woff") format("woff");
   font-weight: 500; 
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face{
@@ -44,6 +46,7 @@ code {
       url("/assets/fonts/medium/Geomanist-Medium.woff2") format("woff2");
   font-weight: 800; 
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face{
@@ -52,6 +55,7 @@ code {
       url("/assets/fonts/bold/Geomanist-Bold.woff2") format("woff2");
   font-weight: 800; 
   font-style: normal;
+  font-display: swap;
 }
 
 html {
@@ -79,19 +83,42 @@ header {
 #root {
   height: 100vh;
   background-image: linear-gradient(#FFFFFF, #FFEFDF);
-
+  display: block;
 }
 
+.mobile {
+  display: none;
+  }
+  
+  .mobile_image {
+  display: none;
+  z-index: 3;
+  }
+  
+  
+  @media only screen and (max-width: 800px) {
+    #root {
+    display: none;
+  }
 
-.small {
-  font-size: 1.6rem;
+    body {
+  background-color: red;
+  }
+  
+    .mobile {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: block;
+  }
+  
+    .mobile_image {
+  width: 100vw;
+  height: auto;
+  display: block;
 }
-
-.medium {
-  font-size: 1.8rem;
-}
-
-.large {
-  font-size: 2rem;
 }
 

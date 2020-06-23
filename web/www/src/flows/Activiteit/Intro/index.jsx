@@ -30,6 +30,7 @@ const STATE_FULLY_LOADED = "fullyLoaded";
 const [activiteit, setActiviteit] = useState(activiteitenStore.getActiviteitById(id))
 const [state, setState] = useState(activiteit ? STATE_FULLY_LOADED : STATE_LOADING); 
 
+const fontsize = sessionStorage.getItem('fontsize');
 
 useEffect (() => {
   const loadActiviteit = async (id) => {
@@ -84,7 +85,7 @@ return useObserver (() => {
    <div className={styles.background_img}>
     <div className={styles.img_activiteit}>
     < LottieActiviteit 
-     name={activiteit.header_img} place="begin"
+     name={activiteit.header_img} place="begin" loop={activiteit.intro.loop}
      />
     </div>
    </div>
@@ -97,7 +98,7 @@ return useObserver (() => {
      </div>
       <div className={styles.oma_box}>
         <p className={styles.oma_title}>{activiteit.intro.titel}</p>
-        <p className={styles.oma_text}>{activiteit.intro.tekst}</p>
+        <p className={`${styles.oma_text} ${(fontsize === "small" ) ? styles.small : (fontsize === "medium" ) ? styles.medium : styles.large}`}>{activiteit.intro.tekst}</p>
         <Link className={styles.button} to={`${ROUTES.split.to}${activiteit.id}`}>
           Volgende
         </Link>
