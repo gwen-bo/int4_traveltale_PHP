@@ -18,11 +18,12 @@ const OnboardingDownload = () => {
           <div className={styles.text}>
             <h1 className={styles.title}>Download Travel Tale</h1>
             <p className={styles.uitleg}>
-              Travel tale is niet enkel bereikbaar via het internet maar is ook downloadbaar! Lekker handig want zo hoef je niet altijd op zoek te gaan naar onze site.
+              <span className={styles.uitleg_nadruk}>Maak je gebruik van een tablet? </span><br></br>Dan is Travel Tale niet enkel bereikbaar via het internet, je kan het ook downloaden! Lekker handig want zo hoef je niet altijd op zoek te gaan naar onze site.
             </p>
+            <h2 className={styles.hidden}>Hoe kan je travel tale downloaden?</h2>
             <ol>
-              <li className={styles.uitleg}>Druk op de <span className={styles.iconDeel}> 'Deel</span> knop in jouw browser.</li>
-              <li className={styles.uitleg}>Druk op <span className={styles.iconPlus}></span> ‘Zet op beginscherm’.</li>
+              <li className={styles.uitleg}>Druk op de <span className={styles.iconDeel}> </span> <span className={styles.uitleg_nadruk}>'Deel knop in jouw browser.</span></li>
+              <li className={styles.uitleg}>Druk op <span className={styles.iconPlus}></span> <span className={styles.uitleg_nadruk}>‘Zet op beginscherm’.</span></li>
             </ol>
           </div>
           <div className={styles.bot}>

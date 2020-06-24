@@ -17,6 +17,7 @@ const Onboarding1 = () => {
         <div className={styles.right}>
           <div className={styles.text}>
             <h1 className={styles.title}>Welkom bij Travel Tale!</h1>
+            <h2 className={styles.hidden}>Intro</h2>
             <p className={styles.uitleg}> Ga met je Fitbit op stap en ontgrendel jouw droomreis op Travel Tale! <br></br>Klik op de knop <span className={styles.strong}>‘Geef mij wat uitleg’</span> om Travel Tale beter te leren kennen!
             </p>
             

@@ -37,6 +37,8 @@ const Overzicht = () => {
     }
    return (
     <>
+                  <h1 className={styles.hidden}>Overzicht</h1>
+
         {uiStore.help === true ? <HelpOverzicht /> : "" }
     <Help />
     <Navigatie />
@@ -50,6 +52,7 @@ const Overzicht = () => {
             <p className={styles.title}>{uiStore.begroeting} {user.firstName}</p>
             {currentReis === undefined ? (
               <>
+              <h2 className={styles.hidden}>Geen reis geselecteerd</h2>
                 <p className={styles.uitleg}>
                   Het ziet er naar uit dat je momenteel nog geen reis gaande
                   hebt.{" "}
@@ -65,6 +68,7 @@ const Overzicht = () => {
             ) : (
               <>
               <div className={styles.wrapper_top}>
+              <h2 className={styles.hidden}>Dit is je reis</h2>
                 <p className={styles.uitleg}>Welkom terug! </p>
                 <p className={styles.uitleg}>
                   Momenteel ben je op reis in <span className={styles.uitleg_nadruk}>{currentReis.naam}</span>! Klaar om

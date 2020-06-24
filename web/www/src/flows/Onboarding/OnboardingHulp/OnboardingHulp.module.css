@@ -25,6 +25,13 @@
     margin-left: 4rem;
 }
 
+.uitleg_nadruk {
+    font-weight: 600;
+}
+
+.hidden {
+    display: none; 
+}
 
 .icon::before {
     content: url("/assets/img/Helpknopje.svg");

@@ -16,9 +16,10 @@ const OnboardingHulp = () => {
         </div>
         <div className={styles.right}>
           <div className={styles.text}>
-          <h1 className={styles.title}>Hulp nodig? Klik op het vraagteken! </h1>
+          <h1 className={styles.title}>Hulp nodig? <br></br>Klik op het vraagteken! </h1>
+          <h2 className={styles.hidden}>Uitleg help-functie</h2>
           <p className={styles.uitleg}>
-            Loop je verloren in de app? <br></br>Klik dan op de <span className={styles.icon}>‘Help’ </span> knop, die je rechts onderaan het scherm vindt! 
+            Loop je verloren in de app? <br></br>Klik dan op de <span className={`${styles.icon} ${styles.uitleg_nadruk}`}>‘Help’ </span> knop, <br></br>die je <span className={styles.uitleg_nadruk}>rechts onderaan</span> het scherm vindt! 
           </p>
             
           </div>

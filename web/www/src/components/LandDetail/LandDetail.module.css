@@ -16,6 +16,10 @@
     width: 40vw;
 }
 
+.hidden{
+    display: none;
+} 
+
 .button{
     background-color: black;
     color: white;

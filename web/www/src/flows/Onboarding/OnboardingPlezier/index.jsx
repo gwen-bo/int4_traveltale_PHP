@@ -16,9 +16,9 @@ const OnboardingPlezier = () => {
           </div>
           <div className={styles.right}>
             <div className={styles.text}>
-              <h1 className={styles.title}>Veel plezier met Travel Tale!</h1>
+              <h1 className={styles.title}>Veel plezier <br></br>met Travel Tale!</h1>
               <p className={styles.uitleg}>
-              Vergeet niet, <br></br>klik op <span className={styles.icon}>‘Help’</span> wanneer je even hulp nodig hebt.</p>
+              Vergeet niet, <br></br>klik op <span className={`${styles.icon} ${styles.uitleg_nadruk}`}>‘Help’</span> wanneer je even hulp nodig hebt.</p>
               
             </div>
             <div className={styles.bot}>

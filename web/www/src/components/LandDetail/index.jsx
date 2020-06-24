@@ -60,12 +60,16 @@ const LandDetail = () => {
   }
   return (
    <>
+    <h1 className={styles.hidden}>Detailpagina land</h1>
+
    <div className={styles.nav_wrapper}>
    <Navigatie />
    <Help />
    <TerugOverzicht />
    </div>
    <section className={styles.detail}>
+   <h2 className={styles.hidden}>Uitleg</h2>
+
      <div className={styles.detail_info}>
    <img className={styles.bestemming_niveau} alt="het niveau van deze bestemming" src={(bestemming.stappen_niveau === 1) ? '/assets/img/reisaanbod/niveau1.svg' : (bestemming.stappen_niveau === 2) ? '/assets/img/reisaanbod/niveau2.svg' : '/assets/img/reisaanbod/niveau3.svg'}></img>
    <div className={styles.info_wrapper}>

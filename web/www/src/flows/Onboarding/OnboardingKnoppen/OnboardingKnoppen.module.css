@@ -16,6 +16,10 @@
     width: 50rem;
 }
 
+.hidden{
+    display: none;
+}
+
 .right {
     width: 56rem;
     height: 54rem;
@@ -30,6 +34,10 @@
     max-width: 41rem;
     margin-bottom: 2rem;
     line-height: 1.5;
+}
+
+.uitleg_nadruk {
+    font-weight: 600;
 }
 
 ol {

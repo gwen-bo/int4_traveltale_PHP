@@ -20,10 +20,11 @@ const OnboardingKnoppen = () => {
             <p className={styles.uitleg}>
               In Travel Tale zitten enkele soorten knoppen waar je op kan klikken.
             </p>
-            <ol>
-              <li className={styles.uitleg}>De menu-knoppen die geel worden als je er op hebt geklikt.</li>
-              <li className={styles.uitleg}>Witte en zwarte afgeronde knoppen.</li>
-              <li className={styles.uitleg}>Knoppen die een geel randje krijgen als je er op klikt.</li>
+            <h2 className={styles.hidden}>De 3 soorten knoppen: </h2>
+            <ol >
+              <li className={styles.uitleg}>De menu-knoppen die <span className={styles.uitleg_nadruk}>geel worden</span> als je er op hebt geklikt.</li>
+              <li className={styles.uitleg}><span className={styles.uitleg_nadruk}>Witte en zwarte</span> afgeronde knoppen.</li>
+              <li className={styles.uitleg}>Knoppen die een <span className={styles.uitleg_nadruk}>geel randje</span> krijgen als je er op klikt.</li>
             </ol>
           </div>
           <div className={styles.bot}>

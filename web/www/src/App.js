@@ -33,7 +33,8 @@ import Optie2 from './flows/Activiteit/Optie2';
 import Einde from './flows/Activiteit/Einde';
 import Wandelplezier from './components/Wandelplezier';
 import NotFound from './components/NotFound';
-import Souvenir from './flows/Activiteit/Souvenir'
+import Souvenir from './flows/Activiteit/Souvenir';
+import ComingSoon from './components/ComingSoon';
 
 function App() { 
   return (
@@ -79,7 +80,10 @@ function App() {
 
       <Route path={ROUTES.reisoverzicht.path}>
              <ReisOverzicht />
+      </Route>
 
+      <Route path={ROUTES.comingsoon}>
+             <ComingSoon />
       </Route>
 
       <Route path={ROUTES.rugzak}>

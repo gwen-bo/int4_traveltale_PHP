@@ -19,6 +19,7 @@ const ROUTES = {
   fontsize: "/registratie/fontsize",
   bewegen: "/registratie/bewegen",
   bevestigen: "/registratie/bevestigen",
+  comingsoon: "/comingsoon",
 
   feedback: "/feedback",
 

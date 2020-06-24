@@ -17,6 +17,10 @@
     width: 50rem;
 }
 
+.hidden {
+    display: none;
+}
+
 .right {
     width: 56rem;
     height: 54rem;

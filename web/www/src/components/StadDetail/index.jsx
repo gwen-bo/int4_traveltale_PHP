@@ -109,12 +109,17 @@ const StadDetail = () => {
                         max. {activiteit.max_steps}
                       </p>
                     </div>
+                    {activiteit.id === 1 || activiteit.id === 4 || activiteit.id === 9 ?
                     <Link
                       to={`${ROUTES.intro.to}${activiteit.id}`}
-                      className={styles.button}
-                    >
+                      className={styles.button} >
                       Starten
                     </Link>
+                    :
+                    <Link to={`${ROUTES.comingsoon}`} className={styles.button} >
+                      Starten
+                    </Link>
+                    }
                   </div>
                 </div>
               </div>

@@ -38,11 +38,14 @@ const Reisaanbod = () => {
       return <Empty message={"Even aan het laden.."} />;
     } return (
     <>
+      <h1 className={styles.hidden}>Reisaanbod</h1>
+
       <Navigatie />
       <Help />
       <div className={styles.center}>
         <div className={styles.wrapper}>
           <section className={styles.reisaanbod}>
+          <h2 className={styles.hidden}>Ontdek de bestemmingen</h2>
             <p className={styles.title}>Ontdek onze bestemmingen</p>
             <div className={styles.filterwrapper}>
               <ul className={styles.filters}>
