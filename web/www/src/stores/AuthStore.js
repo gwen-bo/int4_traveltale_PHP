@@ -46,8 +46,32 @@ class AuthStore {
       this.fitbit_steps = data.lifetime.tracker.steps;
     })
     this.findUser();
-  }
-  }
+  }}
+
+
+  // fetchNewSteps = async() => {
+  //   if(sessionStorage.getItem('access_token') === null){
+  //     window.location.replace('https://thawing-plains-60681.herokuapp.com/');
+  //  }else {
+  //   await this.fetchActivityData().then(data => {
+  //     this.fitbit_steps = data.lifetime.tracker.steps;
+  //   })
+  //   if(this.rootStore.uiStore.currentUser === undefined){
+  //     await this.fetchUserData().then(data => {
+  //       // this.updateUserFromServer(data.user);
+  //       this.fitbit_user = data.user;      
+  //       this.user_id = data.user.encodedId;
+  //     });
+  //     this.findUser();
+  //     }else {
+  //       const user = this.rootStore.uiStore.currentUser;
+  //       const newSteps = this.fitbit_steps - user.lifetime_stappen;
+  //       const stappen = user.stappen += newSteps; 
+  //       user.setCurrentStappen(stappen);
+  //       user.setLifeTimeStappen(this.fitbit_steps);
+  //     }
+  //  }
+  // }
 
   setBewegenRegistratie(beweegniveau){
     this.registratieBeweeg = beweegniveau
@@ -62,7 +86,6 @@ class AuthStore {
   findUser(){
     const currentUser = this.users_database.find(user => user.id === this.user_id);
     if(currentUser === undefined){
-      console.log('user bestaat nog niet in database')
       const user = this.updateUserFromServer(this.fitbit_user);
       user.create();
       this.addUser(user);
@@ -70,7 +93,6 @@ class AuthStore {
       user.setRegistratie({fontsize: sessionStorage.getItem('fontsize'), niveau: sessionStorage.getItem('beweegniveau')});
       user.setLifeTimeStappen(this.fitbit_steps);
     }else {
-    console.log('user bestaat al, setting currentUser', currentUser)
     const user = this.updateUserFromServer(currentUser);
     this.addUser(user);
     this.rootStore.uiStore.setCurrentUser(user);
@@ -86,6 +108,7 @@ class AuthStore {
     }
   }
 }
+
 
    fetchUserData = async() => {
     try {

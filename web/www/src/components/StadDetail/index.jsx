@@ -22,15 +22,16 @@ const StadDetail = () => {
 
   const [stad, setStad] = useState(stedenStore.getStadById(id));
   const [state, setState] = useState(stad ? STATE_FULLY_LOADED : STATE_LOADING);
+
   const fontsize = sessionStorage.getItem('fontsize');
 
   useEffect(() => {
     const loadStad = async (id) => {
-      if(stad === undefined){
+        console.log('loading stad')
       try {
         await stedenStore.loadAllSteden(); 
-        stedenStore.loadActiviteitenVanStad(id);
-        const stad = await stedenStore.getStadById(id);
+        await stedenStore.loadActiviteitenVanStad(id);
+        const stad = stedenStore.getStadById(id);
         if (!stad) {
           uiStore.setFeedback({
             title: 'Deze stad konden wij niet vinden!', 
@@ -44,7 +45,6 @@ const StadDetail = () => {
           history.push('/feedback');
         }
         setStad(stad);
-        console.log(stad);
         setState(STATE_FULLY_LOADED);
       } catch (error) {
         if (error.response && error.response.status === 404) {
@@ -58,8 +58,6 @@ const StadDetail = () => {
             prim_name: 'Terug naar reisoverzicht'
           })
           history.push('/feedback');        }
-      }}else {
-        setState(STATE_FULLY_LOADED);
       }
     };
     loadStad(id);

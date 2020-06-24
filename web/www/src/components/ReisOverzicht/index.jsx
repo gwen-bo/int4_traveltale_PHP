@@ -36,7 +36,8 @@ const ReisOverzicht = () => {
         await authStore.fetchData();
       }
       try {
-        const bestemming = await landenStore.loadLand(id);
+        const numberId = Number(id)
+        const bestemming = await landenStore.loadLand(numberId);
         if (!bestemming) {
           uiStore.setFeedback({
             title: 'Oeps!', 
@@ -67,7 +68,7 @@ const ReisOverzicht = () => {
           }
         setProgress(progressLength()-5);
         console.log(bestemming)
-        await landenStore.loadStedenVanLand(id);
+        await landenStore.loadStedenVanLand(numberId);
         setState(STATE_FULLY_LOADED);
       } catch (error) {
         if (error.response && error.response.status === 404) {

@@ -4,7 +4,6 @@ import Lottie from "react-lottie";
 class LottieOverzicht extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
 
     this.state = {
       animatie: { path: `${props.props}` },

@@ -1,13 +1,16 @@
 import React from "react";
 
-import style from "./Empty.module.css";
+import styles from "./Loading.module.css";
 import StappenLottie from "../StappenLottie";
 
 const Loading = () => {
   return (
-  <section className={style.container}>
-    <StappenLottie/>
-  </section>
+  <div className={styles.container}>
+    <p className={styles.text}>Stappen:</p>
+    <div className={styles.bol}>
+      <StappenLottie/>
+    </div>
+  </div>
       );
 };
 

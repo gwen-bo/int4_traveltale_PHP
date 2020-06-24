@@ -102,6 +102,9 @@ decorate(UiStore, {
   beweegNiveau: observable, 
   setBewegen: action, 
 
+  reisBegeleider: observable, 
+  setBegeleider: action, 
+
   fontSize: observable, 
   setSize: action, 
 

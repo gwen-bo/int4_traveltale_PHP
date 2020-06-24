@@ -17,6 +17,12 @@
     justify-content: space-between;
 }
 
+.grid_wrapper {
+    height: 45vh;
+    overflow: scroll;
+    max-height: 35rem;
+}
+
 .hidden{
     display: none;
 }

@@ -19,14 +19,15 @@ class LandenStore {
   };
 
   loadLand = async (id) => {
-    const jsonLand = await this.landenService.getById(id);
+    const number = Number(id);
+    const jsonLand = await this.landenService.getById(number);
     this.updateLandenFromServer(jsonLand);
     return this.getLandById(id);
   }
 
   loadStedenVanLand = async (id) => {
-    const jsonSouvenirs = await this.landenService.getById(id, 'steden');
-    this.updateLandenFromServer({ id, steden: jsonSouvenirs });
+    const jsonSteden = await this.landenService.getById(id, 'steden');
+    this.updateLandenFromServer({ id, steden: jsonSteden });
     return this.getLandById(id);
   };
 
@@ -53,12 +54,17 @@ class LandenStore {
   }
 
     addLand(land){
-        this.landen.push(land)
+      const index = this.landen.findIndex(test => test.id === land.id);
+      if (index !== -1) {
+        this.landen.splice(index, 1);
+      }
+      this.landen.push(land);
     }
 
     getLandById(id){
         const number = Number(id);
         return this.landen.find(land => land.id === number);
+        
     }
 
     setSelectedBestemming(land){

@@ -25,6 +25,7 @@ class SouvenirsStore {
   getSouvenirById(id){
     const number = Number(id);
     return this.souvenirs.find(souvenir => souvenir.souvenir_id === number);
+    
 }
 }
 

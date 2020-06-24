@@ -15,7 +15,6 @@ class StedenStore {
   loadAllSteden = async () => {
     const jsonSteden = await this.stedenService.getAll();
     jsonSteden.forEach(json => this.updateStedenFromServer(json));
-    return; 
   };
 
   loadStad = async (id) => {

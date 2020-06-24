@@ -6,7 +6,7 @@ import { ROUTES } from "../../consts";
 const Navigatie = () => {
   return (
     <nav className={styles.navigatie_wrapper}>
-        <NavLink to={ROUTES.home}><img className={styles.nav_logo} src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img></NavLink>
+        <NavLink to={ROUTES.overzicht}><img className={styles.nav_logo} src={'/assets/img/logo.svg'} alt="logo Travel Tale"></img></NavLink>
       <div className={styles.nav}>
           <NavLink
             className={styles.nav_li}

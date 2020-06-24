@@ -20,7 +20,7 @@ const Reisaanbod = () => {
     const loadBestemmingen = async () => {
       if (landenStore.landen.length === 0) {
       try {
-        await landenStore.loadAllLanden();
+        // await landenStore.loadAllLanden();
         setState(STATE_FULLY_LOADED);
       } catch (error) {
         if (error.response && error.response.status === 404) {
@@ -54,6 +54,7 @@ const Reisaanbod = () => {
                 <li className={styles.filter_button}>Rustige reizen</li>
                 <li className={styles.filter_button}>Tropische reizen</li>
               </ul>
+              <div className={styles.grid_wrapper}>
               <div className={styles.bestemming_wrapper}>
                 {landenStore.landen.map((bestemming) => (
                   <Link
@@ -93,6 +94,7 @@ const Reisaanbod = () => {
                     </div>
                   </Link>
                 ))}
+              </div>
               </div>
             </div>
           </section>

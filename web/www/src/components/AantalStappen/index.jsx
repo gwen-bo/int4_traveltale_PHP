@@ -15,7 +15,6 @@ const AantalStappen = () => {
     const [state, setState] = useState(STATE_LOADING);
 
     useEffect(() => {
-      console.log("use effect wordt opgestart")
       const loadData = async () => {
         if(uiStore.currentUser === undefined){
         await authStore.fetchData();
